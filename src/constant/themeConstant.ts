@@ -1,14 +1,4 @@
 /**
- * Color palette used in the application.
- * @constant
- */
-export const COLORS = {
-    PRIMARY: {
-        MAIN: '#0E9F6E',
-    },
-};
-
-/**
  * Base font size in pixels.
  * @constant
  */

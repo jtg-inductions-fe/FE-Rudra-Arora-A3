@@ -29,15 +29,38 @@ const typographyStyle = (theme: Theme): TypographyOptions => ({
     fontWeightLight: 400,
     fontWeightRegular: 500,
     fontWeightMedium: 600,
+    fontWeightBold: 700,
 
     h1: {
         fontSize: typographyUtil.pxToRem(30),
         fontWeight: 700,
         lineHeight: typographyUtil.pxToRem(45),
 
-        [theme.breakpoints.up('md')]: {
-            fontSize: typographyUtil.pxToRem(48),
-            lineHeight: typographyUtil.pxToRem(62.5),
+        [theme.breakpoints.up('sm')]: {
+            fontSize: typographyUtil.pxToRem(45),
+            lineHeight: typographyUtil.pxToRem(67),
+        },
+    },
+
+    h2: {
+        fontSize: typographyUtil.pxToRem(25),
+        fontWeight: 600,
+        lineHeight: typographyUtil.pxToRem(37),
+
+        [theme.breakpoints.up('sm')]: {
+            fontSize: typographyUtil.pxToRem(38),
+            lineHeight: typographyUtil.pxToRem(57),
+        },
+    },
+
+    h3: {
+        fontSize: typographyUtil.pxToRem(20),
+        fontWeight: 500,
+        lineHeight: typographyUtil.pxToRem(30),
+
+        [theme.breakpoints.up('sm')]: {
+            fontSize: typographyUtil.pxToRem(30),
+            lineHeight: typographyUtil.pxToRem(45),
         },
     },
 });

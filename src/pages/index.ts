@@ -1,0 +1,9 @@
+export { Booking } from './Booking';
+export { Cinemas } from './Cinemas';
+export { LatestMovies } from './LatestMovies';
+export { Movies } from './Movies';
+export { Profile } from './Profile';
+export { PurchaseHistory } from './PurchaseHistory';
+export { Signup } from './Signup';
+export { Slots } from './Slots';
+export { Login } from './Login';
