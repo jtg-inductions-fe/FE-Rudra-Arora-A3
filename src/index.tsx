@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 
 import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
@@ -17,6 +18,7 @@ createRoot(rootElement).render(
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <Provider store={store}>
+                <ToastContainer position="top-right" autoClose={2000} />
                 <RouterProvider router={router} />
             </Provider>
         </ThemeProvider>
