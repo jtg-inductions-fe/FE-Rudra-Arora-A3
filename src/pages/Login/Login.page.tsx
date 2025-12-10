@@ -1,19 +1,15 @@
 import Cookies from 'js-cookie';
-import { toast } from 'react-toastify';
 
+import { useAppDispatch } from '@app';
 import { Form } from '@containers';
-import { LoginRequest, useLoginUserMutation } from '@features';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { LoginRequest, showSnackbar, useLoginUserMutation } from '@features';
 
 import { LoginConfig } from './Login.config';
-import {
-    CookieExpiresinMinutes,
-    ErrorMessage,
-    Message,
-} from './Login.constants';
+import { CookieExpiresinMinutes, Message } from './Login.constants';
 
 export const Login = () => {
     const [loginUser] = useLoginUserMutation();
+    const dispatch = useAppDispatch();
 
     const handleSubmit = async (data: LoginRequest) => {
         try {
@@ -21,12 +17,17 @@ export const Login = () => {
             Cookies.set('token', response.access, {
                 expires: CookieExpiresinMinutes / (24 * 60),
             });
-            toast.success(Message.LOGIN_SUCCESS);
+            dispatch(
+                showSnackbar({
+                    message: [Message.LOGIN_SUCCESS],
+                    variant: 'success',
+                }),
+            );
         } catch (error) {
-            const err = error as FetchBaseQueryError;
-            if (err.status === 401) {
-                toast.error(ErrorMessage.INVALID_CREDENTIALS);
-            }
+            const ErrorsList: string[] = [];
+            const errorData = (error as { data: Record<string, string> }).data;
+            ErrorsList.push(errorData.detail);
+            dispatch(showSnackbar({ message: ErrorsList, variant: 'error' }));
         }
     };
 

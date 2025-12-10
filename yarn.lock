@@ -1961,6 +1961,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clsx@npm:^1.1.0":
+  version: 1.2.1
+  resolution: "clsx@npm:1.2.1"
+  checksum: 10c0/34dead8bee24f5e96f6e7937d711978380647e936a22e76380290e35486afd8634966ce300fc4b74a32f3762c7d4c0303f442c3e259f4ce02374eb0c82834f27
+  languageName: node
+  linkType: hard
+
 "clsx@npm:^2.1.1":
   version: 2.1.1
   resolution: "clsx@npm:2.1.1"
@@ -2074,6 +2081,13 @@ __metadata:
     shebang-command: "npm:^2.0.0"
     which: "npm:^2.0.1"
   checksum: 10c0/053ea8b2135caff68a9e81470e845613e374e7309a47731e81639de3eaeb90c3d01af0e0b44d2ab9d50b43467223b88567dfeb3262db942dc063b9976718ffc1
+  languageName: node
+  linkType: hard
+
+"csstype@npm:^3.0.10":
+  version: 3.2.3
+  resolution: "csstype@npm:3.2.3"
+  checksum: 10c0/cd29c51e70fa822f1cecd8641a1445bed7063697469d35633b516e60fe8c1bde04b08f6c5b6022136bb669b64c63d4173af54864510fbb4ee23281801841a3ce
   languageName: node
   linkType: hard
 
@@ -3049,6 +3063,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"goober@npm:^2.0.33":
+  version: 2.1.18
+  resolution: "goober@npm:2.1.18"
+  peerDependencies:
+    csstype: ^3.0.10
+  checksum: 10c0/de9bf7b6f57417900afac81a479b85d8c0bcb0322ba8b174f9287d10e7891ba7e33db5fe2b0cdd75281c69130e76eb0c694345acf45ea57e4e4a2db8e4c4f021
+  languageName: node
+  linkType: hard
+
 "gopd@npm:^1.0.1, gopd@npm:^1.2.0":
   version: 1.2.0
   resolution: "gopd@npm:1.2.0"
@@ -3990,6 +4013,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"notistack@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "notistack@npm:3.0.2"
+  dependencies:
+    clsx: "npm:^1.1.0"
+    goober: "npm:^2.0.33"
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/82a0270ee1b9e70bc1dfad4d7e1d2bbb6dc08ac887b920986dcfa58cc2aa975bd48b71f7cf3afc2e11badd142ba9ade5f708c858ee2080b9d4cd950b80c43811
+  languageName: node
+  linkType: hard
+
 "npm-run-path@npm:^5.1.0":
   version: 5.3.0
   resolution: "npm-run-path@npm:5.3.0"
@@ -4376,13 +4412,13 @@ __metadata:
     husky: "npm:9.1.7"
     js-cookie: "npm:^3.0.5"
     lint-staged: "npm:15.4.1"
+    notistack: "npm:^3.0.2"
     prettier: "npm:3.4.2"
     react: "npm:19.0.0"
     react-dom: "npm:19.0.0"
     react-hook-form: "npm:^7.68.0"
     react-redux: "npm:^9.2.0"
     react-router-dom: "npm:^7.10.1"
-    react-toastify: "npm:^11.0.5"
     sharp: "npm:0.33.5"
     terser: "npm:5.37.0"
     typescript: "npm:5.7.3"
@@ -4444,18 +4480,6 @@ __metadata:
     react-dom:
       optional: true
   checksum: 10c0/e114a319603ccf0394f616f954ee3f53bec04636a2f13383b1e941b8fa6c1c64b71b60527e3db8e7f971dcfaaeb9a82bd7c2ddd884a718694e589403e6975d52
-  languageName: node
-  linkType: hard
-
-"react-toastify@npm:^11.0.5":
-  version: 11.0.5
-  resolution: "react-toastify@npm:11.0.5"
-  dependencies:
-    clsx: "npm:^2.1.1"
-  peerDependencies:
-    react: ^18 || ^19
-    react-dom: ^18 || ^19
-  checksum: 10c0/50f5b81323ebb1957b2efd0963fac24aa1407155d16ab756ffd6d0f42f8af17e796b3958a9fce13e9d1b945d6c3a5a9ebf13529478474d8a2af4bf1dd0db67d2
   languageName: node
   linkType: hard
 

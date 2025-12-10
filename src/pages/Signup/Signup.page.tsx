@@ -1,24 +1,35 @@
-import { toast } from 'react-toastify';
-
+import { useAppDispatch } from '@app';
 import { Form } from '@containers';
-import { SignupRequest, useSignupUserMutation } from '@features';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { showSnackbar, SignupRequest, useSignupUserMutation } from '@features';
 
 import { SignupConfig } from './Signup.config';
-import { ErrorMessage, Message } from './Signup.constants';
+import { Message } from './Signup.constants';
 
 export const Signup = () => {
     const [signupUser] = useSignupUserMutation();
+    const dispatch = useAppDispatch();
 
     const handleSubmit = async (data: SignupRequest) => {
         try {
             await signupUser(data).unwrap();
-            toast.success(Message.SIGNUP_SUCCESS);
+            dispatch(
+                showSnackbar({
+                    message: [Message.SIGNUP_SUCCESS],
+                    variant: 'success',
+                }),
+            );
         } catch (error) {
-            const err = error as FetchBaseQueryError;
-            if (err.status === 400) {
-                toast.error(ErrorMessage.USER_EXIST);
-            }
+            const ErrorsList: string[] = [];
+            const errorData = (error as { data: Record<string, string[]> })
+                .data;
+            Object.keys(errorData).forEach((fieldName) => {
+                const messages = errorData[fieldName];
+
+                messages.forEach((message) => {
+                    ErrorsList.push(message);
+                });
+            });
+            dispatch(showSnackbar({ message: ErrorsList, variant: 'error' }));
         }
     };
 
