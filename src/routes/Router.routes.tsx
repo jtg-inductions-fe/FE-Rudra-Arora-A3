@@ -5,9 +5,11 @@ import { AuthLayout, Main } from '@layout';
 import {
     Booking,
     Cinemas,
+    Error,
     LatestMovies,
     Login,
     Movies,
+    NotFound,
     Profile,
     PurchaseHistory,
     Signup,
@@ -31,11 +33,16 @@ export const router = createBrowserRouter([
                 path: ROUTES.MOVIES,
                 element: <Movies />,
             },
+            {
+                path: '*',
+                element: <NotFound />,
+            },
         ],
     },
     {
         path: ROUTES.LOGIN,
         element: <AuthLayout />,
+        errorElement: <Error />,
         children: [
             {
                 index: true,
@@ -77,6 +84,14 @@ export const router = createBrowserRouter([
                 path: ROUTES.PROFILE,
                 element: <Profile />,
             },
+            {
+                path: '*',
+                element: <NotFound />,
+            },
         ],
+    },
+    {
+        path: '*',
+        element: <NotFound />,
     },
 ]);

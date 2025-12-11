@@ -7,6 +7,8 @@ import Profile from './Profile.page';
 import PurchaseHistory from './PurchaseHistory.page';
 import Signup from './Signup.page';
 import Slots from './Slots.page';
+import Error from './Error.page';
+import NotFound from './NotFound.page';
 
 export {
     Booking,
@@ -18,4 +20,6 @@ export {
     Signup,
     Slots,
     Login,
+    Error,
+    NotFound
 };

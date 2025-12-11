@@ -7,6 +7,8 @@ import { BACKEND_URL, ROUTES } from './Routes.constant';
 import { SIGNUP_CONFIG } from './Signup.config';
 import { MESSAGE as SIGNUP_MESSAGES } from './Signup.constants';
 import { HTML_FONT_SIZE, SCALING_FACTOR } from './themeConstant';
+import { ErrorPageConstants } from './Error.constants';
+import { NotFoundConstants } from './NotFound.constants';
 
 export {
     ROUTES,
@@ -18,4 +20,6 @@ export {
     LOGIN_CONFIG,
     SIGNUP_CONFIG,
     BACKEND_URL,
+    ErrorPageConstants,
+    NotFoundConstants
 };
