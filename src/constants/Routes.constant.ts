@@ -14,3 +14,5 @@ export const ROUTES = {
     SLOTS: 'slots',
     PURCHASE_HISTORY: 'purchase-history',
 };
+
+export const AUTHENTICATED_ENDPOINTS: string[] = ['getUserProfile'];

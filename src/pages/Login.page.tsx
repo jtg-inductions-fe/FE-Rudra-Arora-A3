@@ -1,3 +1,4 @@
+import { ACCESS_COOKIE_EXPIRES_IN_MINUTES } from 'constants/Login.constants';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,7 +10,7 @@ import {
     ROUTES,
 } from '@constants';
 import { Form } from '@containers';
-import { showSnackbar } from '@features';
+import { showSnackbar, syncAuthState } from '@features';
 import { LoginRequest, useLoginUserMutation } from '@services';
 
 const Login = () => {
@@ -21,7 +22,7 @@ const Login = () => {
         try {
             const response = await loginUser(data).unwrap();
             Cookies.set('access', response.access, {
-                expires: COOKIE_EXPIRES_IN_DAYS,
+                expires: (1 / 24) * 60 * ACCESS_COOKIE_EXPIRES_IN_MINUTES,
                 secure: true,
                 sameSite: 'strict',
             });
@@ -37,6 +38,7 @@ const Login = () => {
                 }),
             );
             void navigate(ROUTES.ROOT);
+            dispatch(syncAuthState());
         } catch (error) {
             const ErrorsList: string[] = [];
             const errorData = (error as { data: Record<string, string> }).data;

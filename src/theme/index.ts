@@ -36,13 +36,22 @@ theme = createTheme(theme, {
                     textTransform: 'none',
                     boxShadow: 'none',
                     borderRadius: theme.typography.pxToRem(10),
-                    padding: theme.spacing(2, 7),
+                    padding: theme.spacing(1.5, 6),
+                    fontSize: theme.typography.pxToRem(15),
                     [theme.breakpoints.up('md')]: {
+                        padding: theme.spacing(1, 8),
                         fontSize: theme.typography.pxToRem(20),
                     },
                 },
                 outlined: {
                     borderRadius: theme.typography.pxToRem(0),
+                },
+                text: {
+                    padding: theme.spacing(0),
+                    color: theme.palette.common.white,
+                    [theme.breakpoints.up('md')]: {
+                        padding: theme.spacing(0),
+                    },
                 },
             },
         },
