@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { AuthLayout, Main, SlotBookingLayout } from '@layout';
+import { ROUTES } from '@constants';
+import { AuthLayout, Main } from '@layout';
 import {
     Booking,
     Cinemas,
@@ -12,8 +13,6 @@ import {
     Signup,
     Slots,
 } from '@pages';
-
-import { ROUTES } from './Routes.constant';
 
 export const router = createBrowserRouter([
     {
@@ -35,22 +34,32 @@ export const router = createBrowserRouter([
         ],
     },
     {
-        path: ROUTES.AUTH,
+        path: ROUTES.LOGIN,
         element: <AuthLayout />,
         children: [
             {
                 index: true,
                 element: <Login />,
             },
+        ],
+    },
+    {
+        path: ROUTES.SIGNUP,
+        element: <AuthLayout />,
+        children: [
             {
-                path: ROUTES.SIGNUP,
+                index: true,
                 element: <Signup />,
             },
         ],
     },
     {
         path: ROUTES.SLOTS,
-        element: <SlotBookingLayout />,
+        element: <Main />,
+        handle: {
+            isHeaderRequired: false,
+            isNavbarRequired: false,
+        },
         children: [
             {
                 index: true,
@@ -61,7 +70,7 @@ export const router = createBrowserRouter([
                 element: <Booking />,
             },
             {
-                path: ROUTES.PURCHASEHISTORY,
+                path: ROUTES.PURCHASE_HISTORY,
                 element: <PurchaseHistory />,
             },
             {

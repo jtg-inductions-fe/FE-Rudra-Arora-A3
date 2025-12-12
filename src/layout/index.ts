@@ -1,5 +1,4 @@
-export { SlotBookingLayout } from './SlotBooking';
+import AuthLayout from './Auth.layout';
+import Main from './Main.layout';
 
-export { AuthLayout } from './Auth';
-
-export { Main } from './Main';
+export { AuthLayout, Main };
