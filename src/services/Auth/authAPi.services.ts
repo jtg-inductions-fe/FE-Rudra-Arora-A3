@@ -3,7 +3,7 @@ import {
     LoginResponse,
     SignupRequest,
     SignupResponse,
-} from './authTypes';
+} from './auth.types';
 import { baseApi } from '../Base';
 
 export const authApi = baseApi.injectEndpoints({

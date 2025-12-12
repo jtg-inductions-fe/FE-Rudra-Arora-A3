@@ -8,7 +8,7 @@ export type PayloadType = {
 
 export type ConfigType = {
     title: string;
-    link?: {
+    link: {
         message: string;
         value: string;
         url: string;

@@ -1,6 +1,7 @@
-import { authApi, snackbarReducer } from '@features';
+import { snackbarReducer } from '@features';
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
+import { authApi } from '@services';
 
 export const store = configureStore({
     reducer: {

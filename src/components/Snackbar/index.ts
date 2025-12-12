@@ -1,1 +1,3 @@
-export { Snackbar } from './Snackbar.handler';
+import Snackbar from './Snackbar.handler';
+
+export { Snackbar };

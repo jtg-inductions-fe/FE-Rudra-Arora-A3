@@ -16,6 +16,11 @@ const lineClamp = (lines: number = 1): CSSProperties => ({
     WebkitLineClamp: lines,
 });
 
+/**
+ * Creates a CSS block for implementing the centering logic using flex
+ * @param direction - Flex Direction
+ * @returns Flex CSS properties
+ */
 const flexCenter = (
     direction: CSSProperties['flexDirection'] = 'row',
 ): CSSProperties => ({
@@ -25,6 +30,14 @@ const flexCenter = (
     flexDirection: direction,
 });
 
+/**
+ * Creates a CSS block for implementing Flex properties
+ * @param justify
+ * @param align
+ * @param gapping
+ * @param direction
+ * @returns Flex CSS properties
+ */
 const flex = (
     justify: CSSProperties['justifyContent'] = 'flex-start',
     align: CSSProperties['alignItems'] = 'stretch',

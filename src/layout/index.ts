@@ -1,4 +1,3 @@
-import AuthLayout from './Auth.layout';
+import { AuthLayout } from './Auth';
 import Main from './Main.layout';
-
 export { AuthLayout, Main };

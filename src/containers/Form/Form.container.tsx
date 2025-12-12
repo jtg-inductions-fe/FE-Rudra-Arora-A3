@@ -55,6 +55,7 @@ export const Form = ({ title, fields, link, onSubmit }: FormProps) => {
                         src={authImage}
                         width="100%"
                         height="100%"
+                        alt="Authentication illustration"
                     />
                 </AuthImageBox>
             )}
@@ -117,27 +118,9 @@ export const Form = ({ title, fields, link, onSubmit }: FormProps) => {
                             }}
                             {...register(field.name, {
                                 required: field.validation.required,
-                                ...(field.validation.pattern && {
-                                    pattern: {
-                                        value: field.validation.pattern.value,
-                                        message:
-                                            field.validation.pattern.message,
-                                    },
-                                }),
-                                ...(field.validation.maxLength && {
-                                    maxLength: {
-                                        value: field.validation.maxLength.value,
-                                        message:
-                                            field.validation.maxLength.message,
-                                    },
-                                }),
-                                ...(field.validation.minLength && {
-                                    minLength: {
-                                        value: field.validation.minLength.value,
-                                        message:
-                                            field.validation.minLength.message,
-                                    },
-                                }),
+                                pattern: field.validation?.pattern,
+                                maxLength: field.validation?.maxLength,
+                                minLength: field.validation?.minLength,
                                 ...(field.name === 'confirm_password'
                                     ? {
                                           validate: (value) =>
@@ -158,13 +141,13 @@ export const Form = ({ title, fields, link, onSubmit }: FormProps) => {
                             {title}
                         </Button>
                         <Typography variant="body2" color="textSecondary">
-                            {link?.message}{' '}
+                            {link.message}{' '}
                             <Box
                                 sx={{ color: theme.palette.primary.main }}
                                 component={Link}
-                                to={link?.url ?? '/'}
+                                to={link.url}
                             >
-                                {link?.value}
+                                {link.value}
                             </Box>
                         </Typography>
                     </Stack>

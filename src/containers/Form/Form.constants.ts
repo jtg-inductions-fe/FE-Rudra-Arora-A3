@@ -1,3 +1,3 @@
 export const ErrorMessage = {
-    PASSWORD_NOT_MATCH: 'Password do not match',
+    PASSWORD_NOT_MATCH: 'Passwords do not match',
 };

@@ -1,5 +1,7 @@
-export {
+import {
     removeSnackbar,
     showSnackbar,
     snackbarReducer,
-} from './snackbarSlice.feature';
+} from './snackbarSlice.features';
+
+export { removeSnackbar, showSnackbar, snackbarReducer };

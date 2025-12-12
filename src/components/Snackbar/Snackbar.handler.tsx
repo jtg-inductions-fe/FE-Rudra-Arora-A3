@@ -7,7 +7,7 @@ import { useTheme } from '@mui/material';
 import { RootState, useAppDispatch, useAppSelector } from '@app';
 import { removeSnackbar } from '@features';
 
-export const Snackbar = () => {
+const Snackbar = () => {
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useAppDispatch();
     const { message, variant } = useAppSelector(
@@ -33,3 +33,5 @@ export const Snackbar = () => {
 
     return null;
 };
+
+export default Snackbar;

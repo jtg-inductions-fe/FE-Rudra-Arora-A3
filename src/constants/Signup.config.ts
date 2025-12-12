@@ -1,6 +1,6 @@
 import { ConfigType } from '@containers';
 
-import { Message } from './Signup.constants';
+import { Message, RegularExpressions } from './Signup.constants';
 
 export const SignupConfig: ConfigType = {
     title: 'Signup',
@@ -21,7 +21,7 @@ export const SignupConfig: ConfigType = {
                     message: Message.NAME_LONG,
                 },
                 pattern: {
-                    value: /^[a-zA-Z\s]+$/,
+                    value: RegularExpressions.NAME,
                     message: Message.NAME_VALID,
                 },
             },
@@ -37,7 +37,7 @@ export const SignupConfig: ConfigType = {
                     message: Message.EMAIL_LONG,
                 },
                 pattern: {
-                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    value: RegularExpressions.EMAIL,
                     message: Message.VALID_EMAIL,
                 },
             },
@@ -45,11 +45,11 @@ export const SignupConfig: ConfigType = {
         {
             label: 'Phone Number',
             name: 'phone_number',
-            type: 'number',
+            type: 'tel',
             validation: {
                 required: Message.PHONE_NUMBER_REQUIRED,
                 pattern: {
-                    value: /\d{10}$/,
+                    value: RegularExpressions.PHONE_NUMBER,
                     message: Message.PHONE_NUMBER_VALID,
                 },
             },
@@ -65,7 +65,7 @@ export const SignupConfig: ConfigType = {
                     message: Message.PASSWORD_LENGTH,
                 },
                 pattern: {
-                    value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{0,}$/,
+                    value: RegularExpressions.PHONE_NUMBER,
                     message: Message.PASSWORD_VALID,
                 },
             },
@@ -75,7 +75,7 @@ export const SignupConfig: ConfigType = {
             name: 'confirm_password',
             type: 'password',
             validation: {
-                required: Message.PASSWORD_REQUIRED,
+                required: Message.CONFIRM_PASSWORD_REQUIRED,
             },
         },
     ],
