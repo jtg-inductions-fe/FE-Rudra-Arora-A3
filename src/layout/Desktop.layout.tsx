@@ -15,7 +15,14 @@ const DesktopLayout = () => {
     const theme = useTheme();
 
     return (
-        <Stack sx={{ margin: theme.spacing(22, 4, 5, 4) }}>
+        <Stack
+            sx={{
+                margin: theme.spacing(22, 4, 5, 4),
+                [theme.breakpoints.up('md')]: {
+                    marginTop: theme.spacing(25),
+                },
+            }}
+        >
             {showHeader && <Header />}
             {showNavbar && <Navbar />}
             <Outlet />

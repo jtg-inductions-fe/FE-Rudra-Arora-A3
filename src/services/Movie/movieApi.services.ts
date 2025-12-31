@@ -1,9 +1,19 @@
-import { CardPaginatedDataType } from 'components/Card/Card.types';
+import { CardPaginatedDataType } from '@components';
+import { DialogDataType } from '@components';
+import {
+    GenreFilterType,
+    LanguageFilterType,
+    MovieFilterTypes,
+    MovieResponseType,
+} from '@types';
 
 import { BACKEND_URL } from '@constants';
-import { MovieFilterTypes, MovieResponseType } from '@types';
 
-import { parseMovie } from './movieApi.parser';
+import {
+    parseGenreFilter,
+    parseLanguageFilter,
+    parseMovie,
+} from './movieApi.parser';
 import { baseApi } from '../Base';
 
 export const movieApi = baseApi.injectEndpoints({
@@ -17,6 +27,18 @@ export const movieApi = baseApi.injectEndpoints({
                 const params = new URLSearchParams();
                 if (queryArg.latest) {
                     params.set('latest', String(queryArg.latest));
+                }
+
+                if (queryArg.language) {
+                    queryArg.language.map((param) =>
+                        params.append('language', String(param)),
+                    );
+                }
+
+                if (queryArg.genre) {
+                    queryArg.genre.map((param) =>
+                        params.append('genre', String(param)),
+                    );
                 }
 
                 return {
@@ -34,7 +56,27 @@ export const movieApi = baseApi.injectEndpoints({
                 getNextPageParam: (nextPage) => nextPage.next,
             },
         }),
+        getLanguageFilters: builder.query<DialogDataType[], void>({
+            query: () => ({
+                url: 'movies/languages/',
+            }),
+            transformResponse: (response: LanguageFilterType[]) =>
+                response.map(parseLanguageFilter),
+        }),
+        getGenresFilters: builder.query<DialogDataType[], void>({
+            query: () => ({
+                url: 'movies/genres/',
+            }),
+            transformResponse: (response: GenreFilterType[]) =>
+                response.map(parseGenreFilter),
+        }),
     }),
 });
 
-export const { useGetMoviesInfiniteQuery } = movieApi;
+export const {
+    useGetMoviesInfiniteQuery,
+    useGetGenresFiltersQuery,
+    useGetLanguageFiltersQuery,
+    useLazyGetGenresFiltersQuery,
+    useLazyGetLanguageFiltersQuery,
+} = movieApi;
