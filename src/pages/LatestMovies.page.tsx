@@ -1,8 +1,5 @@
-const LatestMovies = () => {
-    {
-        /* TODO: Add Latest Movies Page here */
-    }
-    return <div>LatestMovies</div>;
-};
+import { LatestMoviesContainer } from '@containers';
+
+const LatestMovies = () => <LatestMoviesContainer />;
 
 export default LatestMovies;

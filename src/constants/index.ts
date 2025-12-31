@@ -9,6 +9,7 @@ import { NOT_FOUND_CONSTANTS } from './NotFound.constants';
 import { BACKEND_URL, ROUTES } from './Routes.constant';
 import { SIGNUP_CONFIG } from './Signup.config';
 import { MESSAGE as SIGNUP_MESSAGES } from './Signup.constants';
+import { LatestMoviesHeading, subtitleHeading } from './Movie.constants';
 import { HTML_FONT_SIZE, SCALING_FACTOR } from './themeConstant';
 
 export {
@@ -24,4 +25,6 @@ export {
     ERROR_PAGE_CONSTANTS,
     NOT_FOUND_CONSTANTS,
     ACCESS_COOKIE_EXPIRES_IN_MINUTES,
+    subtitleHeading,
+    LatestMoviesHeading,
 };
