@@ -1,14 +1,13 @@
 import { Grid2 } from '@mui/material';
 
-import moviePoster from '@assets/images/poster.webp';
 import { Card, CardSkeleton } from '@components';
-import { SUBTITLE_HEADING } from '@constants';
+import { cinemaSubtitleHeading } from '@constants';
 
-import { MoviesConatinerProps } from './Movies.types';
+import { CinemasConatinerProps } from './Cinemas.types';
 
-const MoviesContainer = ({ data, isLoading }: MoviesConatinerProps) => (
+const CinemasContainer = ({ data, isLoading }: CinemasConatinerProps) => (
     <Grid2 container spacing={2}>
-        {data?.map((item) =>
+        {data?.results.map((item) =>
             isLoading ? (
                 <CardSkeleton key={item.id} />
             ) : (
@@ -17,10 +16,8 @@ const MoviesContainer = ({ data, isLoading }: MoviesConatinerProps) => (
                         title={item.title}
                         subtitle1={item.subtitle1}
                         id={item.id}
-                        subtitle2={item.subtitle2}
-                        buttonText="Show Detail"
-                        subtitleHeading={SUBTITLE_HEADING}
-                        posterUrl={moviePoster}
+                        buttonText="Book Tickets"
+                        subtitleHeading={cinemaSubtitleHeading}
                     />
                 </Grid2>
             ),
@@ -28,4 +25,4 @@ const MoviesContainer = ({ data, isLoading }: MoviesConatinerProps) => (
     </Grid2>
 );
 
-export default MoviesContainer;
+export default CinemasContainer;

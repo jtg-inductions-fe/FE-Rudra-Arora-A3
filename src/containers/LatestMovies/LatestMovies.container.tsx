@@ -1,5 +1,6 @@
 import { Box, Grid2 } from '@mui/material';
 
+import moviePoster from '@assets/images/poster.webp';
 import { Card, CardSkeleton } from '@components';
 import { SUBTITLE_HEADING } from '@constants';
 
@@ -22,6 +23,7 @@ const LatestMoviesContainer = ({
                         subtitle2={item.subtitle2}
                         buttonText="Show Detail"
                         subtitleHeading={SUBTITLE_HEADING}
+                        posterUrl={moviePoster}
                     />
                 </Grid2>
             ))}

@@ -1,3 +1,5 @@
+import { CinemasContainer } from './Cinemas';
+import type { FilterKey } from './Filter';
 import { Filter } from './Filter';
 import type { ConfigType, PayloadType } from './Form';
 import { Form } from './Form';
@@ -15,4 +17,6 @@ export {
     LatestMoviesContainer,
     Filter,
     MoviesContainer,
+    CinemasContainer,
+    FilterKey,
 };

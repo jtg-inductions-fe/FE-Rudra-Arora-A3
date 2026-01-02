@@ -102,9 +102,17 @@ const Dialog = ({
                                                 {toCapitalized(item.title)}
                                             </Typography>
                                             <Checkbox
-                                                checked={selectedCheckedBox[
-                                                    heading
-                                                ].has(item.title)}
+                                                checked={
+                                                    selectedCheckedBox[
+                                                        heading
+                                                    ] instanceof Set
+                                                        ? selectedCheckedBox[
+                                                              heading
+                                                          ].has(item.title)
+                                                        : selectedCheckedBox[
+                                                              heading
+                                                          ] === item.title
+                                                }
                                                 onChange={(event) =>
                                                     handleCheckBox(
                                                         event,

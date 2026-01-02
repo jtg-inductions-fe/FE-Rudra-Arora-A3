@@ -1,6 +1,7 @@
 import type { LoginRequest, SignupRequest } from './Auth';
 import { useLoginUserMutation, useSignupUserMutation } from './Auth';
 import { baseApi } from './Base';
+import { useGetCinemasQuery, useGetLocationFilterQuery } from './Cinema';
 import {
     useGetGenresFiltersQuery,
     useGetLanguageFiltersQuery,
@@ -22,4 +23,6 @@ export {
     useGetLanguageFiltersQuery,
     useLazyGetGenresFiltersQuery,
     useLazyGetLanguageFiltersQuery,
+    useGetCinemasQuery,
+    useGetLocationFilterQuery,
 };

@@ -10,7 +10,6 @@ import {
 
 import { StyledCardContent } from './Card.styles';
 import { CardComponentProps } from './Card.types';
-import moviePoster from '../../assets/images/poster.webp';
 import { Typography } from '../Typography';
 
 const Card = ({
@@ -19,16 +18,19 @@ const Card = ({
     subtitle2,
     buttonText,
     subtitleHeading,
+    posterUrl,
 }: CardComponentProps) => {
     const { breakpoints, typography } = useTheme();
     const isTablet = useMediaQuery(breakpoints.up('sm'));
     return (
         <MuiCard component={Stack}>
-            <CardMedia
-                sx={{ height: typography.pxToRem(100) }}
-                component="img"
-                image={moviePoster}
-            />
+            {posterUrl && (
+                <CardMedia
+                    sx={{ height: typography.pxToRem(100) }}
+                    component="img"
+                    image={posterUrl}
+                />
+            )}
             <StyledCardContent>
                 <Typography
                     gutterBottom={isTablet}
