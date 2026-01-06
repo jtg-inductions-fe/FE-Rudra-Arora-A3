@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'react-router-dom';
-import { setToStringArray } from 'utils';
+import { setToStringArray, useInfiniteScroll } from 'utils';
 
 import {
+    Box,
     Button,
     Stack,
     Typography,
@@ -16,7 +17,7 @@ import { Filter, MoviesContainer } from '@containers';
 import {
     useGetGenresFiltersQuery,
     useGetLanguageFiltersQuery,
-    useGetMoviesQuery,
+    useGetMoviesInfiniteQuery,
 } from '@services';
 
 type SelectedFilters = Record<string, Set<string>>;
@@ -57,9 +58,18 @@ const Movies = () => {
     {
         /*Movie API query*/
     }
-    const { data, isLoading } = useGetMoviesQuery({
-        language: languageFromUrl,
-        genre: genreFromUrl,
+    const { data, isLoading, hasNextPage, fetchNextPage, isFetching } =
+        useGetMoviesInfiniteQuery({
+            language: languageFromUrl,
+            genre: genreFromUrl,
+        });
+
+    const currentData = data?.pages.flatMap((movie) => movie.results);
+
+    const endRef = useInfiniteScroll({
+        hasNextPage: hasNextPage,
+        isFetching,
+        onLoadData: fetchNextPage,
     });
 
     {
@@ -154,7 +164,8 @@ const Movies = () => {
                         </>
                     )}
                 </Stack>
-                <MoviesContainer data={data} isLoading={isLoading} />
+                <MoviesContainer data={currentData} isLoading={isLoading} />
+                <Box ref={endRef} height={1}></Box>
             </Stack>
         </Stack>
     );

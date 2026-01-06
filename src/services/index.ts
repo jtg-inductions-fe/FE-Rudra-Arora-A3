@@ -4,9 +4,9 @@ import { baseApi } from './Base';
 import {
     useGetGenresFiltersQuery,
     useGetLanguageFiltersQuery,
+    useGetMoviesInfiniteQuery,
     useLazyGetGenresFiltersQuery,
     useLazyGetLanguageFiltersQuery,
-    useGetMoviesInfiniteQuery
 } from './Movie';
 import { useLazyGetUserProfileQuery } from './User';
 

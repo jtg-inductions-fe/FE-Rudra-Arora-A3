@@ -7,7 +7,7 @@ import { MoviesConatinerProps } from './Movies.types';
 
 const MoviesContainer = ({ data, isLoading }: MoviesConatinerProps) => (
     <Grid2 container spacing={2}>
-        {data?.results.map((item) =>
+        {data?.map((item) =>
             isLoading ? (
                 <CardSkeleton key={item.id} />
             ) : (

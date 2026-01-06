@@ -2,9 +2,9 @@ import {
     movieApi,
     useGetGenresFiltersQuery,
     useGetLanguageFiltersQuery,
+    useGetMoviesInfiniteQuery,
     useLazyGetGenresFiltersQuery,
     useLazyGetLanguageFiltersQuery,
-    useGetMoviesInfiniteQuery
 } from './movieApi.services';
 
 export {

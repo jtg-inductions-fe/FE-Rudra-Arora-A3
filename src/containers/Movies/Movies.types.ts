@@ -1,6 +1,6 @@
-import { CardPaginatedDataType } from '@components';
+import { CardDataType } from '@components';
 
 export type MoviesConatinerProps = {
-    data?: CardPaginatedDataType;
+    data?: CardDataType[];
     isLoading?: boolean;
 };
