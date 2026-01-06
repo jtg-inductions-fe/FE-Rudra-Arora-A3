@@ -1,6 +1,11 @@
 import {
+    useGetCinemaByNameQuery,
     useGetCinemasInfiniteQuery,
     useGetLocationFilterQuery,
 } from './cinemaApi.services';
 
-export { useGetLocationFilterQuery, useGetCinemasInfiniteQuery };
+export {
+    useGetLocationFilterQuery,
+    useGetCinemaByNameQuery,
+    useGetCinemasInfiniteQuery,
+};

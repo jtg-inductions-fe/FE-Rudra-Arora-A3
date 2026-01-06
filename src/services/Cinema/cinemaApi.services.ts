@@ -1,5 +1,8 @@
+import { toCapitalized } from 'utils';
+
 import { CardPaginatedDataType, DialogDataType } from '@components';
 import {
+    CinemaDataType,
     CinemaFilterTypes,
     CinemaResponseType,
     LocationFilterType,
@@ -36,8 +39,20 @@ export const cinemaApi = baseApi.injectEndpoints({
             transformResponse: (response: LocationFilterType[]) =>
                 response.map(parseLocationFilter),
         }),
+        getCinemaByName: builder.query<CinemaDataType, string>({
+            query: (name) => ({
+                url: `cinemas/${name}`,
+            }),
+            transformResponse: (response: CinemaDataType) => ({
+                ...response,
+                name: `${toCapitalized(response.name)} ${toCapitalized(response.location)}`,
+            }),
+        }),
     }),
 });
 
-export const { useGetLocationFilterQuery, useGetCinemasInfiniteQuery } =
-    cinemaApi;
+export const {
+    useGetLocationFilterQuery,
+    useGetCinemasInfiniteQuery,
+    useGetCinemaByNameQuery,
+} = cinemaApi;

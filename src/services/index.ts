@@ -2,9 +2,11 @@ import type { LoginRequest, SignupRequest } from './Auth';
 import { useLoginUserMutation, useSignupUserMutation } from './Auth';
 import { baseApi } from './Base';
 import {
+    useGetCinemaByNameQuery,
     useGetCinemasInfiniteQuery,
     useGetLocationFilterQuery,
 } from './Cinema';
+import { useLazyGetCinemaSlotsQuery } from './CinemaSlots';
 import {
     useGetGenresFiltersQuery,
     useGetLanguageFiltersQuery,
@@ -13,7 +15,7 @@ import {
     useLazyGetGenresFiltersQuery,
     useLazyGetLanguageFiltersQuery,
 } from './Movie';
-import { useLazyGetMovieSlotsQuery } from './MovieSlots';
+import { parseSlots, useLazyGetMovieSlotsQuery } from './MovieSlots';
 import { useLazyGetUserProfileQuery } from './User';
 
 export {
@@ -32,4 +34,7 @@ export {
     useGetLocationFilterQuery,
     useGetMoviesByNameQuery,
     useLazyGetMovieSlotsQuery,
+    useGetCinemaByNameQuery,
+    useLazyGetCinemaSlotsQuery,
+    parseSlots,
 };

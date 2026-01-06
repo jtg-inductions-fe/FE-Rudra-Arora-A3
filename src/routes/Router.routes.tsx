@@ -6,6 +6,7 @@ import {
     Booking,
     Cinemas,
     Error,
+    CinemaSlots,
     LatestMovies,
     Login,
     MovieDetail,
@@ -94,6 +95,19 @@ export const router = createBrowserRouter([
             {
                 path: ROUTES.PROFILE,
                 element: <Profile />,
+            },
+        ],
+    },
+    {
+        path: ROUTES.CINEMA_SLOTS,
+        element: <Main />,
+        handle: {
+            isNavbarRequired: false,
+        },
+        children: [
+            {
+                index: true,
+                element: <CinemaSlots />,
             },
         ],
     },
