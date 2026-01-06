@@ -7,9 +7,7 @@ import { Header, Navbar } from '@containers';
 
 const MobileLayout = () => {
     const matches = useMatches() as Array<{ handle?: RouteHandleType }>;
-    const matchedRoutes = matches.find(
-        (m) => m.handle?.isHeaderRequired && m.handle?.isNavbarRequired,
-    );
+    const matchedRoutes = matches.find((m) => m.handle);
     const showHeader = matchedRoutes?.handle?.isHeaderRequired ?? true;
     const showNavbar = matchedRoutes?.handle?.isNavbarRequired ?? true;
     const theme = useTheme();

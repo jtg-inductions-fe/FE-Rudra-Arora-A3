@@ -8,6 +8,7 @@ import { LatestMoviesContainer } from './LatestMovies';
 import { MovieDetailContainer } from './MovieDetail';
 import { MoviesContainer } from './Movies';
 import { Navbar } from './Navbar';
+import { SlotContainer } from './Slot';
 
 export {
     Header,
@@ -21,4 +22,5 @@ export {
     CinemasContainer,
     FilterKey,
     MovieDetailContainer,
+    SlotContainer,
 };
