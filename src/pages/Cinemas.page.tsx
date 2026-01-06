@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'react-router-dom';
+import { useInfiniteScroll } from 'utils';
 
 import {
+    Box,
     Button,
     Stack,
     Typography,
@@ -13,7 +15,10 @@ import {
 import { Dialog } from '@components';
 import { CinemaHeading } from '@constants';
 import { CinemasContainer, Filter, FilterKey } from '@containers';
-import { useGetCinemasQuery, useGetLocationFilterQuery } from '@services';
+import {
+    useGetCinemasInfiniteQuery,
+    useGetLocationFilterQuery,
+} from '@services';
 import { SelectedFiltersType } from '@types';
 
 const Cinemas = () => {
@@ -40,8 +45,22 @@ const Cinemas = () => {
     {
         /*Cinema API calling*/
     }
-    const { data: cinemaData, isLoading } = useGetCinemasQuery({
+    const {
+        data: cinemaData,
+        isLoading,
+        fetchNextPage,
+        hasNextPage,
+        isFetching,
+    } = useGetCinemasInfiniteQuery({
         location: locationFromUrl ?? '',
+    });
+
+    const currentData = cinemaData?.pages.flatMap((movie) => movie.results);
+
+    const endRef = useInfiniteScroll({
+        hasNextPage: hasNextPage,
+        isFetching,
+        onLoadData: fetchNextPage,
     });
 
     {
@@ -131,7 +150,8 @@ const Cinemas = () => {
                         </>
                     )}
                 </Stack>
-                <CinemasContainer data={cinemaData} isLoading={isLoading} />
+                <CinemasContainer data={currentData} isLoading={isLoading} />
+                <Box ref={endRef} height={1}></Box>
             </Stack>
         </Stack>
     );

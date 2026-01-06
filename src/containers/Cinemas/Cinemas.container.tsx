@@ -7,7 +7,7 @@ import { CinemasConatinerProps } from './Cinemas.types';
 
 const CinemasContainer = ({ data, isLoading }: CinemasConatinerProps) => (
     <Grid2 container spacing={2}>
-        {data?.results.map((item) =>
+        {data?.map((item) =>
             isLoading ? (
                 <CardSkeleton key={item.id} />
             ) : (

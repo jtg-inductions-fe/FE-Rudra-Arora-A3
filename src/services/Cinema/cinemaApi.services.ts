@@ -10,16 +10,24 @@ import { baseApi } from '../Base';
 
 export const cinemaApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        getCinemas: builder.query<CardPaginatedDataType, CinemaFilterTypes>({
-            query: (params) => ({
-                url: 'cinemas/',
-                params: params,
+        getCinemas: builder.infiniteQuery<
+            CardPaginatedDataType,
+            CinemaFilterTypes,
+            string | null
+        >({
+            query: ({ pageParam, queryArg }) => ({
+                url: pageParam ? pageParam : 'cinemas/',
+                params: queryArg,
             }),
             transformResponse: (response: CinemaResponseType) => ({
                 next: response.next,
                 previous: response.previous,
                 results: response.results.map(cinemaApiParser),
             }),
+            infiniteQueryOptions: {
+                initialPageParam: null,
+                getNextPageParam: (nextPage) => nextPage.next,
+            },
         }),
         getLocationFilter: builder.query<DialogDataType[], void>({
             query: () => ({
@@ -31,4 +39,5 @@ export const cinemaApi = baseApi.injectEndpoints({
     }),
 });
 
-export const { useGetCinemasQuery, useGetLocationFilterQuery } = cinemaApi;
+export const { useGetLocationFilterQuery, useGetCinemasInfiniteQuery } =
+    cinemaApi;
