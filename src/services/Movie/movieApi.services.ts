@@ -7,15 +7,19 @@ import { baseApi } from '../Base';
 
 export const movieApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        getMovies: builder.query<CardPaginatedDataType, MovieFilterTypes>({
-            query: (args) => {
+        getMovies: builder.infiniteQuery<
+            CardPaginatedDataType,
+            MovieFilterTypes,
+            string | null
+        >({
+            query: ({ pageParam, queryArg }) => {
                 const params = new URLSearchParams();
-                if (args.latest) {
-                    params.set('latest', String(args.latest));
+                if (queryArg.latest) {
+                    params.set('latest', String(queryArg.latest));
                 }
 
                 return {
-                    url: 'movies/',
+                    url: pageParam ? pageParam : 'movies/',
                     params,
                 };
             },
@@ -24,8 +28,12 @@ export const movieApi = baseApi.injectEndpoints({
                 previous: response.previous,
                 results: response.results.map(parseMovie),
             }),
+            infiniteQueryOptions: {
+                initialPageParam: null,
+                getNextPageParam: (nextPage) => nextPage.next,
+            },
         }),
     }),
 });
 
-export const { useGetMoviesQuery, useLazyGetMoviesQuery } = movieApi;
+export const { useGetMoviesInfiniteQuery } = movieApi;

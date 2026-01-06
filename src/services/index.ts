@@ -1,7 +1,7 @@
 import type { LoginRequest, SignupRequest } from './Auth';
 import { useLoginUserMutation, useSignupUserMutation } from './Auth';
 import { baseApi } from './Base';
-import { useGetMoviesQuery, useLazyGetMoviesQuery } from './Movie';
+import { useGetMoviesInfiniteQuery } from './Movie';
 import { useLazyGetUserProfileQuery } from './User';
 
 export {
@@ -11,6 +11,5 @@ export {
     LoginRequest,
     SignupRequest,
     baseApi,
-    useGetMoviesQuery,
-    useLazyGetMoviesQuery,
+    useGetMoviesInfiniteQuery,
 };

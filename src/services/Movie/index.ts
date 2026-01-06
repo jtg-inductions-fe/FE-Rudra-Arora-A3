@@ -1,7 +1,3 @@
-import {
-    movieApi,
-    useGetMoviesQuery,
-    useLazyGetMoviesQuery,
-} from './movieApi.services';
+import { movieApi, useGetMoviesInfiniteQuery } from './movieApi.services';
 
-export { useGetMoviesQuery, useLazyGetMoviesQuery, movieApi };
+export { movieApi, useGetMoviesInfiniteQuery };
