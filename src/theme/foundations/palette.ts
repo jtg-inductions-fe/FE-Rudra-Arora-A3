@@ -4,7 +4,7 @@ import type { PaletteOptions } from '@mui/material/styles';
 export const palette: PaletteOptions = {
     // TODO: Add necessary colors here
     primary: {
-        main: '#D32F2F',
+        main: '#eb4e62',
         light: '#EF5350',
     },
     secondary: {
