@@ -1,5 +1,5 @@
 export type AppBarProps = {
-    isLoggedin: boolean;
+    isLoggedIn: boolean;
     isLoading: boolean;
     userInitials: string;
     logo: string;

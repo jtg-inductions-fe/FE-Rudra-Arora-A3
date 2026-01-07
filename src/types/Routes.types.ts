@@ -1,4 +1,4 @@
-import { JSX } from 'react';
+import { ReactNode } from 'react';
 
 export type RouteHandleType = {
     isHeaderRequired: boolean;
@@ -6,5 +6,5 @@ export type RouteHandleType = {
 };
 
 export type GuestRouteProps = {
-    children: JSX.Element;
+    children: ReactNode;
 };

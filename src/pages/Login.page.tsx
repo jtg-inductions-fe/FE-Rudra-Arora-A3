@@ -1,8 +1,9 @@
-import { ACCESS_COOKIE_EXPIRES_IN_MINUTES } from 'constants/Login.constants';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '@app';
+import { ErrorBoundary } from '@components';
+import { ACCESS_COOKIE_EXPIRES_IN_MINUTES } from '@constants';
 import {
     COOKIE_EXPIRES_IN_DAYS,
     LOGIN_CONFIG,
@@ -14,7 +15,7 @@ import { showSnackbar, syncAuthState } from '@features';
 import { LoginRequest, useLoginUserMutation } from '@services';
 
 const Login = () => {
-    const [loginUser] = useLoginUserMutation();
+    const [loginUser, { error: loginError }] = useLoginUserMutation();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -22,7 +23,7 @@ const Login = () => {
         try {
             const response = await loginUser(data).unwrap();
             Cookies.set('access', response.access, {
-                expires: (1 / 24) * 60 * ACCESS_COOKIE_EXPIRES_IN_MINUTES,
+                expires: ACCESS_COOKIE_EXPIRES_IN_MINUTES / (24 * 60),
                 secure: true,
                 sameSite: 'strict',
             });
@@ -38,7 +39,7 @@ const Login = () => {
                 }),
             );
             void navigate(ROUTES.ROOT);
-            dispatch(syncAuthState());
+            dispatch(syncAuthState(!!Cookies.get('refresh')));
         } catch (error) {
             const ErrorsList: string[] = [];
             const errorData = (error as { data: Record<string, string> }).data;
@@ -47,7 +48,11 @@ const Login = () => {
         }
     };
 
-    return <Form {...LOGIN_CONFIG} onSubmit={handleSubmit} />;
+    return (
+        <ErrorBoundary error={loginError}>
+            <Form {...LOGIN_CONFIG} onSubmit={handleSubmit} />
+        </ErrorBoundary>
+    );
 };
 
 export default Login;

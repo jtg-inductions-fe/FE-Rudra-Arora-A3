@@ -1,22 +1,21 @@
 import Cookies from 'js-cookie';
 
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type AuthState = {
-    isLoggedin: boolean;
+    isLoggedIn: boolean;
 };
 
 const initialState: AuthState = {
-    isLoggedin: !!Cookies.get('refresh'),
+    isLoggedIn: !!Cookies.get('refresh'),
 };
 
 const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        syncAuthState: (state) => {
-            const token = Cookies.get('refresh');
-            state.isLoggedin = !!token;
+        syncAuthState: (state, action: PayloadAction<boolean>) => {
+            state.isLoggedIn = action.payload;
         },
     },
 });

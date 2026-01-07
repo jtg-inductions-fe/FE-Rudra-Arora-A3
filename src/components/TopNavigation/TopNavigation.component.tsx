@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@mui/material';
 
-import { StyledAppBar } from './TopNaviagtion.styles';
+import { StyledAppBar } from './TopNavigation.styles';
 import { TopNavigationProps } from './TopNavigation.types';
 
 const TopNavigation = ({ NavConfig }: TopNavigationProps) => {

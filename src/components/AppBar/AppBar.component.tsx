@@ -6,7 +6,7 @@ import { CustomIconButton, StyledAppBar } from './AppBar.styles';
 import { AppBarProps } from './AppBar.types';
 
 const AppBar = ({
-    isLoggedin,
+    isLoggedIn,
     isLoading,
     userInitials,
     buttonLabel,
@@ -17,25 +17,26 @@ const AppBar = ({
     const navigate = useNavigate();
     return (
         <StyledAppBar>
-            <CustomIconButton onClick={() => void navigate(logoUrl)}>
+            <CustomIconButton to={logoUrl}>
                 <Box
                     sx={{ width: '100%', height: '100%' }}
                     component="img"
                     src={logo}
+                    alt="logo"
                 />
             </CustomIconButton>
 
-            {!isLoggedin ? (
+            {isLoggedIn && isLoading && (
+                <Skeleton variant="circular" width={40} height={40} />
+            )}
+            {isLoggedIn && !isLoading && <Avatar>{userInitials}</Avatar>}
+            {!isLoggedIn && (
                 <Button
                     variant="contained"
                     onClick={() => void navigate(buttonUrl)}
                 >
                     {buttonLabel}
                 </Button>
-            ) : isLoading ? (
-                <Skeleton variant="circular" width={40} height={40} />
-            ) : (
-                <Avatar>{userInitials}</Avatar>
             )}
         </StyledAppBar>
     );

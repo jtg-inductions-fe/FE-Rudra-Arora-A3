@@ -47,9 +47,8 @@ theme = createTheme(theme, {
                     borderRadius: theme.typography.pxToRem(0),
                 },
                 text: {
-                    padding: theme.spacing(0),
                     color: theme.palette.common.white,
-                    [theme.breakpoints.up('md')]: {
+                    [theme.breakpoints.up('sm')]: {
                         padding: theme.spacing(0),
                     },
                 },

@@ -1,4 +1,6 @@
-import { AppBar, IconButton, styled } from '@mui/material';
+import { Link } from 'react-router-dom';
+
+import { AppBar, styled } from '@mui/material';
 
 export const StyledAppBar = styled(AppBar)(({ theme }) => ({
     width: '100%',
@@ -12,12 +14,12 @@ export const StyledAppBar = styled(AppBar)(({ theme }) => ({
     },
 }));
 
-export const CustomIconButton = styled(IconButton)(({ theme }) => ({
+export const CustomIconButton = styled(Link)(({ theme }) => ({
     width: theme.typography.pxToRem(165),
-    height: theme.typography.pxToRem(60),
+    height: theme.typography.pxToRem(50),
+    marginTop: theme.spacing(1),
 
     [theme.breakpoints.up('md')]: {
         width: theme.typography.pxToRem(175),
-        height: theme.typography.pxToRem(65),
     },
 }));

@@ -1,5 +1,8 @@
-import { AccessCookieExpiresInMinutes } from 'constants/Login.constants';
-import { AUTHENTICATED_ENDPOINTS } from 'constants/Routes.constant';
+import { ACCESS_COOKIE_EXPIRES_IN_MINUTES } from 'constants/Login.constants';
+import {
+    AUTHENTICATED_ENDPOINTS,
+    BACKEND_URL,
+} from 'constants/Routes.constant';
 import Cookies from 'js-cookie';
 
 import { clearUser, syncAuthState } from '@features';
@@ -60,13 +63,13 @@ export const baseQueryWithReauth: BaseQueryFn<
 
         if (!refreshToken) {
             Cookies.remove('refresh');
-            api.dispatch(syncAuthState());
+            api.dispatch(syncAuthState(!!Cookies.get('refresh')));
             api.dispatch(clearUser());
             return { error: { status: 401, data: 'Unauthorized' } };
         } else if (!accessToken) {
             const refreshResult = await rawBaseQuery(
                 {
-                    url: 'users/token/refresh/',
+                    url: BACKEND_URL.TOKEN_REFRESH,
                     method: 'POST',
                     body: JSON.stringify({ refresh: refreshToken }),
                     headers: { 'Content-Type': 'application/json' },
@@ -77,14 +80,14 @@ export const baseQueryWithReauth: BaseQueryFn<
 
             if (refreshResult.error) {
                 Cookies.remove('refresh');
-                api.dispatch(syncAuthState());
+                api.dispatch(syncAuthState(!!Cookies.get('refresh')));
                 api.dispatch(clearUser());
                 return { error: { status: 401, data: 'Unauthorized' } };
             } else {
                 const access = (refreshResult.data as RefreshResponseType)
                     .access;
                 Cookies.set('access', access, {
-                    expires: AccessCookieExpiresInMinutes / (24 * 60),
+                    expires: ACCESS_COOKIE_EXPIRES_IN_MINUTES / (24 * 60),
                     secure: true,
                     sameSite: 'strict',
                 });

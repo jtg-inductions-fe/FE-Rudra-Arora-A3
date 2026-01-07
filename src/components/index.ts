@@ -1,6 +1,7 @@
 import { AppBar } from './AppBar';
 import type { NavConfigType } from './BottomNavigation';
 import { BottomNavigation } from './BottomNavigation';
+import { ErrorBoundary } from './ErrorBoundary';
 import { ErrorFallback } from './ErrorFallback';
 import { Snackbar } from './Snackbar';
 import type { TopNavConfigType } from './TopNavigation';
@@ -14,4 +15,5 @@ export {
     NavConfigType,
     TopNavigation,
     TopNavConfigType,
+    ErrorBoundary,
 };
