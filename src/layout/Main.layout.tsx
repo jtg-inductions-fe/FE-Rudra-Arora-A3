@@ -6,9 +6,9 @@ import MobileLayout from './Mobile.layout';
 const Main = () => {
     const theme = useTheme();
 
-    const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+    const isTablet = useMediaQuery(theme.breakpoints.up('sm'));
 
-    return isDesktop ? <DesktopLayout /> : <MobileLayout />;
+    return isTablet ? <DesktopLayout /> : <MobileLayout />;
 };
 
 export default Main;
