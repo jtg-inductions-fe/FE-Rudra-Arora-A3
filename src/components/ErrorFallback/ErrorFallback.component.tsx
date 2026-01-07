@@ -29,4 +29,4 @@ const ErrorFallback = ({
     </StyledBox>
 );
 
-export default ErrorFallback
+export default ErrorFallback;

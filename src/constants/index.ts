@@ -1,14 +1,14 @@
+import { ERROR_PAGE_CONSTANTS } from './Error.constants';
 import { LOGIN_CONFIG } from './Login.config';
 import {
     COOKIE_EXPIRES_IN_DAYS,
     MESSAGE as LOGIN_MESSAGES,
 } from './Login.constants';
+import { NOT_FOUND_CONSTANTS } from './NotFound.constants';
 import { BACKEND_URL, ROUTES } from './Routes.constant';
 import { SIGNUP_CONFIG } from './Signup.config';
 import { MESSAGE as SIGNUP_MESSAGES } from './Signup.constants';
 import { HTML_FONT_SIZE, SCALING_FACTOR } from './themeConstant';
-import { ErrorPageConstants } from './Error.constants';
-import { NotFoundConstants } from './NotFound.constants';
 
 export {
     ROUTES,
@@ -20,6 +20,6 @@ export {
     LOGIN_CONFIG,
     SIGNUP_CONFIG,
     BACKEND_URL,
-    ErrorPageConstants,
-    NotFoundConstants
+    ERROR_PAGE_CONSTANTS,
+    NOT_FOUND_CONSTANTS,
 };

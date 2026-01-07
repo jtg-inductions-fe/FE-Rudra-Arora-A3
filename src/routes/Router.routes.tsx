@@ -20,6 +20,7 @@ export const router = createBrowserRouter([
     {
         path: ROUTES.ROOT,
         element: <Main />,
+        errorElement: <Error />,
         children: [
             {
                 index: true,
@@ -32,10 +33,6 @@ export const router = createBrowserRouter([
             {
                 path: ROUTES.MOVIES,
                 element: <Movies />,
-            },
-            {
-                path: '*',
-                element: <NotFound />,
             },
         ],
     },
@@ -53,6 +50,7 @@ export const router = createBrowserRouter([
     {
         path: ROUTES.SIGNUP,
         element: <AuthLayout />,
+        errorElement: <Error />,
         children: [
             {
                 index: true,
@@ -83,10 +81,6 @@ export const router = createBrowserRouter([
             {
                 path: ROUTES.PROFILE,
                 element: <Profile />,
-            },
-            {
-                path: '*',
-                element: <NotFound />,
             },
         ],
     },

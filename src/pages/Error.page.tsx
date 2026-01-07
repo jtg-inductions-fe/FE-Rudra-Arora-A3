@@ -1,13 +1,13 @@
 import errorBackgroundImage from '@assets/images/internal-error-bg.webp';
 import { ErrorFallback } from '@components';
-import { ErrorPageConstants } from '@constants';
+import { ERROR_PAGE_CONSTANTS } from '@constants';
 
 const Error = () => (
     <ErrorFallback
         image={errorBackgroundImage}
-        title={ErrorPageConstants.TITLE}
-        body={ErrorPageConstants.BODY}
+        title={ERROR_PAGE_CONSTANTS.TITLE}
+        body={ERROR_PAGE_CONSTANTS.BODY}
     />
 );
 
-export default Error
+export default Error;
