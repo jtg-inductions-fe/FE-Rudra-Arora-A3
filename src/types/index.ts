@@ -1,3 +1,4 @@
+import type { PaginatedResponseType } from './Common.types';
 import type {
     MovieDataType,
     MovieFilterTypes,
@@ -11,4 +12,5 @@ export {
     MovieFilterTypes,
     MovieResponseType,
     MovieDataType,
+    PaginatedResponseType,
 };

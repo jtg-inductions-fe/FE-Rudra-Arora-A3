@@ -12,18 +12,18 @@ const CardSkeleton = () => {
     return (
         <Card>
             <CardMedia sx={{ height: typography.pxToRem(100) }}>
-                <Skeleton variant="rectangular" height="100%"></Skeleton>
+                <Skeleton variant="rectangular" height="100%" />
             </CardMedia>
             <CardContent component={Stack} gap="10px">
                 <Stack gap="10px">
                     <Skeleton
                         variant="rectangular"
                         width={typography.pxToRem(100)}
-                    ></Skeleton>
+                    />
                     <Skeleton
                         variant="rectangular"
                         width={typography.pxToRem(100)}
-                    ></Skeleton>
+                    />
                 </Stack>
 
                 <Stack alignItems="center">
@@ -31,7 +31,7 @@ const CardSkeleton = () => {
                         height={typography.pxToRem(30)}
                         width={typography.pxToRem(80)}
                         variant="rounded"
-                    ></Skeleton>
+                    />
                 </Stack>
             </CardContent>
         </Card>

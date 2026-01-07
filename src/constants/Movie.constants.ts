@@ -1,6 +1,6 @@
-export const subtitleHeading = {
+export const SUBTITLE_HEADING = {
     subtitle1: 'Language:',
     subtitle2: 'Genre:',
 };
 
-export const LatestMoviesHeading = 'Latest Movies';
+export const LATEST_MOVIES_HEADING = 'Latest Movies';

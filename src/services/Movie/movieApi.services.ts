@@ -1,5 +1,6 @@
 import { CardPaginatedDataType } from 'components/Card/Card.types';
 
+import { BACKEND_URL } from '@constants';
 import { MovieFilterTypes, MovieResponseType } from '@types';
 
 import { parseMovie } from './movieApi.parser';
@@ -19,7 +20,7 @@ export const movieApi = baseApi.injectEndpoints({
                 }
 
                 return {
-                    url: pageParam ? pageParam : 'movies/',
+                    url: pageParam ? pageParam : BACKEND_URL.MOVIES,
                     params,
                 };
             },

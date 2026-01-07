@@ -1,3 +1,5 @@
+import { PaginatedResponseType } from '@types';
+
 export type CardDataType = {
     id: number;
     posterUrl?: string;
@@ -6,11 +8,7 @@ export type CardDataType = {
     subtitle2?: string;
 };
 
-export type CardPaginatedDataType = {
-    next: string;
-    previous: string;
-    results: CardDataType[];
-};
+export type CardPaginatedDataType = PaginatedResponseType<CardDataType[]>;
 
 export type CardComponentProps = {
     buttonText?: string;

@@ -9,15 +9,15 @@ const Main = () => {
     const isTablet = useMediaQuery(theme.breakpoints.up('sm'));
 
     return (
-            <Stack
-                sx={{
-                    margin: 'auto',
-                    maxWidth: theme.typography.pxToRem(1440),
-                    scrollBehavior: 'smooth',
-                }}
-            >
-                {isTablet ? <DesktopLayout /> : <MobileLayout />}
-            </Stack>
+        <Stack
+            sx={{
+                margin: 'auto',
+                maxWidth: theme.typography.pxToRem(1440),
+                scrollBehavior: 'smooth',
+            }}
+        >
+            {isTablet ? <DesktopLayout /> : <MobileLayout />}
+        </Stack>
     );
 };
 

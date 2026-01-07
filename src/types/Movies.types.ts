@@ -1,3 +1,5 @@
+import { PaginatedResponseType } from './Common.types';
+
 export type MovieFilterTypes = {
     latest?: boolean;
     language?: string[];
@@ -15,8 +17,4 @@ export type MovieDataType = {
     slug: string;
 };
 
-export type MovieResponseType = {
-    next: string;
-    previous: string;
-    results: MovieDataType[];
-};
+export type MovieResponseType = PaginatedResponseType<MovieDataType[]>;

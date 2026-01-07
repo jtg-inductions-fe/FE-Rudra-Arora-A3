@@ -36,7 +36,7 @@ export const useInfiniteScroll = ({
         }
 
         return () => observer.disconnect();
-    }, [rootMargin, onLoadData, isFetching, hasNextPage]);
+    }, [rootMargin, onLoadData, hasNextPage]);
 
     return reference;
 };

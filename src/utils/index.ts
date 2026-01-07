@@ -1,5 +1,5 @@
-import { normalizeApiError } from './normalizeApiError';
 import { useInfiniteScroll } from './infiniteScroll';
-import { toPascalCase } from './pascalCase.util';
+import { normalizeApiError } from './normalizeApiError';
+import { toCapitalized } from './toCapitalized.util';
 
-export { toPascalCase, useInfiniteScroll, normalizeApiError };
+export { toCapitalized, useInfiniteScroll, normalizeApiError };
