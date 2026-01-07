@@ -1,19 +1,21 @@
-import { LoginConfig } from './Login.config';
+import { LOGIN_CONFIG } from './Login.config';
 import {
-    CookieExpiresInDays,
-    Message as LoginMessages,
+    COOKIE_EXPIRES_IN_DAYS,
+    MESSAGE as LOGIN_MESSAGES,
 } from './Login.constants';
-import { ROUTES } from './Routes.constant';
-import { SignupConfig } from './Signup.config';
-import { Message as SignupMessages } from './Signup.constants';
+import { BACKEND_URL, ROUTES } from './Routes.constant';
+import { SIGNUP_CONFIG } from './Signup.config';
+import { MESSAGE as SIGNUP_MESSAGES } from './Signup.constants';
 import { HTML_FONT_SIZE, SCALING_FACTOR } from './themeConstant';
+
 export {
     ROUTES,
     HTML_FONT_SIZE,
     SCALING_FACTOR,
-    LoginMessages,
-    CookieExpiresInDays,
-    SignupMessages,
-    LoginConfig,
-    SignupConfig,
+    LOGIN_MESSAGES,
+    COOKIE_EXPIRES_IN_DAYS,
+    SIGNUP_MESSAGES,
+    LOGIN_CONFIG,
+    SIGNUP_CONFIG,
+    BACKEND_URL,
 };

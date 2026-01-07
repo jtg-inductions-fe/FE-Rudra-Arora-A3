@@ -1,1 +1,3 @@
-export { AuthLayout } from './Auth.layout';
+import AuthLayout from './Auth.layout';
+
+export { AuthLayout };

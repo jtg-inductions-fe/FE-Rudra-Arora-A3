@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '@app';
 import {
-    CookieExpiresInDays,
-    LoginConfig,
-    LoginMessages,
+    COOKIE_EXPIRES_IN_DAYS,
+    LOGIN_CONFIG,
+    LOGIN_MESSAGES,
     ROUTES,
 } from '@constants';
 import { Form } from '@containers';
@@ -21,18 +21,18 @@ const Login = () => {
         try {
             const response = await loginUser(data).unwrap();
             Cookies.set('access', response.access, {
-                expires: CookieExpiresInDays,
+                expires: COOKIE_EXPIRES_IN_DAYS,
                 secure: true,
                 sameSite: 'strict',
             });
             Cookies.set('refresh', response.refresh, {
-                expires: CookieExpiresInDays,
+                expires: COOKIE_EXPIRES_IN_DAYS,
                 secure: true,
                 sameSite: 'strict',
             });
             dispatch(
                 showSnackbar({
-                    message: [LoginMessages.LOGIN_SUCCESS],
+                    message: [LOGIN_MESSAGES.LOGIN_SUCCESS],
                     variant: 'success',
                 }),
             );
@@ -45,11 +45,7 @@ const Login = () => {
         }
     };
 
-    return (
-        <>
-            <Form {...LoginConfig} onSubmit={handleSubmit} />
-        </>
-    );
+    return <Form {...LOGIN_CONFIG} onSubmit={handleSubmit} />;
 };
 
 export default Login;

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '@app';
-import { ROUTES, SignupConfig, SignupMessages } from '@constants';
+import { ROUTES, SIGNUP_CONFIG, SIGNUP_MESSAGES } from '@constants';
 import { Form } from '@containers';
 import { showSnackbar } from '@features';
 import { SignupRequest, useSignupUserMutation } from '@services';
@@ -16,7 +16,7 @@ const Signup = () => {
             await signupUser(data).unwrap();
             dispatch(
                 showSnackbar({
-                    message: [SignupMessages.SIGNUP_SUCCESS],
+                    message: [SIGNUP_MESSAGES.SIGNUP_SUCCESS],
                     variant: 'success',
                 }),
             );
@@ -36,11 +36,7 @@ const Signup = () => {
         }
     };
 
-    return (
-        <>
-            <Form {...SignupConfig} onSubmit={handleSubmit} />
-        </>
-    );
+    return <Form {...SIGNUP_CONFIG} onSubmit={handleSubmit} />;
 };
 
 export default Signup;

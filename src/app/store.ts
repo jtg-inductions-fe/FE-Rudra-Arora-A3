@@ -1,16 +1,16 @@
 import { snackbarReducer } from '@features';
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { authApi } from '@services';
+import { baseApi } from '@services';
 
 export const store = configureStore({
     reducer: {
-        [authApi.reducerPath]: authApi.reducer,
+        [baseApi.reducerPath]: baseApi.reducer,
         snackbar: snackbarReducer,
     },
 
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(authApi.middleware),
+        getDefaultMiddleware().concat(baseApi.middleware),
 });
 
 setupListeners(store.dispatch);

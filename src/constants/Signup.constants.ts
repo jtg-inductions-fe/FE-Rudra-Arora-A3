@@ -1,8 +1,8 @@
-export const ErrorMessage = {
+export const ERROR_MESSAGE = {
     USER_EXIST: 'User already exists',
 };
 
-export const Message = {
+export const MESSAGE = {
     SIGNUP_SUCCESS: 'Signup Successful',
     LINK_MESSAGE: 'Already have an account?',
     VALID_EMAIL: 'Enter a valid Email',
@@ -20,7 +20,7 @@ export const Message = {
     EMAIL_LONG: 'Email is too long',
 };
 
-export const RegularExpressions = {
+export const REGULAR_EXPRESSIONS = {
     EMAIL: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     PASSWORD: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{0,}$/,
     NAME: /^\S.*[a-zA-Z\s]+$/,

@@ -2,8 +2,10 @@ import { Outlet } from 'react-router-dom';
 
 import { StyledStack } from './Auth.styles';
 
-export const AuthLayout = () => (
+const AuthLayout = () => (
     <StyledStack>
         <Outlet />
     </StyledStack>
 );
+
+export default AuthLayout;

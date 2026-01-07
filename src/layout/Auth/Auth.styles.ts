@@ -4,7 +4,7 @@ import authBackground from '../../assets/images/authBg.webp';
 
 export const StyledStack = styled(Stack)(({ theme }) => ({
     padding: theme.spacing(0, 4),
-    ...theme.mixins.flexCenter('column'),
+    ...theme.mixins.flexCenter(),
     height: '100dvh',
     backgroundImage: `url(${authBackground})`,
     backgroundSize: 'cover',

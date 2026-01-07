@@ -1,10 +1,11 @@
 import type { LoginRequest, SignupRequest } from './Auth';
-import { authApi, useLoginUserMutation, useSignupUserMutation } from './Auth';
+import { useLoginUserMutation, useSignupUserMutation } from './Auth';
+import { baseApi } from './Base';
 
 export {
     useLoginUserMutation,
     useSignupUserMutation,
-    authApi,
     LoginRequest,
     SignupRequest,
+    baseApi,
 };

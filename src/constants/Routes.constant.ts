@@ -1,8 +1,13 @@
+export const BACKEND_URL = {
+    LOGIN: 'users/login/',
+    SIGNUP: 'users/signup',
+};
+
 export const ROUTES = {
     ROOT: '/',
-    LOGIN: 'login',
+    LOGIN: '/login',
     BOOKING: 'booking',
-    SIGNUP: 'signup',
+    SIGNUP: '/signup',
     CINEMAS: 'cinemas',
     MOVIES: 'movies',
     PROFILE: 'profile',

@@ -1,13 +1,14 @@
 import { ConfigType } from '@containers';
 
-import { Message, RegularExpressions } from './Login.constants';
+import { MESSAGE, REGULAR_EXPRESSIONS } from './Login.constants';
+import { ROUTES } from './Routes.constant';
 
-export const LoginConfig: ConfigType = {
+export const LOGIN_CONFIG: ConfigType = {
     title: 'Login',
     link: {
-        message: Message.LINK_MESSAGE,
+        message: MESSAGE.LINK_MESSAGE,
         value: 'Signup',
-        url: '/auth/signup',
+        url: ROUTES.SIGNUP,
     },
     fields: [
         {
@@ -15,14 +16,14 @@ export const LoginConfig: ConfigType = {
             name: 'email',
             type: 'email',
             validation: {
-                required: Message.REQUIRED_EMAIL,
+                required: MESSAGE.REQUIRED_EMAIL,
                 maxLength: {
                     value: 254,
-                    message: Message.EMAIL_LONG,
+                    message: MESSAGE.EMAIL_LONG,
                 },
                 pattern: {
-                    value: RegularExpressions.EMAIL,
-                    message: Message.VALID_EMAIL,
+                    value: REGULAR_EXPRESSIONS.EMAIL,
+                    message: MESSAGE.VALID_EMAIL,
                 },
             },
         },
@@ -31,14 +32,14 @@ export const LoginConfig: ConfigType = {
             name: 'password',
             type: 'password',
             validation: {
-                required: Message.PASSWORD_REQUIRED,
+                required: MESSAGE.PASSWORD_REQUIRED,
                 minLength: {
                     value: 8,
-                    message: Message.PASSWORD_LENGTH,
+                    message: MESSAGE.PASSWORD_LENGTH,
                 },
                 pattern: {
-                    value: RegularExpressions.PASSWORD,
-                    message: Message.PASSWORD_VALID,
+                    value: REGULAR_EXPRESSIONS.PASSWORD,
+                    message: MESSAGE.PASSWORD_VALID,
                 },
             },
         },

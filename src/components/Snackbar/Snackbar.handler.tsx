@@ -20,7 +20,7 @@ const Snackbar = () => {
             message.forEach((m) => {
                 enqueueSnackbar(m, {
                     variant: variant || 'info',
-                    autoHideDuration: 2500,
+                    autoHideDuration: 1000,
                     onClose: () => dispatch(removeSnackbar()),
                     style: {
                         fontSize: theme.typography.pxToRem(15),

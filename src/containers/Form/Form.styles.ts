@@ -1,7 +1,7 @@
 import { Box, Stack, styled, TextField } from '@mui/material';
 
 export const FormStack = styled(Stack)(({ theme }) => ({
-    ...theme.mixins.flexCenter('column'),
+    ...theme.mixins.flexCenter(),
     boxShadow: theme.shadows[3],
     padding: theme.spacing(6, 5),
     borderRadius: theme.spacing(2),
@@ -25,7 +25,8 @@ export const FormStack = styled(Stack)(({ theme }) => ({
 }));
 
 export const StyledStack = styled(Stack)(({ theme }) => ({
-    ...theme.mixins.flexCenter('row'),
+    flexDirection: 'row',
+    ...theme.mixins.flexCenter(),
     gap: theme.spacing(8),
 }));
 

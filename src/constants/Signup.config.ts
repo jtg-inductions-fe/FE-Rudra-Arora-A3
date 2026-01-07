@@ -1,13 +1,14 @@
 import { ConfigType } from '@containers';
 
-import { Message, RegularExpressions } from './Signup.constants';
+import { ROUTES } from './Routes.constant';
+import { MESSAGE, REGULAR_EXPRESSIONS } from './Signup.constants';
 
-export const SignupConfig: ConfigType = {
+export const SIGNUP_CONFIG: ConfigType = {
     title: 'Signup',
     link: {
-        message: Message.LINK_MESSAGE,
+        message: MESSAGE.LINK_MESSAGE,
         value: 'Login',
-        url: '/auth',
+        url: ROUTES.LOGIN,
     },
     fields: [
         {
@@ -15,14 +16,14 @@ export const SignupConfig: ConfigType = {
             name: 'name',
             type: 'text',
             validation: {
-                required: Message.NAME_REQUIRED,
+                required: MESSAGE.NAME_REQUIRED,
                 maxLength: {
                     value: 100,
-                    message: Message.NAME_LONG,
+                    message: MESSAGE.NAME_LONG,
                 },
                 pattern: {
-                    value: RegularExpressions.NAME,
-                    message: Message.NAME_VALID,
+                    value: REGULAR_EXPRESSIONS.NAME,
+                    message: MESSAGE.NAME_VALID,
                 },
             },
         },
@@ -31,14 +32,14 @@ export const SignupConfig: ConfigType = {
             name: 'email',
             type: 'email',
             validation: {
-                required: Message.REQUIRED_EMAIL,
+                required: MESSAGE.REQUIRED_EMAIL,
                 maxLength: {
                     value: 254,
-                    message: Message.EMAIL_LONG,
+                    message: MESSAGE.EMAIL_LONG,
                 },
                 pattern: {
-                    value: RegularExpressions.EMAIL,
-                    message: Message.VALID_EMAIL,
+                    value: REGULAR_EXPRESSIONS.EMAIL,
+                    message: MESSAGE.VALID_EMAIL,
                 },
             },
         },
@@ -47,10 +48,10 @@ export const SignupConfig: ConfigType = {
             name: 'phone_number',
             type: 'tel',
             validation: {
-                required: Message.PHONE_NUMBER_REQUIRED,
+                required: MESSAGE.PHONE_NUMBER_REQUIRED,
                 pattern: {
-                    value: RegularExpressions.PHONE_NUMBER,
-                    message: Message.PHONE_NUMBER_VALID,
+                    value: REGULAR_EXPRESSIONS.PHONE_NUMBER,
+                    message: MESSAGE.PHONE_NUMBER_VALID,
                 },
             },
         },
@@ -59,14 +60,14 @@ export const SignupConfig: ConfigType = {
             name: 'password',
             type: 'password',
             validation: {
-                required: Message.PASSWORD_REQUIRED,
+                required: MESSAGE.PASSWORD_REQUIRED,
                 minLength: {
                     value: 8,
-                    message: Message.PASSWORD_LENGTH,
+                    message: MESSAGE.PASSWORD_LENGTH,
                 },
                 pattern: {
-                    value: RegularExpressions.PHONE_NUMBER,
-                    message: Message.PASSWORD_VALID,
+                    value: REGULAR_EXPRESSIONS.PHONE_NUMBER,
+                    message: MESSAGE.PASSWORD_VALID,
                 },
             },
         },
@@ -75,7 +76,7 @@ export const SignupConfig: ConfigType = {
             name: 'confirm_password',
             type: 'password',
             validation: {
-                required: Message.CONFIRM_PASSWORD_REQUIRED,
+                required: MESSAGE.CONFIRM_PASSWORD_REQUIRED,
             },
         },
     ],

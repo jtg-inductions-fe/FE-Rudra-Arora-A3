@@ -21,7 +21,7 @@ createRoot(rootElement).render(
                 <CssBaseline />
                 <SnackbarProvider
                     maxSnack={3}
-                    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                 >
                     <Snackbar />
                     <RouterProvider router={router} />

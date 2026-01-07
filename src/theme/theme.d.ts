@@ -7,8 +7,6 @@ export declare module '@mui/material/styles/createMixins' {
             gapping?: CSSProperties['gap'],
             direction?: CSSProperties['flexDirection'],
         ) => CSSProperties;
-        flexCenter: (
-            direction?: CSSProperties['flexDirection'],
-        ) => CSSProperties;
+        flexCenter: () => CSSProperties;
     }
 }

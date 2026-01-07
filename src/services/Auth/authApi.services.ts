@@ -1,3 +1,5 @@
+import { BACKEND_URL } from '@constants';
+
 import {
     LoginRequest,
     LoginResponse,
@@ -10,14 +12,14 @@ export const authApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         loginUser: builder.mutation<LoginResponse, LoginRequest>({
             query: (body) => ({
-                url: 'users/login/',
+                url: BACKEND_URL.LOGIN,
                 method: 'POST',
                 body,
             }),
         }),
         signupUser: builder.mutation<SignupResponse, SignupRequest>({
             query: (body) => ({
-                url: 'users/signup/',
+                url: BACKEND_URL.SIGNUP,
                 method: 'POST',
                 body,
             }),

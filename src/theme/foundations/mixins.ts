@@ -21,13 +21,10 @@ const lineClamp = (lines: number = 1): CSSProperties => ({
  * @param direction - Flex Direction
  * @returns Flex CSS properties
  */
-const flexCenter = (
-    direction: CSSProperties['flexDirection'] = 'row',
-): CSSProperties => ({
+const flexCenter = (): CSSProperties => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: direction,
 });
 
 /**

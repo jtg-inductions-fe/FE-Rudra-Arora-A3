@@ -25,7 +25,7 @@ import {
 import { FormProps, PayloadType } from './Form.types';
 import authImage from '../../assets/images/authimage.webp';
 
-export const Form = ({ title, fields, link, onSubmit }: FormProps) => {
+const Form = ({ title, fields, link, onSubmit }: FormProps) => {
     const [showPassword, setShowPassword] = useState<Record<string, boolean>>(
         {},
     );
@@ -146,6 +146,7 @@ export const Form = ({ title, fields, link, onSubmit }: FormProps) => {
                                 sx={{ color: theme.palette.primary.main }}
                                 component={Link}
                                 to={link.url}
+                                replace={true}
                             >
                                 {link.value}
                             </Box>
@@ -156,3 +157,5 @@ export const Form = ({ title, fields, link, onSubmit }: FormProps) => {
         </StyledStack>
     );
 };
+
+export default Form;

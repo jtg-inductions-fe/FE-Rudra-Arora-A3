@@ -1,2 +1,4 @@
-export { Form } from './Form.container';
-export type { PayloadType, ConfigType } from './Form.types';
+import Form from './Form.container';
+import type { ConfigType, PayloadType } from './Form.types';
+
+export { Form, type PayloadType, type ConfigType };

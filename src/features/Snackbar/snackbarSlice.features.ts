@@ -4,7 +4,7 @@ import { SnackbarState } from './snackbarSlice.types';
 
 const initialState: SnackbarState = {
     message: [],
-    variant: '',
+    variant: 'info',
 };
 
 const snackbarStackSlice = createSlice({
@@ -17,7 +17,7 @@ const snackbarStackSlice = createSlice({
         },
         removeSnackbar: (state) => {
             state.message = [];
-            state.variant = '';
+            state.variant = 'info';
         },
     },
 });
