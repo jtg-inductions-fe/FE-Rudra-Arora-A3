@@ -1,7 +1,7 @@
 import { Outlet, useMatches } from 'react-router-dom';
 import { RouteHandleType } from 'types';
 
-import { Stack } from '@mui/material';
+import { Stack, useTheme } from '@mui/material';
 
 import { Header, Navbar } from '@containers';
 
@@ -12,9 +12,10 @@ const DesktopLayout = () => {
     );
     const showHeader = matchedRoutes?.handle?.isHeaderRequired ?? true;
     const showNavbar = matchedRoutes?.handle?.isNavbarRequired ?? true;
+    const theme = useTheme();
 
     return (
-        <Stack>
+        <Stack sx={{ margin: theme.spacing(22, 4, 5, 4) }}>
             {showHeader && <Header />}
             {showNavbar && <Navbar />}
             <Outlet />

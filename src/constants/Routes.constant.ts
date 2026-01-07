@@ -3,6 +3,7 @@ export const BACKEND_URL = {
     SIGNUP: 'users/signup/',
     USER_PROFILE: 'users/me/',
     TOKEN_REFRESH: 'users/token/refresh/',
+    MOVIES: 'movies/',
 };
 
 export const ROUTES = {

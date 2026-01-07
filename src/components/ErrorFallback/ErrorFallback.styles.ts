@@ -7,7 +7,7 @@ export const StyledBox = styled(Box)<BoxProps>(
         textAlign: 'center',
         maxWidth: typography.pxToRem(1320),
         margin: 'auto',
-        minHeight: '100dvh',
+        minHeight: '80dvh',
         flexDirection: 'column',
     }),
 );

@@ -15,11 +15,21 @@ export const normalizeApiError = (
         };
     }
 
-    if (typeof error.status !== 'number') {
+    if (typeof error.status !== 'number' && !('originalStatus' in error)) {
         return {
             image: errorBackgroundImage,
             title: 'Server Error',
             body: 'Something went wrong.',
+        };
+    }
+
+    if ('originalStatus' in error) {
+        return {
+            image: notFoundImage,
+            title: 'Data Not Found',
+            body: 'The requested resource does not exist.',
+            buttonText: 'Go Home',
+            to: '/',
         };
     }
 
