@@ -1,6 +1,8 @@
 export const BACKEND_URL = {
     LOGIN: 'users/login/',
-    SIGNUP: 'users/signup',
+    SIGNUP: 'users/signup/',
+    USER_PROFILE: 'users/me/',
+    TOKEN_REFRESH: 'users/token/refresh/',
 };
 
 export const ROUTES = {
@@ -14,3 +16,5 @@ export const ROUTES = {
     SLOTS: 'slots',
     PURCHASE_HISTORY: 'purchase-history',
 };
+
+export const AUTHENTICATED_ENDPOINTS = ['getUserProfile'];

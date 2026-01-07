@@ -6,9 +6,6 @@ import { Stack } from '@mui/material';
 import { Header, Navbar } from '@containers';
 
 const DesktopLayout = () => {
-    {
-        /* TODO: Add Desktop Layout Here */
-    }
     const matches = useMatches() as Array<{ handle?: RouteHandleType }>;
     const matchedRoutes = matches.find(
         (m) => m.handle?.isHeaderRequired && m.handle?.isNavbarRequired,

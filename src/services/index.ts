@@ -1,8 +1,10 @@
 import type { LoginRequest, SignupRequest } from './Auth';
 import { useLoginUserMutation, useSignupUserMutation } from './Auth';
 import { baseApi } from './Base';
+import { useLazyGetUserProfileQuery } from './User';
 
 export {
+    useLazyGetUserProfileQuery,
     useLoginUserMutation,
     useSignupUserMutation,
     LoginRequest,

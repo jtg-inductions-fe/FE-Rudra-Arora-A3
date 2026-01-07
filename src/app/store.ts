@@ -1,4 +1,4 @@
-import { snackbarReducer } from '@features';
+import { authReducer, snackbarReducer, userReducer } from '@features';
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { baseApi } from '@services';
@@ -7,6 +7,8 @@ export const store = configureStore({
     reducer: {
         [baseApi.reducerPath]: baseApi.reducer,
         snackbar: snackbarReducer,
+        auth: authReducer,
+        user: userReducer,
     },
 
     middleware: (getDefaultMiddleware) =>
