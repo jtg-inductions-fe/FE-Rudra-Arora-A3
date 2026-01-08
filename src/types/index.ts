@@ -13,6 +13,7 @@ import type {
     MovieFilterTypes,
     MovieResponseType,
 } from './Movies.types';
+import type { MovieSlotsResponseType, SlotDataType } from './MovieSlots.types';
 import type { GuestRouteProps, RouteHandleType } from './Routes.types';
 
 export {
@@ -30,4 +31,6 @@ export {
     CinemaResponseType,
     LocationFilterType,
     SelectedFiltersType,
+    MovieSlotsResponseType,
+    SlotDataType,
 };

@@ -7,6 +7,7 @@ import {
 import { normalizeApiError } from './normalizeApiError';
 import { setToStringArray } from './setToString.util';
 import { toCapitalized } from './toCapitalized.util';
+import { SlotTimeFormatter } from './Slot.utils';
 
 export {
     setToStringArray,
@@ -16,4 +17,5 @@ export {
     useInfiniteScroll,
     normalizeApiError,
     toCapitalized,
+    SlotTimeFormatter
 };
