@@ -1,6 +1,11 @@
 import { useInfiniteScroll } from './infiniteScroll';
 import { normalizeApiError } from './normalizeApiError';
-import { toCapitalized } from './toCapitalized.util';
 import { setToStringArray } from './setToString.util';
+import { toCapitalized } from './toCapitalized.util';
 
-export { setToStringArray, useInfiniteScroll, normalizeApiError, toCapitalized };
+export {
+    setToStringArray,
+    useInfiniteScroll,
+    normalizeApiError,
+    toCapitalized,
+};

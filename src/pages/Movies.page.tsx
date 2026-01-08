@@ -12,15 +12,15 @@ import {
     useTheme,
 } from '@mui/material';
 
-import { Dialog } from '@components';
+import { Dialog, ErrorBoundary } from '@components';
 import { Filter, MoviesContainer } from '@containers';
 import {
     useGetGenresFiltersQuery,
     useGetLanguageFiltersQuery,
     useGetMoviesInfiniteQuery,
 } from '@services';
+import { FilterKey } from '@types';
 
-type SelectedFilters = Record<string, Set<string>>;
 const Movies = () => {
     {
         /*Genre and Language API calling*/
@@ -32,7 +32,9 @@ const Movies = () => {
         /*Filters State*/
     }
     const [filtersOpen, setFiltersOpen] = useState(false);
-    const [selectedFilter, setSelectedFilter] = useState<SelectedFilters>({
+    const [selectedFilter, setSelectedFilter] = useState<
+        Record<string, Set<string>>
+    >({
         genre: new Set(),
         language: new Set(),
     });
@@ -58,13 +60,19 @@ const Movies = () => {
     {
         /*Movie API query*/
     }
-    const { data, isLoading, hasNextPage, fetchNextPage, isFetching } =
-        useGetMoviesInfiniteQuery({
-            language: languageFromUrl,
-            genre: genreFromUrl,
-        });
+    const {
+        data: movieData,
+        isLoading,
+        hasNextPage,
+        fetchNextPage,
+        isFetching,
+        error: movieApiError,
+    } = useGetMoviesInfiniteQuery({
+        language: languageFromUrl,
+        genre: genreFromUrl,
+    });
 
-    const currentData = data?.pages.flatMap((movie) => movie.results);
+    const currentMovieData = movieData?.pages.flatMap((movie) => movie.results);
 
     const endRef = useInfiniteScroll({
         hasNextPage: hasNextPage,
@@ -75,6 +83,13 @@ const Movies = () => {
     {
         /*Handlers*/
     }
+
+    /**
+     * Function for handling the filters selected
+     * @param event
+     * @param filter
+     * @param heading
+     */
     const handleFiltersSelected = (
         event: React.ChangeEvent<HTMLInputElement>,
         filter: string,
@@ -94,10 +109,16 @@ const Movies = () => {
         });
     };
 
+    /**
+     * Funtion for closing the Dialog component on Mobile
+     */
     const handleFiltersClose = () => {
         setFiltersOpen(false);
     };
 
+    /**
+     * Function for applying the filters, It sets the query param in the URL
+     */
     const handleApplyFilters = () => {
         const params: Record<string, string[]> = {};
 
@@ -113,7 +134,6 @@ const Movies = () => {
         handleFiltersClose();
     };
 
-    type FilterKey = 'genre' | 'language';
     const FilterHeading: FilterKey[] = ['genre', 'language'];
 
     const FilterData = {
@@ -164,7 +184,20 @@ const Movies = () => {
                         </>
                     )}
                 </Stack>
-                <MoviesContainer data={currentData} isLoading={isLoading} />
+                <ErrorBoundary error={movieApiError}>
+                    {currentMovieData?.length ? (
+                        <MoviesContainer
+                            data={currentMovieData}
+                            isLoading={isLoading}
+                        />
+                    ) : (
+                        <Stack alignItems="center">
+                            <Typography variant="h2">
+                                No Data Availaible
+                            </Typography>
+                        </Stack>
+                    )}
+                </ErrorBoundary>
                 <Box ref={endRef} height={1}></Box>
             </Stack>
         </Stack>

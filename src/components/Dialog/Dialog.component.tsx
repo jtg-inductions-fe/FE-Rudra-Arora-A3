@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { toPascalCase } from 'utils';
+import { toCapitalized } from 'utils';
 
 import CloseIcon from '@mui/icons-material/Close';
 import {
@@ -82,7 +82,7 @@ const Dialog = ({
                                     }}
                                 >
                                     <Typography variant="body1">
-                                        {toPascalCase(heading)}
+                                        {toCapitalized(heading)}
                                     </Typography>
                                 </ListItemText>
 
@@ -99,7 +99,7 @@ const Dialog = ({
                                             }}
                                         >
                                             <Typography variant="body1">
-                                                {toPascalCase(item.title)}
+                                                {toCapitalized(item.title)}
                                             </Typography>
                                             <Checkbox
                                                 checked={selectedCheckedBox[

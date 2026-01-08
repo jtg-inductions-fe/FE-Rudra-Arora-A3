@@ -1,4 +1,4 @@
-import { toPascalCase } from 'utils';
+import { toCapitalized } from 'utils';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {
@@ -24,7 +24,7 @@ const Accordion = ({
     <MuiAccordion disableGutters elevation={0}>
         <AccordionSummary expandIcon={<ExpandMoreIcon color="primary" />}>
             <Typography variant="h6">
-                {toPascalCase(title)}
+                {toCapitalized(title)}
                 {selectedItem[title].size > 0 &&
                     ` (${selectedItem[title].size})`}
             </Typography>
@@ -50,7 +50,7 @@ const Accordion = ({
                                     }
                                 />
                                 <ListItemText
-                                    primary={toPascalCase(item.title)}
+                                    primary={toCapitalized(item.title)}
                                 />
                             </ListItemButton>
                         </ListItem>

@@ -1,13 +1,12 @@
 import { CardPaginatedDataType } from '@components';
 import { DialogDataType } from '@components';
+import { BACKEND_URL } from '@constants';
 import {
     GenreFilterType,
     LanguageFilterType,
     MovieFilterTypes,
     MovieResponseType,
 } from '@types';
-
-import { BACKEND_URL } from '@constants';
 
 import {
     parseGenreFilter,
@@ -58,14 +57,14 @@ export const movieApi = baseApi.injectEndpoints({
         }),
         getLanguageFilters: builder.query<DialogDataType[], void>({
             query: () => ({
-                url: 'movies/languages/',
+                url: BACKEND_URL.LANGUAGE,
             }),
             transformResponse: (response: LanguageFilterType[]) =>
                 response.map(parseLanguageFilter),
         }),
         getGenresFilters: builder.query<DialogDataType[], void>({
             query: () => ({
-                url: 'movies/genres/',
+                url: BACKEND_URL.GENRE,
             }),
             transformResponse: (response: GenreFilterType[]) =>
                 response.map(parseGenreFilter),

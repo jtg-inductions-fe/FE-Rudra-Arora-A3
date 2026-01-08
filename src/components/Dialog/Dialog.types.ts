@@ -4,15 +4,29 @@ export type DialogDataType = {
 
 export type DialogProps = {
     open: boolean;
-    handleClose: () => void;
     DialogListData: Record<string, DialogDataType[] | undefined>;
     ListHeading: string[];
     selectedCheckedBox: Record<string, Set<string>>;
+    buttonText: string;
+    /**
+     * Funtion to close the Dialog
+     */
+    handleClose: () => void;
+
+    /**
+     * Function for handling checkboxes state
+     * @param event
+     * @param item
+     * @param heading
+     */
     handleCheckBox: (
         event: React.ChangeEvent<HTMLInputElement>,
         item: string,
         heading: string,
     ) => void;
+
+    /**
+     * Function for handling the button behaviour in the Dialog component
+     */
     handleButtonClick: () => void;
-    buttonText: string;
 };

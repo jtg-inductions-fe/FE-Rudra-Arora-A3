@@ -1,4 +1,4 @@
-import type { PaginatedResponseType } from './Common.types';
+import type { FilterKey, PaginatedResponseType } from './Common.types';
 import type {
     GenreFilterType,
     LanguageFilterType,
@@ -17,4 +17,5 @@ export {
     PaginatedResponseType,
     GenreFilterType,
     LanguageFilterType,
+    FilterKey,
 };

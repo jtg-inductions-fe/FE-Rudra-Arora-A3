@@ -1,7 +1,7 @@
 import { Grid2 } from '@mui/material';
 
 import { Card, CardSkeleton } from '@components';
-import { subtitleHeading } from '@constants';
+import { SUBTITLE_HEADING } from '@constants';
 
 import { MoviesConatinerProps } from './Movies.types';
 
@@ -18,7 +18,7 @@ const MoviesContainer = ({ data, isLoading }: MoviesConatinerProps) => (
                         id={item.id}
                         subtitle2={item.subtitle2}
                         buttonText="Show Detail"
-                        subtitleHeading={subtitleHeading}
+                        subtitleHeading={SUBTITLE_HEADING}
                     />
                 </Grid2>
             ),
