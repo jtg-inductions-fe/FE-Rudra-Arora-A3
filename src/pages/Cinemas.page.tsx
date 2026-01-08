@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 
 import { Dialog } from '@components';
-import { CinemaHeading } from '@constants';
+import { CINEMA_HEADING } from '@constants';
 import { CinemasContainer, Filter, FilterKey } from '@containers';
 import {
     useGetCinemasInfiniteQuery,
@@ -127,7 +127,7 @@ const Cinemas = () => {
                     justifyContent="space-between"
                     alignItems="center"
                 >
-                    <Typography variant="h1">{CinemaHeading}</Typography>
+                    <Typography variant="h1">{CINEMA_HEADING}</Typography>
                     {!isDesktop && (
                         <>
                             <Button

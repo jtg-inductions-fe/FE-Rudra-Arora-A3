@@ -1,4 +1,4 @@
-import { CINEMA_SUBTITLE_HEADING, CINEMA_HEADING } from './Cinema.constants';
+import { CINEMA_HEADING, CINEMA_SUBTITLE_HEADING } from './Cinema.constants';
 import { ERROR_PAGE_CONSTANTS } from './Error.constants';
 import { LOGIN_CONFIG } from './Login.config';
 import {
@@ -29,5 +29,5 @@ export {
     LATEST_MOVIES_HEADING,
     SUBTITLE_HEADING,
     CINEMA_SUBTITLE_HEADING,
-    CINEMA_HEADING
+    CINEMA_HEADING,
 };

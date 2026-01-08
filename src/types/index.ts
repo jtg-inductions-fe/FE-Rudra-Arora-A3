@@ -1,4 +1,3 @@
-import type { FilterKey, PaginatedResponseType } from './Common.types';
 import type {
     CinemaDataType,
     CinemaFilterTypes,
@@ -6,6 +5,7 @@ import type {
     LocationFilterType,
     SelectedFiltersType,
 } from './Cinema.types';
+import type { FilterKey, PaginatedResponseType } from './Common.types';
 import type {
     GenreFilterType,
     LanguageFilterType,
