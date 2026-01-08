@@ -5,8 +5,8 @@ import { AuthLayout, Main } from '@layout';
 import {
     Booking,
     Cinemas,
-    Error,
     CinemaSlots,
+    Error,
     LatestMovies,
     Login,
     MovieDetail,
@@ -15,10 +15,12 @@ import {
     NotFound,
     Profile,
     PurchaseHistory,
+    SeatChoosing,
     Signup,
 } from '@pages';
 
 import GuestRoute from './GuestRoute';
+import ProtectedRoute from './ProtectedRoute';
 
 export const router = createBrowserRouter([
     {
@@ -108,6 +110,23 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <CinemaSlots />,
+            },
+        ],
+    },
+    {
+        path: ROUTES.SEAT_AVAILABILITY,
+        element: <Main />,
+        handle: {
+            isNavbarRequired: false,
+        },
+        children: [
+            {
+                index: true,
+                element: (
+                    <ProtectedRoute>
+                        <SeatChoosing />
+                    </ProtectedRoute>
+                ),
             },
         ],
     },

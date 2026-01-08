@@ -5,8 +5,8 @@ import type {
     LocationFilterType,
     SelectedFiltersType,
 } from './Cinema.types';
-import type { FilterKey, PaginatedResponseType } from './Common.types';
 import type { CinemaSlotsResponseType } from './CinemaSlots.types';
+import type { FilterKey, PaginatedResponseType } from './Common.types';
 import type {
     GenreFilterType,
     LanguageFilterType,
@@ -15,7 +15,13 @@ import type {
     MovieResponseType,
 } from './Movies.types';
 import type { MovieSlotsResponseType, SlotDataType } from './MovieSlots.types';
-import type { GuestRouteProps, RouteHandleType } from './Routes.types';
+import type {
+    GuestRouteProps,
+    ProtectedRouteProps,
+    RouteHandleType,
+} from './Routes.types';
+import type { SeatAvailabilityResponseType } from './SeatAvailability.types';
+import type { SeatBookingResponseType } from './SeatBooking.types';
 
 export {
     RouteHandleType,
@@ -35,4 +41,7 @@ export {
     MovieSlotsResponseType,
     SlotDataType,
     CinemaSlotsResponseType,
+    SeatAvailabilityResponseType,
+    ProtectedRouteProps,
+    SeatBookingResponseType,
 };
