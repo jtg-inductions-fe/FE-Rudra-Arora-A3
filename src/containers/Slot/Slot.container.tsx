@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import dayjs from 'dayjs';
 import { useSearchParams } from 'react-router-dom';
 
 import { Stack, useTheme } from '@mui/material';
@@ -29,7 +30,9 @@ const SlotContainer = ({
         const fetchSlotData = async () => {
             const response = await trigger({
                 id: id ?? 0,
-                param: searchParams.get('date') ?? '',
+                param:
+                    searchParams.get('date') ??
+                    String(dayjs().format('YYYY-MM-DD')),
             }).unwrap();
             setMovieSlotData(response);
         };

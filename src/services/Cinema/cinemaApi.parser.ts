@@ -7,6 +7,7 @@ export const cinemaApiParser = (cinema: CinemaDataType): CardDataType => ({
     id: cinema.id,
     title: `${toCapitalized(cinema.name)} ${toCapitalized(cinema.location)}`,
     subtitle1: toCapitalized(cinema.location),
+    slug: cinema.slug,
 });
 
 export const parseLocationFilter = (

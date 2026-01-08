@@ -16,8 +16,16 @@ const SlotCard = ({ title, buttonData }: SlotCardProps) => {
     const theme = useTheme();
     return (
         <StyledCard>
-            <CardContent sx={{ p: 0, minWidth: theme.typography.pxToRem(300) }}>
-                <Typography variant="h2">{title}</Typography>
+            <CardContent
+                sx={{
+                    p: 0,
+                    minWidth: theme.typography.pxToRem(300),
+                    maxWidth: theme.typography.pxToRem(350),
+                }}
+            >
+                <Typography linesToClamp={2} variant="h2">
+                    {title}
+                </Typography>
             </CardContent>
             <Stack
                 flexDirection="row"
