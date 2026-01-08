@@ -5,9 +5,10 @@ import {
     LanguageFormatter,
 } from './Movie.utils';
 import { normalizeApiError } from './normalizeApiError';
+import { numberToAlphabet } from './numberToAlphabet.util';
 import { setToStringArray } from './setToString.util';
+import { slotDateFormatter, SlotTimeFormatter } from './Slot.utils';
 import { toCapitalized } from './toCapitalized.util';
-import { SlotTimeFormatter } from './Slot.utils';
 
 export {
     setToStringArray,
@@ -17,5 +18,7 @@ export {
     useInfiniteScroll,
     normalizeApiError,
     toCapitalized,
-    SlotTimeFormatter
+    SlotTimeFormatter,
+    numberToAlphabet,
+    slotDateFormatter,
 };

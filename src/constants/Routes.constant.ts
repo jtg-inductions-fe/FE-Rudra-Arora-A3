@@ -21,6 +21,10 @@ export const ROUTES = {
     SPECIFIC_MOVIE: 'movies/:movie_name',
     MOVIE_SLOTS: '/movies/:slug/slots',
     CINEMA_SLOTS: '/cinemas/:slug/slots',
+    SEAT_AVAILABILITY: '/slots/:id/seats/',
 };
 
-export const AUTHENTICATED_ENDPOINTS = ['getUserProfile'];
+export const AUTHENTICATED_ENDPOINTS: string[] = [
+    'getUserProfile',
+    'seatBooking',
+];

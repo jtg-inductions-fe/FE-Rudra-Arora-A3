@@ -5,3 +5,9 @@ export const SlotTimeFormatter = (time: string): string => {
 
     return formattedTime;
 };
+
+export const slotDateFormatter = (date: string): string => {
+    const formattedDate = dayjs(date).format('DD-MM-YYYY');
+
+    return formattedDate;
+};

@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import {
     Button,
     CardContent,
@@ -14,6 +16,7 @@ const SlotCard = ({ title, buttonData }: SlotCardProps) => {
     const { typography, breakpoints } = useTheme();
     const isDesktop = useMediaQuery(breakpoints.up('md'));
     const theme = useTheme();
+    const navigate = useNavigate();
     return (
         <StyledCard>
             <CardContent
@@ -42,6 +45,9 @@ const SlotCard = ({ title, buttonData }: SlotCardProps) => {
                         }}
                         key={item.buttonId}
                         variant="outlined"
+                        onClick={() =>
+                            void navigate(`/slots/${item.buttonId}/seats`)
+                        }
                     >
                         {item.buttonText}
                     </Button>

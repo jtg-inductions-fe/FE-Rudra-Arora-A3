@@ -16,6 +16,7 @@ import {
     useLazyGetLanguageFiltersQuery,
 } from './Movie';
 import { parseSlots, useLazyGetMovieSlotsQuery } from './MovieSlots';
+import { useGetSeatAvailabilityQuery } from './SeatAvailability';
 import { useLazyGetUserProfileQuery } from './User';
 
 export {
@@ -37,4 +38,5 @@ export {
     useGetCinemaByNameQuery,
     useLazyGetCinemaSlotsQuery,
     parseSlots,
+    useGetSeatAvailabilityQuery,
 };

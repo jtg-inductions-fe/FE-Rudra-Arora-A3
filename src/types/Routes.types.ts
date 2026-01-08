@@ -8,3 +8,7 @@ export type RouteHandleType = {
 export type GuestRouteProps = {
     children: ReactNode;
 };
+
+export type ProtectedRouteProps = {
+    children: ReactNode;
+};
