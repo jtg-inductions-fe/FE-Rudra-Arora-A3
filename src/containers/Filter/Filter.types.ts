@@ -1,11 +1,11 @@
 import { DialogDataType } from '@components';
 
-export type FilterKey = 'genre' | 'language';
+export type FilterKey = 'genre' | 'language' | 'location';
 
 export type FilterContainerProps = {
     FilterHeading: FilterKey[];
     FilterData: Record<string, DialogDataType[] | undefined>;
-    selectedFilters: Record<string, Set<string>>;
+    selectedFilters: Record<string, Set<string> | string>;
     handleApplyFilters: () => void;
     handleFiltersSelected: (
         event: React.ChangeEvent<HTMLInputElement>,

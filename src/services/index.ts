@@ -2,6 +2,10 @@ import type { LoginRequest, SignupRequest } from './Auth';
 import { useLoginUserMutation, useSignupUserMutation } from './Auth';
 import { baseApi } from './Base';
 import {
+    useGetCinemasInfiniteQuery,
+    useGetLocationFilterQuery,
+} from './Cinema';
+import {
     useGetGenresFiltersQuery,
     useGetLanguageFiltersQuery,
     useGetMoviesInfiniteQuery,
@@ -22,4 +26,6 @@ export {
     useGetLanguageFiltersQuery,
     useLazyGetGenresFiltersQuery,
     useLazyGetLanguageFiltersQuery,
+    useGetCinemasInfiniteQuery,
+    useGetLocationFilterQuery,
 };

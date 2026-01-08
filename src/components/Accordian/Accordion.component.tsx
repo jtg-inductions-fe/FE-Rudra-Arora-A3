@@ -25,7 +25,8 @@ const Accordion = ({
         <AccordionSummary expandIcon={<ExpandMoreIcon color="primary" />}>
             <Typography variant="h6">
                 {toCapitalized(title)}
-                {selectedItem[title].size > 0 &&
+                {selectedItem[title] instanceof Set &&
+                    selectedItem[title].size > 0 &&
                     ` (${selectedItem[title].size})`}
             </Typography>
         </AccordionSummary>
@@ -33,7 +34,10 @@ const Accordion = ({
         <AccordionDetails>
             <List dense disablePadding>
                 {Details[title]?.map((item) => {
-                    const isChecked = selectedItem[title].has(item.title);
+                    const isChecked =
+                        selectedItem[title] instanceof Set
+                            ? selectedItem[title].has(item.title)
+                            : selectedItem[title] === item.title;
 
                     return (
                         <ListItem key={item.title} disablePadding>
