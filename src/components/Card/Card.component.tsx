@@ -19,6 +19,7 @@ const Card = ({
     buttonText,
     subtitleHeading,
     posterUrl,
+    handleButtonClick,
 }: CardComponentProps) => {
     const { breakpoints, typography } = useTheme();
     const isTablet = useMediaQuery(breakpoints.up('sm'));
@@ -79,7 +80,9 @@ const Card = ({
             </StyledCardContent>
             <CardActions sx={{ width: '100%' }}>
                 <Stack alignItems="center" width="100%">
-                    <Button variant="contained">{buttonText}</Button>
+                    <Button onClick={handleButtonClick} variant="contained">
+                        {buttonText}
+                    </Button>
                 </Stack>
             </CardActions>
         </MuiCard>

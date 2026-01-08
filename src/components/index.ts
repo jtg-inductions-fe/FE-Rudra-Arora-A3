@@ -9,6 +9,7 @@ import type { DialogDataType } from './Dialog';
 import { Dialog } from './Dialog';
 import { ErrorBoundary } from './ErrorBoundary';
 import { ErrorFallback } from './ErrorFallback';
+import { InfoRow } from './InfoRow';
 import { Snackbar } from './Snackbar';
 import type { TopNavConfigType } from './TopNavigation';
 import { TopNavigation } from './TopNavigation';
@@ -31,4 +32,5 @@ export {
     Accordion,
     DialogDataType,
     CardPaginatedDataType,
+    InfoRow,
 };

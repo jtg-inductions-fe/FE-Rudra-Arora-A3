@@ -18,6 +18,7 @@ export const ROUTES = {
     PROFILE: 'profile',
     SLOTS: 'slots',
     PURCHASE_HISTORY: 'purchase-history',
+    SPECIFIC_MOVIE: 'movies/:movie_name',
 };
 
 export const AUTHENTICATED_ENDPOINTS = ['getUserProfile'];

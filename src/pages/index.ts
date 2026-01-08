@@ -3,6 +3,7 @@ import Cinemas from './Cinemas.page';
 import Error from './Error.page';
 import LatestMovies from './LatestMovies.page';
 import Login from './Login.page';
+import MovieDetail from './MovieDetail.page';
 import Movies from './Movies.page';
 import NotFound from './NotFound.page';
 import Profile from './Profile.page';
@@ -22,4 +23,5 @@ export {
     Login,
     Error,
     NotFound,
+    MovieDetail,
 };

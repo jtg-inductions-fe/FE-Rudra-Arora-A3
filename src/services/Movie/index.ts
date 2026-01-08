@@ -2,6 +2,7 @@ import {
     movieApi,
     useGetGenresFiltersQuery,
     useGetLanguageFiltersQuery,
+    useGetMoviesByNameQuery,
     useGetMoviesInfiniteQuery,
     useLazyGetGenresFiltersQuery,
     useLazyGetLanguageFiltersQuery,
@@ -14,4 +15,5 @@ export {
     useLazyGetGenresFiltersQuery,
     useLazyGetLanguageFiltersQuery,
     useGetMoviesInfiniteQuery,
+    useGetMoviesByNameQuery,
 };

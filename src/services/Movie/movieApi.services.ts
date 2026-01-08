@@ -4,6 +4,7 @@ import { BACKEND_URL } from '@constants';
 import {
     GenreFilterType,
     LanguageFilterType,
+    MovieDataType,
     MovieFilterTypes,
     MovieResponseType,
 } from '@types';
@@ -69,6 +70,11 @@ export const movieApi = baseApi.injectEndpoints({
             transformResponse: (response: GenreFilterType[]) =>
                 response.map(parseGenreFilter),
         }),
+        getMoviesByName: builder.query<MovieDataType, string>({
+            query: (name) => ({
+                url: `movies/${name}`,
+            }),
+        }),
     }),
 });
 
@@ -78,4 +84,5 @@ export const {
     useGetLanguageFiltersQuery,
     useLazyGetGenresFiltersQuery,
     useLazyGetLanguageFiltersQuery,
+    useGetMoviesByNameQuery,
 } = movieApi;
