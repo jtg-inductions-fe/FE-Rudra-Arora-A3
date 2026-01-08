@@ -1,5 +1,7 @@
 import { SeatLayoutDataType } from 'components/SeatLayout/SeatLayout.types';
 
+import { InfoCardDataType } from '@components';
+
 export type SeatChoosingDataType = {
     seatsData: SeatLayoutDataType[];
     title: string;
@@ -13,10 +15,11 @@ export type SeatChoosingDataType = {
 export type SeatChoosingContainerProps = {
     seatAvailaibilityData?: SeatChoosingDataType;
     openModal: boolean;
+    labels: string[];
+    selectedSeat: Set<number>;
+    bookingResponse?: InfoCardDataType;
     handleCloseModal: () => void;
     handleBookTicket: () => void;
     handleSeatClick: (id: number, label: string) => void;
     handleConfirmTicket: () => Promise<void>;
-    labels: string[];
-    selectedSeat: Set<number>;
 };

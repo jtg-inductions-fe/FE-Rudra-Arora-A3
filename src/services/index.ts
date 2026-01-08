@@ -17,6 +17,7 @@ import {
 } from './Movie';
 import { parseSlots, useLazyGetMovieSlotsQuery } from './MovieSlots';
 import { useGetSeatAvailabilityQuery } from './SeatAvailability';
+import { useSeatBookingMutation } from './SeatBooking';
 import { useLazyGetUserProfileQuery } from './User';
 
 export {
@@ -39,4 +40,5 @@ export {
     useLazyGetCinemaSlotsQuery,
     parseSlots,
     useGetSeatAvailabilityQuery,
+    useSeatBookingMutation,
 };
