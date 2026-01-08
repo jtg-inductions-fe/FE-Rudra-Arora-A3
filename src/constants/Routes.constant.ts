@@ -6,6 +6,7 @@ export const BACKEND_URL = {
     MOVIES: 'movies/',
     LANGUAGE: 'movies/languages/',
     GENRE: 'movies/genres/',
+    GET_SEAT_BOOKING: (id: number) => `cinemas/movie-slots/${id}/bookings/`,
 };
 
 export const ROUTES = {
