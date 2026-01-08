@@ -10,6 +10,7 @@ import type { DialogDataType } from './Dialog';
 import { Dialog } from './Dialog';
 import { ErrorBoundary } from './ErrorBoundary';
 import { ErrorFallback } from './ErrorFallback';
+import { InfoCard, type InfoCardDataType } from './InfoCard';
 import { InfoRow } from './InfoRow';
 import { Modal } from './Modal';
 import { Seat } from './Seat';
@@ -49,4 +50,6 @@ export {
     Seat,
     Modal,
     SeatLayout,
+    InfoCard,
+    InfoCardDataType,
 };
