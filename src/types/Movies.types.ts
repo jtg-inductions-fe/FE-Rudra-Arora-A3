@@ -18,3 +18,11 @@ export type MovieDataType = {
 };
 
 export type MovieResponseType = PaginatedResponseType<MovieDataType[]>;
+
+export type LanguageFilterType = {
+    language: string;
+};
+
+export type GenreFilterType = {
+    genre: string;
+};

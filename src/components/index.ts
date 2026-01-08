@@ -1,8 +1,12 @@
+import { Accordion } from './Accordian';
 import { AppBar } from './AppBar';
 import type { NavConfigType } from './BottomNavigation';
 import { BottomNavigation } from './BottomNavigation';
 import type { CardDataType } from './Card';
+import type { CardPaginatedDataType } from './Card';
 import { Card, CardSkeleton } from './Card';
+import type { DialogDataType } from './Dialog';
+import { Dialog } from './Dialog';
 import { ErrorBoundary } from './ErrorBoundary';
 import { ErrorFallback } from './ErrorFallback';
 import { Snackbar } from './Snackbar';
@@ -23,4 +27,8 @@ export {
     Typography,
     CardSkeleton,
     CardDataType,
+    Dialog,
+    Accordion,
+    DialogDataType,
+    CardPaginatedDataType,
 };

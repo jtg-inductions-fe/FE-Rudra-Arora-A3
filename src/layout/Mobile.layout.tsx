@@ -14,7 +14,7 @@ const MobileLayout = () => {
     const showNavbar = matchedRoutes?.handle?.isNavbarRequired ?? true;
     const theme = useTheme();
     return (
-        <Stack sx={{ margin: theme.spacing(15, 4, 15, 4) }}>
+        <Stack sx={{ margin: theme.spacing(17, 4, 15, 4) }}>
             {showHeader && <Header />}
             <Outlet />
             {showNavbar && <Navbar />}

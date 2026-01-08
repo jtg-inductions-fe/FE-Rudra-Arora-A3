@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Button, useTheme } from '@mui/material';
 
@@ -8,6 +8,7 @@ import { TopNavigationProps } from './TopNavigation.types';
 const TopNavigation = ({ NavConfig }: TopNavigationProps) => {
     const navigate = useNavigate();
     const { palette } = useTheme();
+    const location = useLocation();
     return (
         <StyledAppBar component="nav">
             {NavConfig.map((item) => (
@@ -19,6 +20,12 @@ const TopNavigation = ({ NavConfig }: TopNavigationProps) => {
                         '&: hover': {
                             color: palette.common.black,
                         },
+                        color:
+                            location.pathname === item.to
+                                ? palette.common.black
+                                : palette.common.white,
+                        fontWeight:
+                            location.pathname === item.to ? 'bold' : 'unset',
                     }}
                 >
                     {item.label}

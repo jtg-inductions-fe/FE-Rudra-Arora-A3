@@ -1,11 +1,21 @@
 import { toCapitalized } from 'utils';
 
-import { CardDataType } from '@components';
-import { MovieDataType } from '@types';
+import { CardDataType, DialogDataType } from '@components';
+import { GenreFilterType, LanguageFilterType, MovieDataType } from '@types';
 
 export const parseMovie = (movie: MovieDataType): CardDataType => ({
     id: movie.id,
     title: movie.name,
     subtitle1: movie.languages.map((item) => toCapitalized(item)).join(', '),
     subtitle2: movie.genres.map((item) => toCapitalized(item)).join(', '),
+});
+
+export const parseLanguageFilter = (
+    language: LanguageFilterType,
+): DialogDataType => ({
+    title: language.language,
+});
+
+export const parseGenreFilter = (genre: GenreFilterType): DialogDataType => ({
+    title: genre.genre,
 });
