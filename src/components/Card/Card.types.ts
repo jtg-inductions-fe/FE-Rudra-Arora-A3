@@ -6,6 +6,7 @@ export type CardDataType = {
     title: string;
     subtitle1?: string;
     subtitle2?: string;
+    slug?: string;
 };
 
 export type CardPaginatedDataType = PaginatedResponseType<CardDataType[]>;
@@ -14,4 +15,5 @@ export type CardComponentProps = {
     buttonText?: string;
     buttonUrl?: string;
     subtitleHeading: Record<string, string>;
+    handleButtonClick?: () => void;
 } & CardDataType;

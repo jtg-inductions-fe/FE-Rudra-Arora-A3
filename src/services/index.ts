@@ -8,6 +8,7 @@ import {
 import {
     useGetGenresFiltersQuery,
     useGetLanguageFiltersQuery,
+    useGetMoviesByNameQuery,
     useGetMoviesInfiniteQuery,
     useLazyGetGenresFiltersQuery,
     useLazyGetLanguageFiltersQuery,
@@ -28,4 +29,5 @@ export {
     useLazyGetLanguageFiltersQuery,
     useGetCinemasInfiniteQuery,
     useGetLocationFilterQuery,
+    useGetMoviesByNameQuery,
 };
