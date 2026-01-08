@@ -11,6 +11,9 @@ import { Dialog } from './Dialog';
 import { ErrorBoundary } from './ErrorBoundary';
 import { ErrorFallback } from './ErrorFallback';
 import { InfoRow } from './InfoRow';
+import { Modal } from './Modal';
+import { Seat } from './Seat';
+import { SeatLayout } from './SeatLayout';
 import {
     SlotCard,
     type SlotCardButtonDataType,
@@ -43,4 +46,7 @@ export {
     SlotCardDataType,
     SlotCard,
     SlotCardButtonDataType,
+    Seat,
+    Modal,
+    SeatLayout,
 };
