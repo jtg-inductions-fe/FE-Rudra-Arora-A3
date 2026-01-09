@@ -6,7 +6,7 @@ import { TicketContainerProps } from './Ticket.types';
 const TicketContainer = ({ ...data }: TicketContainerProps) => (
     <>
         <Typography textAlign="center" variant="h1">
-            Your Ticket is Booked
+            {data.heading}
         </Typography>
         <InfoCard {...data} INFO_CARD_CONSTANTS={SEAT_BOOKING_CONSTANTS} />
     </>
