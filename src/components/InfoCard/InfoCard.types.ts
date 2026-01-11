@@ -1,17 +1,16 @@
-import { CardComponentProps } from 'components/Card/Card.types';
+import { CardComponentProps } from '../Card';
 
-export type InfoCardDataType = {} & Pick<
-    CardComponentProps,
-    'title' | 'subtitle1' | 'subtitle2' | 'id'
->;
+export type InfoCardDataType = {
+    subtitle3?: string;
+} & Pick<CardComponentProps, 'title' | 'subtitle1' | 'subtitle2' | 'id'>;
 
 export type InfoCardProps = InfoCardDataType & {
     buttonText?: string;
-    buttonUrl?: string;
-    subtitle3?: string;
+    linkUrl?: string;
     INFO_CARD_CONSTANTS: {
         KEY1: string;
         KEY2: string;
         KEY3: string;
     };
+    handleButtonClick?: (id: number) => Promise<void>;
 };
