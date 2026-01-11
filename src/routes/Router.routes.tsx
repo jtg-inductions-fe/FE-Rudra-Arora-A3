@@ -3,7 +3,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import { ROUTES } from '@constants';
 import { AuthLayout, Main } from '@layout';
 import {
-    Booking,
     Cinemas,
     CinemaSlots,
     Error,
@@ -86,18 +85,6 @@ export const router = createBrowserRouter([
                 index: true,
                 element: <MovieSlots />,
             },
-            {
-                path: ROUTES.BOOKING,
-                element: <Booking />,
-            },
-            {
-                path: ROUTES.PURCHASE_HISTORY,
-                element: <PurchaseHistory />,
-            },
-            {
-                path: ROUTES.PROFILE,
-                element: <Profile />,
-            },
         ],
     },
     {
@@ -125,6 +112,31 @@ export const router = createBrowserRouter([
                 element: (
                     <ProtectedRoute>
                         <SeatChoosing />
+                    </ProtectedRoute>
+                ),
+            },
+        ],
+    },
+    {
+        path: ROUTES.PROFILE,
+        element: <Main />,
+        handle: {
+            isNavbarRequired: false,
+        },
+        children: [
+            {
+                index: true,
+                element: (
+                    <ProtectedRoute>
+                        <Profile />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: ROUTES.PURCHASE_HISTORY,
+                element: (
+                    <ProtectedRoute>
+                        <PurchaseHistory />
                     </ProtectedRoute>
                 ),
             },

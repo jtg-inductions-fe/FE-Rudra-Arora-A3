@@ -20,7 +20,14 @@ export const seatBookingApi = baseApi.injectEndpoints({
             transformResponse: (response: SeatBookingResponseType) =>
                 parseBookingResponse(response),
         }),
+        seatCancel: builder.mutation<void, { id: number }>({
+            query: ({ id }) => ({
+                url: BACKEND_URL.GET_SEAT_CANCEL(id),
+                method: 'PATCH',
+                isProtected: true,
+            }),
+        }),
     }),
 });
 
-export const { useSeatBookingMutation } = seatBookingApi;
+export const { useSeatBookingMutation, useSeatCancelMutation } = seatBookingApi;

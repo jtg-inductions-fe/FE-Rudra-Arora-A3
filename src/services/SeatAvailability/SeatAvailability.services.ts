@@ -1,9 +1,8 @@
-import { SeatChoosingDataType } from 'containers/SeatChoosing/SeatChoosing.types';
-import { baseApi } from 'services/Base';
-
+import { SeatChoosingDataType } from '@containers';
 import { SeatAvailabilityResponseType } from '@types';
 
 import { parseSeatAvailabilityResponse } from './SeatAvailability.parser';
+import { baseApi } from '../Base';
 
 export const seatAvailabilityApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -12,7 +11,7 @@ export const seatAvailabilityApi = baseApi.injectEndpoints({
             { id: number }
         >({
             query: ({ id }) => ({
-                url: `cinemas/slots/${id}/seats/`,
+                url: `slots/${id}/seats/`,
             }),
             transformResponse: (response: SeatAvailabilityResponseType) =>
                 parseSeatAvailabilityResponse(response),

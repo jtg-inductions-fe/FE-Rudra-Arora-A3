@@ -86,7 +86,7 @@ const SeatChoosingContainer = ({
         <TicketContainer
             {...bookingResponse}
             buttonText="Go Home"
-            buttonUrl={ROUTES.ROOT}
+            linkUrl={ROUTES.ROOT}
             subtitle2={`${Number(bookingResponse.subtitle2) * labels.length} ₹`}
             subtitle3={labels.join(', ')}
             heading="Your Ticket is Booked"
