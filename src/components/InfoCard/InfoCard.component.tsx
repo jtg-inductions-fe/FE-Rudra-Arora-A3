@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { Button, Card, CardActions, CardContent } from '@mui/material';
+import { Button, CardActions, CardContent, Stack } from '@mui/material';
 
-import { ContentStack } from './InfoCard.styles';
+import { StyledCard } from './InfoCard.styles';
 import { InfoCardProps } from './InfoCard.types';
 import { InfoRow } from '../InfoRow';
 import { Typography } from '../Typography';
@@ -11,52 +11,66 @@ const InfoCard = ({
     title,
     subtitle1,
     subtitle2,
-    buttonText,
-    buttonUrl,
     subtitle3,
+    buttonText,
+    linkUrl,
     id,
     INFO_CARD_CONSTANTS,
-}: InfoCardProps) => {
-    const navigate = useNavigate();
-    return (
-        <Card>
-            <CardContent>
-                <Typography variant="h2">{title}</Typography>
-                <Typography variant="h2">{subtitle1}</Typography>
+    handleButtonClick,
+}: InfoCardProps) => (
+    <StyledCard elevation={3}>
+        <CardContent>
+            <Typography
+                textAlign="center"
+                variant="subtitle2"
+                color="text.secondary"
+                gutterBottom
+            >
+                {title}
+            </Typography>
 
-                <ContentStack>
-                    <InfoRow
-                        label={INFO_CARD_CONSTANTS.KEY1}
-                        value={String(id)}
-                    />
-                </ContentStack>
+            <Typography
+                textAlign="center"
+                variant="h4"
+                color="primary"
+                mb={1.5}
+            >
+                {subtitle1}
+            </Typography>
 
-                <ContentStack>
-                    <InfoRow
-                        label={INFO_CARD_CONSTANTS.KEY2}
-                        value={subtitle2}
-                    />
-                </ContentStack>
+            <Stack gap={0.75}>
+                <InfoRow label={INFO_CARD_CONSTANTS.KEY1} value={String(id)} />
+                <InfoRow label={INFO_CARD_CONSTANTS.KEY2} value={subtitle2} />
+                <InfoRow label={INFO_CARD_CONSTANTS.KEY3} value={subtitle3} />
+            </Stack>
+        </CardContent>
 
-                <ContentStack>
-                    <InfoRow
-                        label={INFO_CARD_CONSTANTS.KEY3}
-                        value={subtitle3}
-                    />
-                </ContentStack>
-            </CardContent>
-            {buttonText && buttonUrl && (
-                <CardActions>
+        {buttonText && (
+            <CardActions>
+                {linkUrl && (
                     <Button
-                        onClick={() => void navigate(buttonUrl)}
+                        fullWidth
+                        component={Link}
+                        to={linkUrl}
                         variant="contained"
                     >
                         {buttonText}
                     </Button>
-                </CardActions>
-            )}
-        </Card>
-    );
-};
+                )}
+
+                {handleButtonClick && (
+                    <Button
+                        fullWidth
+                        variant="contained"
+                        color="error"
+                        onClick={() => void handleButtonClick(id)}
+                    >
+                        {buttonText}
+                    </Button>
+                )}
+            </CardActions>
+        )}
+    </StyledCard>
+);
 
 export default InfoCard;

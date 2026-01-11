@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 
-import { Avatar, Box, Button, Skeleton } from '@mui/material';
+import { Box, Button, Skeleton } from '@mui/material';
 
 import { CustomIconButton, StyledAppBar } from './AppBar.styles';
 import { AppBarProps } from './AppBar.types';
+import { Avatar } from '../Avatar';
 
 const AppBar = ({
     isLoggedIn,
@@ -15,6 +16,7 @@ const AppBar = ({
     buttonUrl,
 }: AppBarProps) => {
     const navigate = useNavigate();
+
     return (
         <StyledAppBar>
             <CustomIconButton to={logoUrl}>
@@ -29,7 +31,7 @@ const AppBar = ({
             {isLoggedIn && isLoading && (
                 <Skeleton variant="circular" width={40} height={40} />
             )}
-            {isLoggedIn && !isLoading && <Avatar>{userInitials}</Avatar>}
+            {isLoggedIn && !isLoading && <Avatar intials={userInitials} />}
             {!isLoggedIn && (
                 <Button
                     variant="contained"

@@ -1,6 +1,4 @@
-import { SeatLayoutDataType } from 'components/SeatLayout/SeatLayout.types';
-
-import { InfoCardDataType } from '@components';
+import { InfoCardDataType, SeatLayoutDataType } from '@components';
 
 export type SeatChoosingDataType = {
     seatsData: SeatLayoutDataType[];

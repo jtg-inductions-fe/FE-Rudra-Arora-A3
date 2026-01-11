@@ -1,3 +1,11 @@
-import { useLazyGetUserProfileQuery } from './userApi.services';
+import {
+    useGetPurchaseHistoryInfiniteQuery,
+    useLazyGetUserProfileQuery,
+    useUserUpdateMutation,
+} from './userApi.services';
 
-export { useLazyGetUserProfileQuery };
+export {
+    useLazyGetUserProfileQuery,
+    useUserUpdateMutation,
+    useGetPurchaseHistoryInfiniteQuery,
+};

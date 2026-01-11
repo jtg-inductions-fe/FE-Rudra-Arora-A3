@@ -16,6 +16,11 @@ import type {
 } from './Movies.types';
 import type { MovieSlotsResponseType, SlotDataType } from './MovieSlots.types';
 import type {
+    FieldConfig,
+    FormValues,
+    PurchaseHistoryResponseType,
+} from './Profile.types';
+import type {
     GuestRouteProps,
     ProtectedRouteProps,
     RouteHandleType,
@@ -44,4 +49,7 @@ export {
     SeatAvailabilityResponseType,
     ProtectedRouteProps,
     SeatBookingResponseType,
+    FieldConfig,
+    FormValues,
+    PurchaseHistoryResponseType,
 };

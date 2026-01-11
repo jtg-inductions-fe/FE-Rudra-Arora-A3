@@ -11,7 +11,7 @@ export const movieSlotsApi = baseApi.injectEndpoints({
             { id: number; param: string }
         >({
             query: ({ id, param }) => ({
-                url: `movies/${id}/cinema-slots/`,
+                url: `movies/${id}/slots/`,
                 params: { date: param },
             }),
             transformResponse: (response: MovieSlotsResponseType[]) =>
