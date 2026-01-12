@@ -3,16 +3,15 @@ import { toCapitalized } from 'utils';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {
     Accordion as MuiAccordion,
-    AccordionDetails,
     AccordionSummary,
     Checkbox,
     List,
     ListItem,
-    ListItemButton,
     ListItemText,
     Typography,
 } from '@mui/material';
 
+import { StyledAccordianDetails } from './Accordian.styles';
 import { AccordionProps } from './Accordion.types';
 
 const Accordion = ({
@@ -31,7 +30,7 @@ const Accordion = ({
             </Typography>
         </AccordionSummary>
 
-        <AccordionDetails>
+        <StyledAccordianDetails>
             <List dense disablePadding>
                 {Details[title]?.map((item) => {
                     const isChecked =
@@ -40,28 +39,28 @@ const Accordion = ({
                             : selectedItem[title] === item.title;
 
                     return (
-                        <ListItem key={item.title} disablePadding>
-                            <ListItemButton disableRipple>
-                                <Checkbox
-                                    edge="start"
-                                    checked={isChecked}
-                                    onChange={(event) =>
-                                        handleItemsSelected(
-                                            event,
-                                            item.title,
-                                            title,
-                                        )
-                                    }
-                                />
-                                <ListItemText
-                                    primary={toCapitalized(item.title)}
-                                />
-                            </ListItemButton>
+                        <ListItem
+                            sx={{ pl: 2 }}
+                            key={item.title}
+                            disablePadding
+                        >
+                            <Checkbox
+                                edge="start"
+                                checked={isChecked}
+                                onChange={(event) =>
+                                    handleItemsSelected(
+                                        event,
+                                        item.title,
+                                        title,
+                                    )
+                                }
+                            />
+                            <ListItemText primary={toCapitalized(item.title)} />
                         </ListItem>
                     );
                 })}
             </List>
-        </AccordionDetails>
+        </StyledAccordianDetails>
     </MuiAccordion>
 );
 

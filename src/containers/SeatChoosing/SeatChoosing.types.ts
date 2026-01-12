@@ -11,13 +11,8 @@ export type SeatChoosingDataType = {
 };
 
 export type SeatChoosingContainerProps = {
-    seatAvailaibilityData?: SeatChoosingDataType;
-    openModal: boolean;
-    labels: string[];
-    selectedSeat: Set<number>;
+    seatAvailaibilityData: SeatChoosingDataType;
     bookingResponse?: InfoCardDataType;
-    handleCloseModal: () => void;
-    handleBookTicket: () => void;
-    handleSeatClick: (id: number, label: string) => void;
-    handleConfirmTicket: () => Promise<void>;
+
+    handleConfirmTicket: (selectedSeat: Set<number>) => Promise<void>;
 };

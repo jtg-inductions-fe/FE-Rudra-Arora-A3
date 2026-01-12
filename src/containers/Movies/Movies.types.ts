@@ -1,6 +1,6 @@
 import { CardDataType } from '@components';
 
-export type MoviesConatinerProps = {
+export type MoviesContainerProps = {
     data?: CardDataType[];
-    isLoading?: boolean;
+    isFetching: boolean;
 };

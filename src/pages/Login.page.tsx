@@ -2,7 +2,6 @@ import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '@app';
-import { ErrorBoundary } from '@components';
 import { ACCESS_COOKIE_EXPIRES_IN_MINUTES } from '@constants';
 import {
     COOKIE_EXPIRES_IN_DAYS,
@@ -15,7 +14,7 @@ import { showSnackbar, syncAuthState } from '@features';
 import { LoginRequest, useLoginUserMutation } from '@services';
 
 const Login = () => {
-    const [loginUser, { error: loginError }] = useLoginUserMutation();
+    const [loginUser] = useLoginUserMutation();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -48,11 +47,7 @@ const Login = () => {
         }
     };
 
-    return (
-        <ErrorBoundary error={loginError}>
-            <Form {...LOGIN_CONFIG} onSubmit={handleSubmit} />
-        </ErrorBoundary>
-    );
+    return <Form {...LOGIN_CONFIG} onSubmit={handleSubmit} />;
 };
 
 export default Login;

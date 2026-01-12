@@ -72,7 +72,7 @@ export const movieApi = baseApi.injectEndpoints({
         }),
         getMoviesByName: builder.query<MovieDataType, string>({
             query: (name) => ({
-                url: `movies/${name}`,
+                url: BACKEND_URL.GET_SPECIFIC_MOVIE(name),
             }),
         }),
     }),

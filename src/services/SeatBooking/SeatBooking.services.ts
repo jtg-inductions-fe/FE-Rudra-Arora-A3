@@ -22,7 +22,7 @@ export const seatBookingApi = baseApi.injectEndpoints({
         }),
         seatCancel: builder.mutation<void, { id: number }>({
             query: ({ id }) => ({
-                url: BACKEND_URL.GET_SEAT_CANCEL(id),
+                url: BACKEND_URL.GET_CANCEL_BOOKING(id),
                 method: 'PATCH',
                 isProtected: true,
             }),

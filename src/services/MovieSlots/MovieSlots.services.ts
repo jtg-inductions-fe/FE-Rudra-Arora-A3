@@ -1,4 +1,5 @@
 import { SlotCardDataType } from '@components';
+import { BACKEND_URL } from '@constants';
 import { MovieSlotsResponseType } from '@types';
 
 import { parseMovieSlotApi } from './MovieSlots.parser';
@@ -11,7 +12,7 @@ export const movieSlotsApi = baseApi.injectEndpoints({
             { id: number; param: string }
         >({
             query: ({ id, param }) => ({
-                url: `movies/${id}/slots/`,
+                url: BACKEND_URL.GET_MOVIES_SLOTS(id),
                 params: { date: param },
             }),
             transformResponse: (response: MovieSlotsResponseType[]) =>

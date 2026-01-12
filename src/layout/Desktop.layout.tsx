@@ -17,9 +17,7 @@ const DesktopLayout = () => {
             sx={{
                 margin: theme.spacing(22, 4, 5, 4),
                 [theme.breakpoints.up('md')]: {
-                    marginTop: showNavbar
-                        ? theme.spacing(25)
-                        : theme.spacing(18),
+                    marginTop: theme.spacing(showNavbar ? 25 : 18),
                 },
             }}
         >

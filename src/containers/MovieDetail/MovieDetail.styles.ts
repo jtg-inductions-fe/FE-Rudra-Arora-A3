@@ -13,8 +13,7 @@ export const ImageContainer = styled(Box)(({ theme }) => ({
 export const StyledStack = styled(Stack)(({ theme }) => ({
     width: '100%',
     gap: theme.typography.pxToRem(10),
-    height: '80vh',
-    justifyContent: 'center',
+    minHeight: '80vh',
     ...theme.mixins.flexCenter(),
     flexDirection: 'column',
 }));

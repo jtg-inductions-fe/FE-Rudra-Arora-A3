@@ -1,3 +1,4 @@
+import HomeIcon from '@mui/icons-material/Home';
 import MovieIcon from '@mui/icons-material/Movie';
 import TheatersIcon from '@mui/icons-material/Theaters';
 
@@ -5,6 +6,11 @@ import { NavConfigType, TopNavConfigType } from '@components';
 import { ROUTES } from '@constants';
 
 export const MobileNavbarConfig: NavConfigType[] = [
+    {
+        label: 'Home',
+        icon: HomeIcon,
+        to: ROUTES.ROOT,
+    },
     {
         label: 'Movies',
         icon: MovieIcon,

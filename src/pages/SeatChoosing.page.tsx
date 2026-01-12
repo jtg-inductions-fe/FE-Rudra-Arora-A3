@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { Box } from '@mui/material';
 
 import { useAppDispatch } from '@app';
-import { ErrorBoundary, InfoCardDataType } from '@components';
+import { ErrorBoundary, InfoCardDataType, Loader } from '@components';
 import { SeatChoosingContainer } from '@containers';
 import { showSnackbar } from '@features';
 import { useSeatBookingMutation } from '@services';
@@ -15,54 +15,8 @@ const SeatChoosing = () => {
     const { id } = useParams();
     const dispatch = useAppDispatch();
 
-    const [selectedSeat, setSelectedSeat] = useState<Set<number>>(new Set());
     const [bookingResponse, setBookingResponse] = useState<InfoCardDataType>();
-    const [labels, setLabels] = useState<string[]>([]);
     const [seatBooking] = useSeatBookingMutation();
-
-    const [openModal, setOpenModal] = useState(false);
-
-    const handleOpenModal = () => setOpenModal(true);
-    const handleCloseModal = () => setOpenModal(false);
-
-    /**
-     * Function to handle Seat click state
-     * @param seatId
-     * @param label
-     */
-    const handleSeatClick = (seatId: number, label: string) => {
-        if (selectedSeat.has(seatId)) {
-            setSelectedSeat((prev) => {
-                const temp = new Set(prev);
-                temp.delete(seatId);
-                return temp;
-            });
-
-            setLabels((prev) => prev.filter((item) => item === label));
-        } else {
-            setSelectedSeat((prev) => {
-                const temp = new Set(prev);
-                return temp.add(seatId);
-            });
-            setLabels((prev) => [...prev, label]);
-        }
-    };
-
-    /**
-     * Function to handle Book Button that opens a modal to confirm ticket
-     */
-    const handleBookTicket = () => {
-        if (labels.length) {
-            handleOpenModal();
-        } else {
-            dispatch(
-                showSnackbar({
-                    message: ['Please select a seat'],
-                    variant: 'info',
-                }),
-            );
-        }
-    };
 
     const {
         data: seatAvailaibilityData,
@@ -78,7 +32,7 @@ const SeatChoosing = () => {
     /**
      * Function to handle Conforming of Ticket
      */
-    const handleConfirmTicket = async () => {
+    const handleConfirmTicket = async (selectedSeat: Set<number>) => {
         const response = await seatBooking({
             id: Number(id),
             seat_ids: Array.from(selectedSeat),
@@ -104,17 +58,15 @@ const SeatChoosing = () => {
             }}
         >
             <ErrorBoundary error={error}>
-                <SeatChoosingContainer
-                    handleCloseModal={handleCloseModal}
-                    handleSeatClick={handleSeatClick}
-                    labels={labels}
-                    openModal={openModal}
-                    seatAvailaibilityData={seatAvailaibilityData}
-                    selectedSeat={selectedSeat}
-                    handleBookTicket={handleBookTicket}
-                    handleConfirmTicket={handleConfirmTicket}
-                    bookingResponse={bookingResponse}
-                />
+                {seatAvailaibilityData ? (
+                    <SeatChoosingContainer
+                        seatAvailaibilityData={seatAvailaibilityData}
+                        handleConfirmTicket={handleConfirmTicket}
+                        bookingResponse={bookingResponse}
+                    />
+                ) : (
+                    <Loader />
+                )}
             </ErrorBoundary>
         </Box>
     );

@@ -2,13 +2,13 @@ import { useInfiniteScroll } from 'utils';
 
 import { Stack } from '@mui/material';
 
-import { ErrorBoundary, Typography } from '@components';
+import { ErrorBoundary, NoData, Typography } from '@components';
 import { LATEST_MOVIES_HEADING } from '@constants';
 import { LatestMoviesContainer } from '@containers';
 import { useGetMoviesInfiniteQuery } from '@services';
 
 const LatestMovies = () => {
-    const { data, isLoading, fetchNextPage, isFetching, hasNextPage, error } =
+    const { data, fetchNextPage, isFetching, hasNextPage, error } =
         useGetMoviesInfiniteQuery({ latest: true });
 
     const currentData = data?.pages.flatMap((item) => item.results);
@@ -24,12 +24,15 @@ const LatestMovies = () => {
             <Typography variant="h1">{LATEST_MOVIES_HEADING}</Typography>
 
             <ErrorBoundary error={error}>
-                <LatestMoviesContainer
-                    endRef={endRef}
-                    data={currentData}
-                    isLoading={isLoading}
-                    isFetching={isFetching}
-                />
+                {currentData?.length || isFetching ? (
+                    <LatestMoviesContainer
+                        endRef={endRef}
+                        data={currentData}
+                        isFetching={isFetching}
+                    />
+                ) : (
+                    <NoData />
+                )}
             </ErrorBoundary>
         </Stack>
     );

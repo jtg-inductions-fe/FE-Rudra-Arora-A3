@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
     BottomNavigation as MuiBottomNavigation,
@@ -11,8 +11,9 @@ import {
 import { BottomNavigationProps } from './BottomNavigation.types';
 
 export const BottomNavigation = ({ NavConfig }: BottomNavigationProps) => {
-    const [value, setValue] = useState<number>(0);
+    const [value, setValue] = useState<number | null>(0);
     const navigate = useNavigate();
+    const location = useLocation();
 
     return (
         <Paper
@@ -24,7 +25,15 @@ export const BottomNavigation = ({ NavConfig }: BottomNavigationProps) => {
                 showLabels
                 value={value}
                 onChange={(_event, newValue: number) => {
-                    setValue(newValue);
+                    if (
+                        NavConfig.map((item) => item.to).includes(
+                            location.pathname,
+                        )
+                    ) {
+                        setValue(newValue);
+                    } else {
+                        setValue(null);
+                    }
                 }}
                 sx={{ gap: '20%' }}
             >

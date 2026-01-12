@@ -1,6 +1,5 @@
 import {
     Button,
-    Card as MuiCard,
     CardActions,
     CardMedia,
     Stack,
@@ -8,7 +7,7 @@ import {
     useTheme,
 } from '@mui/material';
 
-import { StyledCardContent } from './Card.styles';
+import { StyledCard, StyledCardContent } from './Card.styles';
 import { CardComponentProps } from './Card.types';
 import { Typography } from '../Typography';
 
@@ -24,7 +23,7 @@ const Card = ({
     const { breakpoints, typography } = useTheme();
     const isTablet = useMediaQuery(breakpoints.up('sm'));
     return (
-        <MuiCard component={Stack}>
+        <StyledCard>
             {posterUrl && (
                 <CardMedia
                     sx={{ height: typography.pxToRem(100) }}
@@ -85,7 +84,7 @@ const Card = ({
                     </Button>
                 </Stack>
             </CardActions>
-        </MuiCard>
+        </StyledCard>
     );
 };
 

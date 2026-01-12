@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 
-import { Box, Button, Stack, TextField } from '@mui/material';
+import { Box, Button, Stack, TextField, useTheme } from '@mui/material';
 
 import { useAppDispatch, useAppSelector } from '@app';
 import { Typography } from '@components';
@@ -16,6 +16,7 @@ const ProfileConatiner = () => {
     const user = useAppSelector((state) => state.user);
     const [updateUser, { isLoading }] = useUserUpdateMutation();
     const dispatch = useAppDispatch();
+    const { spacing } = useTheme();
 
     const {
         register,
@@ -94,7 +95,7 @@ const ProfileConatiner = () => {
 
                     <Button
                         variant="contained"
-                        sx={{ alignSelf: 'center', mt: 1 }}
+                        sx={{ alignSelf: 'center', mt: spacing(1) }}
                         onClick={() => setIsEditing(true)}
                     >
                         Edit

@@ -9,6 +9,7 @@ const TopNavigation = ({ NavConfig }: TopNavigationProps) => {
     const navigate = useNavigate();
     const { palette } = useTheme();
     const location = useLocation();
+
     return (
         <StyledAppBar component="nav">
             {NavConfig.map((item) => (

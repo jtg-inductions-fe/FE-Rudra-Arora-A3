@@ -1,25 +1,26 @@
+import { lazy } from 'react';
+
 import { createBrowserRouter } from 'react-router-dom';
 
+import { RouteLoader } from '@components';
 import { ROUTES } from '@constants';
-import { AuthLayout, Main } from '@layout';
-import {
-    Cinemas,
-    CinemaSlots,
-    Error,
-    LatestMovies,
-    Login,
-    MovieDetail,
-    Movies,
-    MovieSlots,
-    NotFound,
-    Profile,
-    PurchaseHistory,
-    SeatChoosing,
-    Signup,
-} from '@pages';
+import { AuthLayout } from '@layout';
+import { Error, LatestMovies, NotFound } from '@pages';
 
 import GuestRoute from './GuestRoute';
 import ProtectedRoute from './ProtectedRoute';
+
+const Cinemas = lazy(() => import('@pages/Cinemas.page.tsx'));
+const Movies = lazy(() => import('@pages/Movies.page'));
+const MovieDetail = lazy(() => import('@pages/MovieDetail.page.tsx'));
+const MovieSlots = lazy(() => import('@pages/MovieSlots.page.tsx'));
+const CinemaSlots = lazy(() => import('@pages/CinemaSlots.page.tsx'));
+const SeatChoosing = lazy(() => import('@pages/SeatChoosing.page.tsx'));
+const Profile = lazy(() => import('@pages/Profile.page.tsx'));
+const PurchaseHistory = lazy(() => import('@pages/PurchaseHistory.page.tsx'));
+const Login = lazy(() => import('@pages/Login.page.tsx'));
+const Signup = lazy(() => import('@pages/Signup.page.tsx'));
+const Main = lazy(() => import('@layout/Main.layout.tsx'));
 
 export const router = createBrowserRouter([
     {
@@ -33,15 +34,27 @@ export const router = createBrowserRouter([
             },
             {
                 path: ROUTES.CINEMAS,
-                element: <Cinemas />,
+                element: (
+                    <RouteLoader>
+                        <Cinemas />
+                    </RouteLoader>
+                ),
             },
             {
                 path: ROUTES.MOVIES,
-                element: <Movies />,
+                element: (
+                    <RouteLoader>
+                        <Movies />
+                    </RouteLoader>
+                ),
             },
             {
                 path: ROUTES.SPECIFIC_MOVIE,
-                element: <MovieDetail />,
+                element: (
+                    <RouteLoader>
+                        <MovieDetail />
+                    </RouteLoader>
+                ),
             },
         ],
     },
@@ -55,7 +68,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Login />,
+                element: (
+                    <RouteLoader>
+                        <Login />
+                    </RouteLoader>
+                ),
             },
         ],
     },
@@ -70,7 +87,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Signup />,
+                element: (
+                    <RouteLoader>
+                        <Signup />
+                    </RouteLoader>
+                ),
             },
         ],
     },
@@ -83,7 +104,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <MovieSlots />,
+                element: (
+                    <RouteLoader>
+                        <MovieSlots />
+                    </RouteLoader>
+                ),
             },
         ],
     },
@@ -96,7 +121,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <CinemaSlots />,
+                element: (
+                    <RouteLoader>
+                        <CinemaSlots />
+                    </RouteLoader>
+                ),
             },
         ],
     },
@@ -111,7 +140,9 @@ export const router = createBrowserRouter([
                 index: true,
                 element: (
                     <ProtectedRoute>
-                        <SeatChoosing />
+                        <RouteLoader>
+                            <SeatChoosing />
+                        </RouteLoader>
                     </ProtectedRoute>
                 ),
             },
@@ -128,7 +159,9 @@ export const router = createBrowserRouter([
                 index: true,
                 element: (
                     <ProtectedRoute>
-                        <Profile />
+                        <RouteLoader>
+                            <Profile />
+                        </RouteLoader>
                     </ProtectedRoute>
                 ),
             },
@@ -136,7 +169,9 @@ export const router = createBrowserRouter([
                 path: ROUTES.PURCHASE_HISTORY,
                 element: (
                     <ProtectedRoute>
-                        <PurchaseHistory />
+                        <RouteLoader>
+                            <PurchaseHistory />
+                        </RouteLoader>
                     </ProtectedRoute>
                 ),
             },

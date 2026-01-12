@@ -142,14 +142,15 @@ const Form = ({ title, fields, link, onSubmit }: FormProps) => {
                         </Button>
                         <Typography variant="body2" color="textSecondary">
                             {link.message}{' '}
-                            <Box
+                            <Typography
                                 sx={{ color: theme.palette.primary.main }}
                                 component={Link}
                                 to={link.url}
                                 replace={true}
+                                variant="body2"
                             >
                                 {link.value}
-                            </Box>
+                            </Typography>
                         </Typography>
                     </Stack>
                 </form>

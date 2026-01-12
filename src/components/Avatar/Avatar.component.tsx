@@ -9,7 +9,7 @@ import { GET_AVATAR_MENU_CONFIG } from '@constants';
 
 import { AvatarProps } from './Avatar.types';
 
-const Avatar = ({ intials }: AvatarProps) => {
+const Avatar = ({ initials }: AvatarProps) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -31,7 +31,7 @@ const Avatar = ({ intials }: AvatarProps) => {
     return (
         <>
             <IconButton onClick={handleClick}>
-                <MuiAvatar>{intials}</MuiAvatar>
+                <MuiAvatar>{initials}</MuiAvatar>
             </IconButton>
             <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
                 {actions.map((item) => (

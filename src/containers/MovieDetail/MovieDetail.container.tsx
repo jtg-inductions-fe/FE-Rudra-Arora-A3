@@ -6,13 +6,17 @@ import { Box, Button, Stack, useTheme } from '@mui/material';
 import moviePoster from '@assets/images/poster.webp';
 import { InfoRow, Typography } from '@components';
 
+import MovieDetailSkeleton from './MovieDetail.skeleton';
 import { ImageContainer, StyledStack } from './MovieDetail.styles';
 import { MovieDetailContainerProps } from './MovieDetail.types';
 
-const MovieDetailContainer = ({ movieData }: MovieDetailContainerProps) => {
+const MovieDetailContainer = ({
+    movieData,
+    isFetching,
+}: MovieDetailContainerProps) => {
     const { typography, palette } = useTheme();
     const navigate = useNavigate();
-    return (
+    return !isFetching ? (
         <StyledStack>
             <ImageContainer>
                 <Box
@@ -67,10 +71,12 @@ const MovieDetailContainer = ({ movieData }: MovieDetailContainerProps) => {
                     }
                     variant="contained"
                 >
-                    Book Tickes
+                    Book Tickets
                 </Button>
             </Stack>
         </StyledStack>
+    ) : (
+        <MovieDetailSkeleton />
     );
 };
 

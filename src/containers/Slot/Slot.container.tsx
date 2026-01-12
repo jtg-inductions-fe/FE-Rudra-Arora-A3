@@ -9,6 +9,7 @@ import {
     DatePicker,
     SlotCard,
     SlotCardDataType,
+    SlotCardSkeleton,
     Typography,
 } from '@components';
 
@@ -19,10 +20,11 @@ const SlotContainer = ({
     subHeading,
     id,
     trigger,
+    isFetchingSlotData,
 }: SlotContainerProps) => {
     const [searchParams] = useSearchParams();
 
-    const [MovieSlotData, setMovieSlotData] = useState<SlotCardDataType[]>();
+    const [slotData, setSlotData] = useState<SlotCardDataType[]>();
 
     const { spacing } = useTheme();
 
@@ -30,11 +32,9 @@ const SlotContainer = ({
         const fetchSlotData = async () => {
             const response = await trigger({
                 id: id ?? 0,
-                param:
-                    searchParams.get('date') ??
-                    String(dayjs().format('YYYY-MM-DD')),
+                param: searchParams.get('date') ?? dayjs().format('YYYY-MM-DD'),
             }).unwrap();
-            setMovieSlotData(response);
+            setSlotData(response);
         };
         if (heading) {
             void fetchSlotData();
@@ -52,16 +52,26 @@ const SlotContainer = ({
             <Stack gap={spacing(3)}>
                 <DatePicker />
 
-                <Stack gap={spacing(3)}>
-                    {MovieSlotData?.map((item) => (
-                        <SlotCard
-                            key={item.id}
-                            id={item.id}
-                            title={item.title}
-                            buttonData={item.buttonData}
-                        />
-                    ))}
-                </Stack>
+                {isFetchingSlotData && <SlotCardSkeleton />}
+
+                {!isFetchingSlotData && slotData?.length !== 0 && (
+                    <Stack gap={spacing(3)}>
+                        {slotData?.map((item) => (
+                            <SlotCard
+                                key={item.id}
+                                id={item.id}
+                                title={item.title}
+                                buttonData={item.buttonData}
+                            />
+                        ))}
+                    </Stack>
+                )}
+
+                {!isFetchingSlotData && !slotData?.length && (
+                    <Typography textAlign="center" variant="h2">
+                        No Slots Available
+                    </Typography>
+                )}
             </Stack>
         </Stack>
     );

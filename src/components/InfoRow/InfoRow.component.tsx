@@ -5,6 +5,7 @@ import { Typography } from '../Typography';
 
 const InfoRow = ({ label, value }: InfoRowProps) => {
     const { typography } = useTheme();
+
     return (
         <Stack
             flexDirection="row"

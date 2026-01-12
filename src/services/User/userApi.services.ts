@@ -1,3 +1,5 @@
+import { toCapitalized } from 'utils';
+
 import { InfoCardDataType } from '@components';
 import { BACKEND_URL } from '@constants';
 import { PaginatedResponseType, PurchaseHistoryResponseType } from '@types';
@@ -12,6 +14,10 @@ export const userApi = baseApi.injectEndpoints({
             query: () => ({
                 url: BACKEND_URL.USER_PROFILE,
                 isProtected: true,
+            }),
+            transformResponse: (response: UserResponseType) => ({
+                ...response,
+                name: toCapitalized(response.name),
             }),
         }),
         userUpdate: builder.mutation<

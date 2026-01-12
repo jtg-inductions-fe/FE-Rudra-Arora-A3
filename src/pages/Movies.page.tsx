@@ -12,7 +12,7 @@ import {
     useTheme,
 } from '@mui/material';
 
-import { Dialog, ErrorBoundary } from '@components';
+import { Dialog, ErrorBoundary, NoData } from '@components';
 import { Filter, MoviesContainer } from '@containers';
 import {
     useGetGenresFiltersQuery,
@@ -62,7 +62,6 @@ const Movies = () => {
     }
     const {
         data: movieData,
-        isLoading,
         hasNextPage,
         fetchNextPage,
         isFetching,
@@ -134,9 +133,9 @@ const Movies = () => {
         handleFiltersClose();
     };
 
-    const FilterHeading: FilterKey[] = ['genre', 'language'];
+    const filterHeading: FilterKey[] = ['genre', 'language'];
 
-    const FilterData = {
+    const filterData = {
         genre: genreData,
         language: languageData,
     };
@@ -151,8 +150,8 @@ const Movies = () => {
                     handleFiltersSelected={handleFiltersSelected}
                     selectedFilters={selectedFilter}
                     handleApplyFilters={handleApplyFilters}
-                    FilterData={FilterData}
-                    FilterHeading={FilterHeading}
+                    filterData={filterData}
+                    filterHeading={filterHeading}
                 />
             )}
             <Stack width={isDesktop ? '70%' : '100%'}>
@@ -174,8 +173,8 @@ const Movies = () => {
                             <Dialog
                                 open={filtersOpen}
                                 handleClose={handleFiltersClose}
-                                ListHeading={FilterHeading}
-                                DialogListData={FilterData}
+                                ListHeading={filterHeading}
+                                DialogListData={filterData}
                                 selectedCheckedBox={selectedFilter}
                                 handleCheckBox={handleFiltersSelected}
                                 handleButtonClick={handleApplyFilters}
@@ -185,17 +184,13 @@ const Movies = () => {
                     )}
                 </Stack>
                 <ErrorBoundary error={movieApiError}>
-                    {currentMovieData?.length ? (
+                    {currentMovieData?.length || isFetching ? (
                         <MoviesContainer
                             data={currentMovieData}
-                            isLoading={isLoading}
+                            isFetching={isFetching}
                         />
                     ) : (
-                        <Stack alignItems="center">
-                            <Typography variant="h2">
-                                No Data Availaible
-                            </Typography>
-                        </Stack>
+                        <NoData />
                     )}
                 </ErrorBoundary>
                 <Box ref={endRef} height={1}></Box>

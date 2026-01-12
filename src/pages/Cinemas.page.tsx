@@ -12,7 +12,7 @@ import {
     useTheme,
 } from '@mui/material';
 
-import { Dialog } from '@components';
+import { Dialog, NoData } from '@components';
 import { CINEMA_HEADING } from '@constants';
 import { CinemasContainer, Filter, FilterKey } from '@containers';
 import {
@@ -47,7 +47,6 @@ const Cinemas = () => {
     }
     const {
         data: cinemaData,
-        isLoading,
         fetchNextPage,
         hasNextPage,
         isFetching,
@@ -101,9 +100,9 @@ const Cinemas = () => {
         handleFiltersClose();
     };
 
-    const FilterHeading: FilterKey[] = ['location'];
+    const filterHeading: FilterKey[] = ['location'];
 
-    const FilterData = {
+    const filterData = {
         location: locationData,
     };
 
@@ -117,8 +116,8 @@ const Cinemas = () => {
                     handleFiltersSelected={handleFiltersSelected}
                     selectedFilters={selectedFilter}
                     handleApplyFilters={handleApplyFilters}
-                    FilterData={FilterData}
-                    FilterHeading={FilterHeading}
+                    filterData={filterData}
+                    filterHeading={filterHeading}
                 />
             )}
             <Stack width={isDesktop ? '70%' : '100%'}>
@@ -140,8 +139,8 @@ const Cinemas = () => {
                             <Dialog
                                 open={filtersOpen}
                                 handleClose={handleFiltersClose}
-                                ListHeading={FilterHeading}
-                                DialogListData={FilterData}
+                                ListHeading={filterHeading}
+                                DialogListData={filterData}
                                 selectedCheckedBox={selectedFilter}
                                 handleCheckBox={handleFiltersSelected}
                                 handleButtonClick={handleApplyFilters}
@@ -150,7 +149,14 @@ const Cinemas = () => {
                         </>
                     )}
                 </Stack>
-                <CinemasContainer data={currentData} isLoading={isLoading} />
+                {currentData?.length || isFetching ? (
+                    <CinemasContainer
+                        data={currentData}
+                        isFetching={isFetching}
+                    />
+                ) : (
+                    <NoData />
+                )}
                 <Box ref={endRef} height={1}></Box>
             </Stack>
         </Stack>

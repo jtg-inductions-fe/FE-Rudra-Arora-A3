@@ -1,35 +1,35 @@
 import { useNavigate } from 'react-router-dom';
 
-import { Grid2 } from '@mui/material';
-
-import { Card, CardSkeleton } from '@components';
+import { Card, CardSkeleton, Grid } from '@components';
 import { CINEMA_SUBTITLE_HEADING } from '@constants';
 
-import { CinemasConatinerProps } from './Cinemas.types';
+import { CinemasContainerProps } from './Cinemas.types';
 
-const CinemasContainer = ({ data, isLoading }: CinemasConatinerProps) => {
+const CinemasContainer = ({ data, isFetching }: CinemasContainerProps) => {
     const navigate = useNavigate();
     return (
-        <Grid2 container spacing={2}>
-            {data?.map((item) =>
-                isLoading ? (
-                    <CardSkeleton key={item.id} />
-                ) : (
-                    <Grid2 key={item.id} size={{ xs: 12, sm: 4, md: 4 }}>
-                        <Card
-                            title={item.title}
-                            subtitle1={item.subtitle1}
-                            id={item.id}
-                            buttonText="Book Tickets"
-                            subtitleHeading={CINEMA_SUBTITLE_HEADING}
-                            handleButtonClick={() =>
-                                void navigate(`/cinemas/${item.slug}/slots`)
-                            }
-                        />
-                    </Grid2>
-                ),
-            )}
-        </Grid2>
+        <Grid container spacing={2}>
+            {data?.map((item) => (
+                <Grid key={item.id}>
+                    <Card
+                        title={item.title}
+                        subtitle1={item.subtitle1}
+                        id={item.id}
+                        buttonText="Book Tickets"
+                        subtitleHeading={CINEMA_SUBTITLE_HEADING}
+                        handleButtonClick={() =>
+                            void navigate(`/cinemas/${item.slug}/slots`)
+                        }
+                    />
+                </Grid>
+            ))}
+            {isFetching &&
+                Array.from({ length: 4 }).map((_, index) => (
+                    <Grid key={`skeleton-${index}`}>
+                        <CardSkeleton />
+                    </Grid>
+                ))}
+        </Grid>
     );
 };
 

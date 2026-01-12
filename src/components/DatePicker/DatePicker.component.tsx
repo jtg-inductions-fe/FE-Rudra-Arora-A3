@@ -29,7 +29,7 @@ const DatePicker = () => {
             },
             { replace: true },
         );
-    }, [value, setSearchParams, searchParams]);
+    }, [value, setSearchParams]);
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -59,7 +59,7 @@ const DatePicker = () => {
                             '&:hover': {
                                 color: theme.palette.primary.main,
                             },
-                            '&: focus-visible': {
+                            '&:focus-visible': {
                                 color: theme.palette.primary.main,
                             },
                         },

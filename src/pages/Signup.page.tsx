@@ -1,27 +1,44 @@
+import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '@app';
-import { ErrorBoundary } from '@components';
-import { ROUTES, SIGNUP_CONFIG, SIGNUP_MESSAGES } from '@constants';
+import {
+    ACCESS_COOKIE_EXPIRES_IN_MINUTES,
+    COOKIE_EXPIRES_IN_DAYS,
+    ROUTES,
+    SIGNUP_CONFIG,
+    SIGNUP_MESSAGES,
+} from '@constants';
 import { Form } from '@containers';
-import { showSnackbar } from '@features';
+import { showSnackbar, syncAuthState } from '@features';
 import { SignupRequest, useSignupUserMutation } from '@services';
 
 const Signup = () => {
-    const [signupUser, { error: signupError }] = useSignupUserMutation();
+    const [signupUser] = useSignupUserMutation();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const handleSubmit = async (data: SignupRequest) => {
         try {
-            await signupUser(data).unwrap();
+            const response = await signupUser(data).unwrap();
+            Cookies.set('access', response.access, {
+                expires: ACCESS_COOKIE_EXPIRES_IN_MINUTES / (24 * 60),
+                secure: true,
+                sameSite: 'strict',
+            });
+            Cookies.set('refresh', response.refresh, {
+                expires: COOKIE_EXPIRES_IN_DAYS,
+                secure: true,
+                sameSite: 'strict',
+            });
             dispatch(
                 showSnackbar({
                     message: [SIGNUP_MESSAGES.SIGNUP_SUCCESS],
                     variant: 'success',
                 }),
             );
-            void navigate(ROUTES.LOGIN);
+            dispatch(syncAuthState(!!Cookies.get('refresh')));
+            void navigate(ROUTES.ROOT);
         } catch (error) {
             const ErrorsList: string[] = [];
             const errorData = (error as { data: Record<string, string[]> })
@@ -37,11 +54,7 @@ const Signup = () => {
         }
     };
 
-    return (
-        <ErrorBoundary error={signupError}>
-            <Form {...SIGNUP_CONFIG} onSubmit={handleSubmit} />
-        </ErrorBoundary>
-    );
+    return <Form {...SIGNUP_CONFIG} onSubmit={handleSubmit} />;
 };
 
 export default Signup;

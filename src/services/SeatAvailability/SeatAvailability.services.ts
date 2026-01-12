@@ -1,3 +1,4 @@
+import { BACKEND_URL } from '@constants';
 import { SeatChoosingDataType } from '@containers';
 import { SeatAvailabilityResponseType } from '@types';
 
@@ -11,7 +12,7 @@ export const seatAvailabilityApi = baseApi.injectEndpoints({
             { id: number }
         >({
             query: ({ id }) => ({
-                url: `slots/${id}/seats/`,
+                url: BACKEND_URL.GET_SEAT_AVAILABILITY(id),
             }),
             transformResponse: (response: SeatAvailabilityResponseType) =>
                 parseSeatAvailabilityResponse(response),
