@@ -1,11 +1,11 @@
-import { ACCESS_COOKIE_EXPIRES_IN_MINUTES } from 'constants/Login.constants';
 import {
     AUTHENTICATED_ENDPOINTS,
     BACKEND_URL,
 } from 'constants/Routes.constant';
 import Cookies from 'js-cookie';
 
-import { clearUser, syncAuthState } from '@features';
+import { RootState } from '@app';
+import { clearUser, setAccessToken, syncAuthState } from '@features';
 import {
     BaseQueryFn,
     createApi,
@@ -21,8 +21,9 @@ import {
 const rawBaseQuery = fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_API_URL,
     credentials: 'include',
-    prepareHeaders: (headers, { endpoint }) => {
-        const token = Cookies.get('access');
+    prepareHeaders: (headers, { endpoint, getState }) => {
+        const state = getState() as RootState;
+        const token = state.auth.accessToken;
         if (token && AUTHENTICATED_ENDPOINTS.includes(endpoint)) {
             headers.set('authorization', `Bearer ${token}`);
         }
@@ -56,9 +57,10 @@ export const baseQueryWithReauth: BaseQueryFn<
     extraOptions,
 ): Promise<{ data: unknown } | { error: FetchBaseQueryError }> => {
     const isProtected = (args as CustomFetchArgs)?.isProtected ?? false;
+    const state = api.getState() as RootState;
 
     if (isProtected) {
-        const accessToken = Cookies.get('access');
+        const accessToken = state.auth.accessToken;
         const refreshToken = Cookies.get('refresh');
 
         if (!refreshToken) {
@@ -86,11 +88,7 @@ export const baseQueryWithReauth: BaseQueryFn<
             } else {
                 const access = (refreshResult.data as RefreshResponseType)
                     .access;
-                Cookies.set('access', access, {
-                    expires: ACCESS_COOKIE_EXPIRES_IN_MINUTES / (24 * 60),
-                    secure: true,
-                    sameSite: 'strict',
-                });
+                api.dispatch(setAccessToken(access));
             }
         }
     }
@@ -101,5 +99,5 @@ export const baseApi = createApi({
     reducerPath: 'api',
     baseQuery: baseQueryWithReauth,
     endpoints: () => ({}),
-    keepUnusedDataFor: 86400,
+    // keepUnusedDataFor: 3600,
 });

@@ -12,7 +12,7 @@ import {
     useTheme,
 } from '@mui/material';
 
-import { Dialog, ErrorBoundary, NoData } from '@components';
+import { Dialog, NoData } from '@components';
 import { Filter, MoviesContainer } from '@containers';
 import {
     useGetGenresFiltersQuery,
@@ -65,7 +65,6 @@ const Movies = () => {
         hasNextPage,
         fetchNextPage,
         isFetching,
-        error: movieApiError,
     } = useGetMoviesInfiniteQuery({
         language: languageFromUrl,
         genre: genreFromUrl,
@@ -183,16 +182,14 @@ const Movies = () => {
                         </>
                     )}
                 </Stack>
-                <ErrorBoundary error={movieApiError}>
-                    {currentMovieData?.length || isFetching ? (
-                        <MoviesContainer
-                            data={currentMovieData}
-                            isFetching={isFetching}
-                        />
-                    ) : (
-                        <NoData />
-                    )}
-                </ErrorBoundary>
+                {currentMovieData?.length || isFetching ? (
+                    <MoviesContainer
+                        data={currentMovieData}
+                        isFetching={isFetching}
+                    />
+                ) : (
+                    <NoData />
+                )}
                 <Box ref={endRef} height={1}></Box>
             </Stack>
         </Stack>

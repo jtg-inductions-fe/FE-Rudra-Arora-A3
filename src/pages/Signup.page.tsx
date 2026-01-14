@@ -1,16 +1,16 @@
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import { hashPassword } from 'utils/hashPassword';
 
 import { useAppDispatch } from '@app';
 import {
-    ACCESS_COOKIE_EXPIRES_IN_MINUTES,
     COOKIE_EXPIRES_IN_DAYS,
     ROUTES,
     SIGNUP_CONFIG,
     SIGNUP_MESSAGES,
 } from '@constants';
 import { Form } from '@containers';
-import { showSnackbar, syncAuthState } from '@features';
+import { setAccessToken, showSnackbar, syncAuthState } from '@features';
 import { SignupRequest, useSignupUserMutation } from '@services';
 
 const Signup = () => {
@@ -20,12 +20,17 @@ const Signup = () => {
 
     const handleSubmit = async (data: SignupRequest) => {
         try {
-            const response = await signupUser(data).unwrap();
-            Cookies.set('access', response.access, {
-                expires: ACCESS_COOKIE_EXPIRES_IN_MINUTES / (24 * 60),
-                secure: true,
-                sameSite: 'strict',
-            });
+            const hashedPassword = await hashPassword(data.password);
+            const hashedConfirmPassword = await hashPassword(
+                data.confirm_password,
+            );
+            const signupPayload = {
+                ...data,
+                password: hashedPassword,
+                confirm_password: hashedConfirmPassword,
+            };
+            const response = await signupUser(signupPayload).unwrap();
+            dispatch(setAccessToken(response.access));
             Cookies.set('refresh', response.refresh, {
                 expires: COOKIE_EXPIRES_IN_DAYS,
                 secure: true,

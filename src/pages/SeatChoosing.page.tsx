@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { Box } from '@mui/material';
 
 import { useAppDispatch } from '@app';
-import { ErrorBoundary, InfoCardDataType, Loader } from '@components';
+import { InfoCardDataType, Loader } from '@components';
 import { SeatChoosingContainer } from '@containers';
 import { showSnackbar } from '@features';
 import { useSeatBookingMutation } from '@services';
@@ -18,16 +18,13 @@ const SeatChoosing = () => {
     const [bookingResponse, setBookingResponse] = useState<InfoCardDataType>();
     const [seatBooking] = useSeatBookingMutation();
 
-    const {
-        data: seatAvailaibilityData,
-        refetch,
-        error,
-    } = useGetSeatAvailabilityQuery(
-        {
-            id: Number(id),
-        },
-        { pollingInterval: 45_000 },
-    );
+    const { data: seatAvailaibilityData, refetch } =
+        useGetSeatAvailabilityQuery(
+            {
+                id: Number(id),
+            },
+            { pollingInterval: 45_000 },
+        );
 
     /**
      * Function to handle Conforming of Ticket
@@ -57,17 +54,15 @@ const SeatChoosing = () => {
                 scrollbarWidth: 'none',
             }}
         >
-            <ErrorBoundary error={error}>
-                {seatAvailaibilityData ? (
-                    <SeatChoosingContainer
-                        seatAvailaibilityData={seatAvailaibilityData}
-                        handleConfirmTicket={handleConfirmTicket}
-                        bookingResponse={bookingResponse}
-                    />
-                ) : (
-                    <Loader />
-                )}
-            </ErrorBoundary>
+            {seatAvailaibilityData ? (
+                <SeatChoosingContainer
+                    seatAvailaibilityData={seatAvailaibilityData}
+                    handleConfirmTicket={handleConfirmTicket}
+                    bookingResponse={bookingResponse}
+                />
+            ) : (
+                <Loader />
+            )}
         </Box>
     );
 };

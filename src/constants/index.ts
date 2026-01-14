@@ -3,7 +3,6 @@ import { CINEMA_HEADING, CINEMA_SUBTITLE_HEADING } from './Cinema.constants';
 import { ERROR_PAGE_CONSTANTS } from './Error.constants';
 import { LOGIN_CONFIG } from './Login.config';
 import {
-    ACCESS_COOKIE_EXPIRES_IN_MINUTES,
     COOKIE_EXPIRES_IN_DAYS,
     MESSAGE as LOGIN_MESSAGES,
 } from './Login.constants';
@@ -33,7 +32,6 @@ export {
     BACKEND_URL,
     ERROR_PAGE_CONSTANTS,
     NOT_FOUND_CONSTANTS,
-    ACCESS_COOKIE_EXPIRES_IN_MINUTES,
     LATEST_MOVIES_HEADING,
     SUBTITLE_HEADING,
     CINEMA_SUBTITLE_HEADING,

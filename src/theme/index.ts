@@ -42,6 +42,9 @@ theme = createTheme(theme, {
                         padding: theme.spacing(1, 8),
                         fontSize: theme.typography.pxToRem(20),
                     },
+                    '&.Mui-disabled': {
+                        color: theme.palette.primary.main,
+                    },
                 },
                 outlined: {
                     fontWeight: 'bold',
