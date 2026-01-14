@@ -18,10 +18,7 @@ const DesktopLayout = () => {
     return (
         <Stack
             sx={{
-                margin: theme.spacing(22, 4, 5, 4),
-                [theme.breakpoints.up('md')]: {
-                    marginTop: theme.spacing(showNavbar ? 25 : 18),
-                },
+                margin: theme.spacing(showNavbar ? 22 : 14, 4, 5, 4),
             }}
         >
             {showHeader && <Header />}

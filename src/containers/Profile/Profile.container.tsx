@@ -11,7 +11,7 @@ import { setUser } from '@features';
 import { useUserUpdateMutation } from '@services';
 import { FormValues } from '@types';
 
-const ProfileConatiner = () => {
+const ProfileContainer = () => {
     const [isEditing, setIsEditing] = useState(false);
     const user = useAppSelector((state) => state.user);
     const [updateUser, { isLoading }] = useUserUpdateMutation();
@@ -21,6 +21,7 @@ const ProfileConatiner = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors, isDirty },
     } = useForm<FormValues>({
         values: { name: user.name, phone_number: user.phone_number },
@@ -33,6 +34,7 @@ const ProfileConatiner = () => {
     };
 
     const handleCancel = () => {
+        reset();
         setIsEditing(false);
     };
 
@@ -106,4 +108,4 @@ const ProfileConatiner = () => {
     );
 };
 
-export default ProfileConatiner;
+export default ProfileContainer;

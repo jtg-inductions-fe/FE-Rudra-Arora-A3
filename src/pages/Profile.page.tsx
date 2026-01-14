@@ -1,10 +1,10 @@
 import { Divider } from '@mui/material';
 
-import { ProfileConatiner, PurchaseHistoryContainer } from '@containers';
+import { ProfileContainer, PurchaseHistoryContainer } from '@containers';
 
 const Profile = () => (
     <>
-        <ProfileConatiner />
+        <ProfileContainer />
 
         <Divider />
 

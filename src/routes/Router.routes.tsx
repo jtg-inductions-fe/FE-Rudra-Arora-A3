@@ -25,7 +25,11 @@ const Main = lazy(() => import('@layout/Main.layout.tsx'));
 export const router = createBrowserRouter([
     {
         path: ROUTES.ROOT,
-        element: <Main />,
+        element: (
+            <RouteLoader>
+                <Main />
+            </RouteLoader>
+        ),
         errorElement: <Error />,
         children: [
             {
@@ -34,27 +38,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: ROUTES.CINEMAS,
-                element: (
-                    <RouteLoader>
-                        <Cinemas />
-                    </RouteLoader>
-                ),
+                element: <Cinemas />,
             },
             {
                 path: ROUTES.MOVIES,
-                element: (
-                    <RouteLoader>
-                        <Movies />
-                    </RouteLoader>
-                ),
+                element: <Movies />,
             },
             {
                 path: ROUTES.SPECIFIC_MOVIE,
-                element: (
-                    <RouteLoader>
-                        <MovieDetail />
-                    </RouteLoader>
-                ),
+                element: <MovieDetail />,
             },
         ],
     },
@@ -62,17 +54,16 @@ export const router = createBrowserRouter([
         path: ROUTES.LOGIN,
         element: (
             <GuestRoute>
-                <AuthLayout />
+                <RouteLoader>
+                    <AuthLayout />
+                </RouteLoader>
             </GuestRoute>
         ),
+        errorElement: <Error />,
         children: [
             {
                 index: true,
-                element: (
-                    <RouteLoader>
-                        <Login />
-                    </RouteLoader>
-                ),
+                element: <Login />,
             },
         ],
     },
@@ -81,99 +72,93 @@ export const router = createBrowserRouter([
         errorElement: <Error />,
         element: (
             <GuestRoute>
-                <AuthLayout />
+                <RouteLoader>
+                    <AuthLayout />
+                </RouteLoader>
             </GuestRoute>
         ),
         children: [
             {
                 index: true,
-                element: (
-                    <RouteLoader>
-                        <Signup />
-                    </RouteLoader>
-                ),
+                element: <Signup />,
             },
         ],
     },
     {
         path: ROUTES.MOVIE_SLOTS,
-        element: <Main />,
+        element: (
+            <RouteLoader>
+                <Main />
+            </RouteLoader>
+        ),
         handle: {
             isNavbarRequired: false,
         },
         children: [
             {
                 index: true,
-                element: (
-                    <RouteLoader>
-                        <MovieSlots />
-                    </RouteLoader>
-                ),
+                element: <MovieSlots />,
             },
         ],
     },
     {
         path: ROUTES.CINEMA_SLOTS,
-        element: <Main />,
+        element: (
+            <RouteLoader>
+                <Main />
+            </RouteLoader>
+        ),
         handle: {
             isNavbarRequired: false,
         },
         children: [
             {
                 index: true,
-                element: (
-                    <RouteLoader>
-                        <CinemaSlots />
-                    </RouteLoader>
-                ),
+                element: <CinemaSlots />,
             },
         ],
     },
     {
         path: ROUTES.SEAT_AVAILABILITY,
-        element: <Main />,
+        element: (
+            <ProtectedRoute>
+                <RouteLoader>
+                    <Main />
+                </RouteLoader>
+            </ProtectedRoute>
+        ),
         handle: {
             isNavbarRequired: false,
         },
+        errorElement: <Error />,
         children: [
             {
                 index: true,
-                element: (
-                    <ProtectedRoute>
-                        <RouteLoader>
-                            <SeatChoosing />
-                        </RouteLoader>
-                    </ProtectedRoute>
-                ),
+                element: <SeatChoosing />,
             },
         ],
     },
     {
         path: ROUTES.PROFILE,
-        element: <Main />,
+        element: (
+            <ProtectedRoute>
+                <RouteLoader>
+                    <Main />
+                </RouteLoader>
+            </ProtectedRoute>
+        ),
         handle: {
             isNavbarRequired: false,
         },
+        errorElement: <Error />,
         children: [
             {
                 index: true,
-                element: (
-                    <ProtectedRoute>
-                        <RouteLoader>
-                            <Profile />
-                        </RouteLoader>
-                    </ProtectedRoute>
-                ),
+                element: <Profile />,
             },
             {
                 path: ROUTES.PURCHASE_HISTORY,
-                element: (
-                    <ProtectedRoute>
-                        <RouteLoader>
-                            <PurchaseHistory />
-                        </RouteLoader>
-                    </ProtectedRoute>
-                ),
+                element: <PurchaseHistory />,
             },
         ],
     },

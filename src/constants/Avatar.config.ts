@@ -20,7 +20,7 @@ export const GET_AVATAR_MENU_CONFIG = (
         label: 'Logout',
         onClick: () => {
             Cookies.remove('refresh');
-            dispatch(syncAuthState(!!Cookies.get('refresh')));
+            dispatch(syncAuthState(false));
             dispatch(removeAccessToken());
             dispatch(
                 showSnackbar({

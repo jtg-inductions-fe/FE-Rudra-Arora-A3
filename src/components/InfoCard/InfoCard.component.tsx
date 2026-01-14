@@ -23,6 +23,7 @@ const InfoCard = ({
     id,
     INFO_CARD_CONSTANTS,
     handleButtonClick,
+    isLoading,
 }: InfoCardProps) => {
     const { spacing } = useTheme();
 
@@ -65,27 +66,27 @@ const InfoCard = ({
 
             {buttonText && (
                 <CardActions>
-                    {linkUrl && (
+                    {linkUrl ? (
                         <Button
                             fullWidth
                             component={Link}
                             to={linkUrl}
                             variant="contained"
+                            disabled={isLoading}
                         >
                             {buttonText}
                         </Button>
-                    )}
-
-                    {handleButtonClick && (
+                    ) : handleButtonClick ? (
                         <Button
                             fullWidth
                             variant="contained"
                             color="error"
                             onClick={() => void handleButtonClick(id)}
+                            disabled={isLoading}
                         >
                             {buttonText}
                         </Button>
-                    )}
+                    ) : null}
                 </CardActions>
             )}
         </StyledCard>
