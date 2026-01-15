@@ -59,16 +59,47 @@ export const baseQueryWithReauth: BaseQueryFn<
     const isProtected = (args as CustomFetchArgs)?.isProtected ?? false;
     const state = api.getState() as RootState;
 
-    if (isProtected) {
-        const accessToken = state.auth.accessToken;
-        const refreshToken = Cookies.get('refresh');
+    if (!isProtected) {
+        return await rawBaseQuery(args, api, extraOptions);
+    }
+
+    const accessToken = state.auth.accessToken;
+    let refreshToken = Cookies.get('refresh');
+
+    if (!accessToken) {
+        const refreshResult = await rawBaseQuery(
+            {
+                url: BACKEND_URL.TOKEN_REFRESH,
+                method: 'POST',
+                body: JSON.stringify({ refresh: refreshToken }),
+                headers: { 'Content-Type': 'application/json' },
+            },
+            api,
+            extraOptions,
+        );
+
+        if (refreshResult.error) {
+            Cookies.remove('refresh');
+            api.dispatch(syncAuthState(!!Cookies.get('refresh')));
+            api.dispatch(clearUser());
+            return { error: { status: 401, data: 'Unauthorized' } };
+        } else {
+            const access = (refreshResult.data as RefreshResponseType).access;
+            api.dispatch(setAccessToken(access));
+        }
+    }
+
+    let result = await rawBaseQuery(args, api, extraOptions);
+
+    if (result.error && result.error.status === 401) {
+        refreshToken = Cookies.get('refresh');
 
         if (!refreshToken) {
             Cookies.remove('refresh');
             api.dispatch(syncAuthState(!!Cookies.get('refresh')));
             api.dispatch(clearUser());
             return { error: { status: 401, data: 'Unauthorized' } };
-        } else if (!accessToken) {
+        } else {
             const refreshResult = await rawBaseQuery(
                 {
                     url: BACKEND_URL.TOKEN_REFRESH,
@@ -89,15 +120,17 @@ export const baseQueryWithReauth: BaseQueryFn<
                 const access = (refreshResult.data as RefreshResponseType)
                     .access;
                 api.dispatch(setAccessToken(access));
+                result = await rawBaseQuery(args, api, extraOptions);
             }
         }
     }
-    return await rawBaseQuery(args, api, extraOptions);
+
+    return result;
 };
 
 export const baseApi = createApi({
     reducerPath: 'api',
     baseQuery: baseQueryWithReauth,
     endpoints: () => ({}),
-    // keepUnusedDataFor: 3600,
+    keepUnusedDataFor: 3600,
 });

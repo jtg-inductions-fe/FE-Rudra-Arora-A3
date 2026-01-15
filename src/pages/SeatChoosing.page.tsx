@@ -16,7 +16,7 @@ const SeatChoosing = () => {
     const dispatch = useAppDispatch();
 
     const [bookingResponse, setBookingResponse] = useState<InfoCardDataType>();
-    const [seatBooking] = useSeatBookingMutation();
+    const [seatBooking, { isLoading }] = useSeatBookingMutation();
 
     const { data: seatAvailaibilityData, refetch } =
         useGetSeatAvailabilityQuery(
@@ -59,6 +59,7 @@ const SeatChoosing = () => {
                     seatAvailaibilityData={seatAvailaibilityData}
                     handleConfirmTicket={handleConfirmTicket}
                     bookingResponse={bookingResponse}
+                    isLoadingBookingResponse={isLoading}
                 />
             ) : (
                 <Loader />

@@ -14,6 +14,7 @@ const Modal = ({
     handleButtonClick,
     keys,
     buttonText,
+    isLoading,
 }: ModalProps) => (
     <MuiModal open={openModal} onClose={handleCloseModal}>
         <ModalStack>
@@ -38,6 +39,7 @@ const Modal = ({
             <Button
                 onClick={() => void handleButtonClick()}
                 variant="contained"
+                disabled={isLoading}
             >
                 {buttonText}
             </Button>

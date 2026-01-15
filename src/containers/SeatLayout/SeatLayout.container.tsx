@@ -12,6 +12,7 @@ import { SeatLayoutContainerProps } from './SeatLayout.types';
 const SeatLayoutContainer = ({
     seatAvailaibilityData,
     handleConfirmTicket,
+    isLoading,
 }: SeatLayoutContainerProps) => {
     const dispatch = useAppDispatch();
 
@@ -87,6 +88,7 @@ const SeatLayoutContainer = ({
                 handleButtonClick={handleSeatConfirmation}
                 buttonText="Confirm Ticket"
                 keys={SEAT_CHOOSING_CONSTANTS.KEYS}
+                isLoading={isLoading}
             />
         </Stack>
     );

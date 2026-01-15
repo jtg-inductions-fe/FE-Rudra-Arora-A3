@@ -8,4 +8,5 @@ export type ModalProps = {
     handleButtonClick: () => Promise<void>;
     buttonText: string;
     keys: Record<string, string>;
+    isLoading: boolean;
 };

@@ -15,6 +15,7 @@ const SeatChoosingContainer = ({
     seatAvailaibilityData,
     handleConfirmTicket,
     bookingResponse,
+    isLoadingBookingResponse,
 }: SeatChoosingContainerProps) =>
     !bookingResponse ? (
         <Container>
@@ -57,6 +58,7 @@ const SeatChoosingContainer = ({
                 <SeatLayoutContainer
                     handleConfirmTicket={handleConfirmTicket}
                     seatAvailaibilityData={seatAvailaibilityData}
+                    isLoading={isLoadingBookingResponse}
                 />
             )}
         </Container>

@@ -9,6 +9,7 @@ import { useLazyGetUserProfileQuery } from '@services';
 
 const Header = () => {
     const { isLoggedIn } = useAppSelector((state) => state.auth);
+    const user = useAppSelector((state) => state.user.name);
 
     const dispatch = useAppDispatch();
 
@@ -20,7 +21,7 @@ const Header = () => {
             dispatch(setUser(response));
         };
 
-        if (isLoggedIn) {
+        if (isLoggedIn && !user) {
             void fetchUser();
         }
     }, [isLoggedIn, error]);
