@@ -1,2 +1,3 @@
 import Filter from './Filter.container';
-export { Filter };
+import type { FilterKey } from './Filter.types';
+export { Filter, FilterKey };

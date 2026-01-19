@@ -6,7 +6,7 @@ export type DialogProps = {
     open: boolean;
     DialogListData: Record<string, DialogDataType[] | undefined>;
     ListHeading: string[];
-    selectedCheckedBox: Record<string, Set<string>>;
+    selectedCheckedBox: Record<string, Set<string> | string>;
     buttonText: string;
     /**
      * Funtion to close the Dialog
