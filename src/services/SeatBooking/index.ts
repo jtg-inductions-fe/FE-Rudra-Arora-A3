@@ -1,3 +1,6 @@
-import { useSeatBookingMutation } from './SeatBooking.services';
+import {
+    useSeatBookingMutation,
+    useSeatCancelMutation,
+} from './SeatBooking.services';
 
-export { useSeatBookingMutation };
+export { useSeatBookingMutation, useSeatCancelMutation };

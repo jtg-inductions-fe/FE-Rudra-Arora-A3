@@ -66,7 +66,7 @@ export const SIGNUP_CONFIG: ConfigType = {
                     message: MESSAGE.PASSWORD_LENGTH,
                 },
                 pattern: {
-                    value: REGULAR_EXPRESSIONS.PHONE_NUMBER,
+                    value: REGULAR_EXPRESSIONS.PASSWORD,
                     message: MESSAGE.PASSWORD_VALID,
                 },
             },

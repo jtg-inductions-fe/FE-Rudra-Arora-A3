@@ -1,8 +1,15 @@
-const Profile = () => {
-    {
-        /* TODO: Add Profile Page here */
-    }
-    return <div>Profile</div>;
-};
+import { Divider } from '@mui/material';
+
+import { ProfileConatiner, PurchaseHistoryContainer } from '@containers';
+
+const Profile = () => (
+    <>
+        <ProfileConatiner />
+
+        <Divider />
+
+        <PurchaseHistoryContainer />
+    </>
+);
 
 export default Profile;

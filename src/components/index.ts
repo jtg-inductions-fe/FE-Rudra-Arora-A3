@@ -2,8 +2,11 @@ import { Accordion } from './Accordian';
 import { AppBar } from './AppBar';
 import type { NavConfigType } from './BottomNavigation';
 import { BottomNavigation } from './BottomNavigation';
-import type { CardDataType } from './Card';
-import type { CardPaginatedDataType } from './Card';
+import type {
+    CardComponentProps,
+    CardDataType,
+    CardPaginatedDataType,
+} from './Card';
 import { Card, CardSkeleton } from './Card';
 import { DatePicker } from './DatePicker';
 import type { DialogDataType } from './Dialog';
@@ -14,7 +17,7 @@ import { InfoCard, type InfoCardDataType } from './InfoCard';
 import { InfoRow } from './InfoRow';
 import { Modal } from './Modal';
 import { Seat } from './Seat';
-import { SeatLayout } from './SeatLayout';
+import { SeatLayout, type SeatLayoutDataType } from './SeatLayout';
 import {
     SlotCard,
     type SlotCardButtonDataType,
@@ -52,4 +55,6 @@ export {
     SeatLayout,
     InfoCard,
     InfoCardDataType,
+    CardComponentProps,
+    SeatLayoutDataType,
 };
