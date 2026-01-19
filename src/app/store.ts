@@ -1,9 +1,19 @@
+import { snackbarReducer } from '@features';
 import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
+import { baseApi } from '@services';
 
 export const store = configureStore({
-    // TODO: Add reducers as features are implemented
-    reducer: {},
+    reducer: {
+        [baseApi.reducerPath]: baseApi.reducer,
+        snackbar: snackbarReducer,
+    },
+
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(baseApi.middleware),
 });
+
+setupListeners(store.dispatch);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

@@ -37,6 +37,9 @@ theme = createTheme(theme, {
                     boxShadow: 'none',
                     borderRadius: theme.typography.pxToRem(10),
                     padding: theme.spacing(2, 7),
+                    [theme.breakpoints.up('md')]: {
+                        fontSize: theme.typography.pxToRem(20),
+                    },
                 },
                 outlined: {
                     borderRadius: theme.typography.pxToRem(0),
