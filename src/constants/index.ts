@@ -9,6 +9,7 @@ import {
 import { LATEST_MOVIES_HEADING, SUBTITLE_HEADING } from './Movie.constants';
 import { NOT_FOUND_CONSTANTS } from './NotFound.constants';
 import { BACKEND_URL, ROUTES } from './Routes.constant';
+import { SEAT_CHOOSING_CONSTANTS } from './SeatChoosing.constants';
 import { SIGNUP_CONFIG } from './Signup.config';
 import { MESSAGE as SIGNUP_MESSAGES } from './Signup.constants';
 import { HTML_FONT_SIZE, SCALING_FACTOR } from './themeConstant';
@@ -30,4 +31,5 @@ export {
     SUBTITLE_HEADING,
     CINEMA_SUBTITLE_HEADING,
     CINEMA_HEADING,
+    SEAT_CHOOSING_CONSTANTS,
 };

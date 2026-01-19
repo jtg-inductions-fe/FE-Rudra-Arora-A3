@@ -10,6 +10,7 @@ import MovieSlots from './MovieSlots.page';
 import NotFound from './NotFound.page';
 import Profile from './Profile.page';
 import PurchaseHistory from './PurchaseHistory.page';
+import SeatChoosing from './SeatChoosing.page';
 import Signup from './Signup.page';
 import Slots from './Slots.page';
 
@@ -28,4 +29,5 @@ export {
     MovieDetail,
     MovieSlots,
     CinemaSlots,
+    SeatChoosing,
 };
