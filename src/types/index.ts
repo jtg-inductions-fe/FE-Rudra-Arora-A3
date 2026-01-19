@@ -1,5 +1,7 @@
-import type { PaginatedResponseType } from './Common.types';
+import type { FilterKey, PaginatedResponseType } from './Common.types';
 import type {
+    GenreFilterType,
+    LanguageFilterType,
     MovieDataType,
     MovieFilterTypes,
     MovieResponseType,
@@ -13,4 +15,7 @@ export {
     MovieResponseType,
     MovieDataType,
     PaginatedResponseType,
+    GenreFilterType,
+    LanguageFilterType,
+    FilterKey,
 };

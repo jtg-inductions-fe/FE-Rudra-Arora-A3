@@ -1,3 +1,17 @@
-import { movieApi, useGetMoviesInfiniteQuery } from './movieApi.services';
+import {
+    movieApi,
+    useGetGenresFiltersQuery,
+    useGetLanguageFiltersQuery,
+    useGetMoviesInfiniteQuery,
+    useLazyGetGenresFiltersQuery,
+    useLazyGetLanguageFiltersQuery,
+} from './movieApi.services';
 
-export { movieApi, useGetMoviesInfiniteQuery };
+export {
+    movieApi,
+    useGetGenresFiltersQuery,
+    useGetLanguageFiltersQuery,
+    useLazyGetGenresFiltersQuery,
+    useLazyGetLanguageFiltersQuery,
+    useGetMoviesInfiniteQuery,
+};

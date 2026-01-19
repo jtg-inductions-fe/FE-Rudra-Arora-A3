@@ -3,3 +3,5 @@ export type PaginatedResponseType<T> = {
     previous: string | null;
     results: T;
 };
+
+export type FilterKey = 'genre' | 'language';

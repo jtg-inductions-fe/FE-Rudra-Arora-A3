@@ -44,6 +44,9 @@ theme = createTheme(theme, {
                     },
                 },
                 outlined: {
+                    fontWeight: 'bold',
+                    padding: theme.spacing(0.5, 6),
+                    borderWidth: theme.typography.pxToRem(2),
                     borderRadius: theme.typography.pxToRem(0),
                 },
                 text: {
