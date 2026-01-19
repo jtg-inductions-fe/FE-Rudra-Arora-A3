@@ -1,9 +1,8 @@
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import { hashPassword } from 'utils/hashPassword';
 
 import { useAppDispatch } from '@app';
-import { ErrorBoundary } from '@components';
-import { ACCESS_COOKIE_EXPIRES_IN_MINUTES } from '@constants';
 import {
     COOKIE_EXPIRES_IN_DAYS,
     LOGIN_CONFIG,
@@ -11,22 +10,23 @@ import {
     ROUTES,
 } from '@constants';
 import { Form } from '@containers';
-import { showSnackbar, syncAuthState } from '@features';
+import { setAccessToken, showSnackbar, syncAuthState } from '@features';
 import { LoginRequest, useLoginUserMutation } from '@services';
 
 const Login = () => {
-    const [loginUser, { error: loginError }] = useLoginUserMutation();
+    const [loginUser] = useLoginUserMutation();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const handleSubmit = async (data: LoginRequest) => {
         try {
-            const response = await loginUser(data).unwrap();
-            Cookies.set('access', response.access, {
-                expires: ACCESS_COOKIE_EXPIRES_IN_MINUTES / (24 * 60),
-                secure: true,
-                sameSite: 'strict',
-            });
+            const hashedPassword = await hashPassword(data.password);
+            const loginPayload = {
+                ...data,
+                password: hashedPassword,
+            };
+            const response = await loginUser(loginPayload).unwrap();
+            dispatch(setAccessToken(response.access));
             Cookies.set('refresh', response.refresh, {
                 expires: COOKIE_EXPIRES_IN_DAYS,
                 secure: true,
@@ -48,11 +48,7 @@ const Login = () => {
         }
     };
 
-    return (
-        <ErrorBoundary error={loginError}>
-            <Form {...LOGIN_CONFIG} onSubmit={handleSubmit} />
-        </ErrorBoundary>
-    );
+    return <Form {...LOGIN_CONFIG} onSubmit={handleSubmit} />;
 };
 
 export default Login;

@@ -8,7 +8,7 @@ import { LatestMoviesContainer } from './LatestMovies';
 import { MovieDetailContainer } from './MovieDetail';
 import { MoviesContainer } from './Movies';
 import { Navbar } from './Navbar';
-import { ProfileConatiner } from './Profile';
+import { ProfileContainer } from './Profile';
 import { PurchaseHistoryContainer } from './PurchaseHistory';
 import {
     SeatChoosingContainer,
@@ -30,7 +30,7 @@ export {
     MovieDetailContainer,
     SlotContainer,
     SeatChoosingContainer,
-    ProfileConatiner,
+    ProfileContainer,
     PurchaseHistoryContainer,
     SeatChoosingDataType,
 };

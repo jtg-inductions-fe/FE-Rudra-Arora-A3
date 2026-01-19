@@ -15,7 +15,6 @@ export const MESSAGE = {
 };
 
 export const COOKIE_EXPIRES_IN_DAYS = 7;
-export const ACCESS_COOKIE_EXPIRES_IN_MINUTES = 20;
 
 export const REGULAR_EXPRESSIONS = {
     EMAIL: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,

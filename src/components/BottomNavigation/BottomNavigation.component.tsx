@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
     BottomNavigation as MuiBottomNavigation,
@@ -11,8 +11,17 @@ import {
 import { BottomNavigationProps } from './BottomNavigation.types';
 
 export const BottomNavigation = ({ NavConfig }: BottomNavigationProps) => {
-    const [value, setValue] = useState<number>(0);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const [value, setValue] = useState<number | null>(null);
+
+    useEffect(() => {
+        const index = NavConfig.findIndex(
+            (item) => item.to === location.pathname,
+        );
+        setValue(index === -1 ? null : index);
+    }, [location.pathname, NavConfig]);
 
     return (
         <Paper

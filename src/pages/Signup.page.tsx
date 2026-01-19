@@ -1,27 +1,49 @@
+import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import { hashPassword } from 'utils/hashPassword';
 
 import { useAppDispatch } from '@app';
-import { ErrorBoundary } from '@components';
-import { ROUTES, SIGNUP_CONFIG, SIGNUP_MESSAGES } from '@constants';
+import {
+    COOKIE_EXPIRES_IN_DAYS,
+    ROUTES,
+    SIGNUP_CONFIG,
+    SIGNUP_MESSAGES,
+} from '@constants';
 import { Form } from '@containers';
-import { showSnackbar } from '@features';
+import { setAccessToken, showSnackbar, syncAuthState } from '@features';
 import { SignupRequest, useSignupUserMutation } from '@services';
 
 const Signup = () => {
-    const [signupUser, { error: signupError }] = useSignupUserMutation();
+    const [signupUser] = useSignupUserMutation();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const handleSubmit = async (data: SignupRequest) => {
         try {
-            await signupUser(data).unwrap();
+            const hashedPassword = await hashPassword(data.password);
+            const hashedConfirmPassword = await hashPassword(
+                data.confirm_password,
+            );
+            const signupPayload = {
+                ...data,
+                password: hashedPassword,
+                confirm_password: hashedConfirmPassword,
+            };
+            const response = await signupUser(signupPayload).unwrap();
+            dispatch(setAccessToken(response.access));
+            Cookies.set('refresh', response.refresh, {
+                expires: COOKIE_EXPIRES_IN_DAYS,
+                secure: true,
+                sameSite: 'strict',
+            });
             dispatch(
                 showSnackbar({
                     message: [SIGNUP_MESSAGES.SIGNUP_SUCCESS],
                     variant: 'success',
                 }),
             );
-            void navigate(ROUTES.LOGIN);
+            dispatch(syncAuthState(!!Cookies.get('refresh')));
+            void navigate(ROUTES.ROOT);
         } catch (error) {
             const ErrorsList: string[] = [];
             const errorData = (error as { data: Record<string, string[]> })
@@ -37,11 +59,7 @@ const Signup = () => {
         }
     };
 
-    return (
-        <ErrorBoundary error={signupError}>
-            <Form {...SIGNUP_CONFIG} onSubmit={handleSubmit} />
-        </ErrorBoundary>
-    );
+    return <Form {...SIGNUP_CONFIG} onSubmit={handleSubmit} />;
 };
 
 export default Signup;

@@ -3,8 +3,8 @@ import { DialogDataType } from '@components';
 export type FilterKey = 'genre' | 'language' | 'location';
 
 export type FilterContainerProps = {
-    FilterHeading: FilterKey[];
-    FilterData: Record<string, DialogDataType[] | undefined>;
+    filterHeading: FilterKey[];
+    filterData: Record<string, DialogDataType[] | undefined>;
     selectedFilters: Record<string, Set<string> | string>;
     handleApplyFilters: () => void;
     handleFiltersSelected: (
@@ -12,4 +12,5 @@ export type FilterContainerProps = {
         filter: string,
         heading: string,
     ) => void;
+    handleClearFilters: () => void;
 };

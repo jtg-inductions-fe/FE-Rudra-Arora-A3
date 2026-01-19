@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 
-import { useNavigate } from 'react-router-dom';
 import { normalizeApiError } from 'utils';
 
 import { SerializedError } from '@reduxjs/toolkit';
@@ -14,14 +13,10 @@ type ErrorBoundaryProps = {
 };
 
 const ErrorBoundary = ({ error, children }: ErrorBoundaryProps) => {
-    const navigate = useNavigate();
     if (!error) return <>{children}</>;
 
     const fallbackProps = normalizeApiError(error);
 
-    if (fallbackProps.navigationLink) {
-        void navigate(fallbackProps.navigationLink, { replace: true });
-    }
     return <ErrorFallback {...fallbackProps} />;
 };
 

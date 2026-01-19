@@ -9,6 +9,7 @@ export const parseMovie = (movie: MovieDataType): CardDataType => ({
     subtitle1: movie.languages.map((item) => toCapitalized(item)).join(', '),
     subtitle2: movie.genres.map((item) => toCapitalized(item)).join(', '),
     slug: movie.slug,
+    subtitle3: toCapitalized(movie.description),
 });
 
 export const parseLanguageFilter = (

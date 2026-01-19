@@ -1,4 +1,9 @@
-import { authReducer, syncAuthState } from './Auth';
+import {
+    authReducer,
+    removeAccessToken,
+    setAccessToken,
+    syncAuthState,
+} from './Auth';
 import { removeSnackbar, showSnackbar, snackbarReducer } from './Snackbar';
 import { clearUser, setUser, userReducer } from './User';
 
@@ -11,4 +16,6 @@ export {
     setUser,
     userReducer,
     clearUser,
+    setAccessToken,
+    removeAccessToken,
 };

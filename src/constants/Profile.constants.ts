@@ -1,4 +1,4 @@
-import { FieldConfig } from '@types';
+import { FieldConfig, PurchaseType } from '@types';
 
 export const FORM_FIELDS: FieldConfig[] = [
     {
@@ -12,6 +12,7 @@ export const FORM_FIELDS: FieldConfig[] = [
         rules: {
             required: 'Phone number is required',
             minLength: { value: 10, message: 'Minimum 10 digits' },
+            pattern: { value: /^[0-9]+$/, message: 'Only digits allowed' },
         },
     },
 ];
@@ -31,15 +32,12 @@ export const PURCHASE_HISTORY_FIELDS = [
     },
 ] as const;
 
-export const GET_PURCHASE_PAGE_HEADING = (
-    param: 'upcoming' | 'past' | 'cancel',
-): string => {
+export const GET_PURCHASE_PAGE_HEADING = (param: PurchaseType): string => {
     if (param === 'upcoming') {
         return 'Your Upcoming Bookings';
     }
     if (param === 'cancel') {
         return 'Your Cancelled Bookings';
-    } else {
-        return 'Your Past Bookings';
     }
+    return 'Your Past Bookings';
 };

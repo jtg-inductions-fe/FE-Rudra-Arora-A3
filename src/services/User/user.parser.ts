@@ -2,7 +2,7 @@ import { PurchaseHistoryResponseType } from 'types/Profile.types';
 import {
     numberToAlphabet,
     slotDateFormatter,
-    SlotTimeFormatter,
+    slotTimeFormatter,
     toCapitalized,
 } from 'utils';
 
@@ -13,7 +13,7 @@ export const parsePurchaseHistoryResponse = (
 ): InfoCardDataType => {
     const slot = response.slot[0];
 
-    const slotTotalPrice = `${response.seats.length * slot.price} ₹`;
+    const slotTotalPrice = `₹ ${response.seats.length * slot.price}`;
 
     const seats = response.seats.map(
         (item) => `${numberToAlphabet(item.row)}${item.seat}`,
@@ -21,7 +21,7 @@ export const parsePurchaseHistoryResponse = (
 
     return {
         id: response.id,
-        title: `${toCapitalized(slot.cinema)} ${toCapitalized(slot.location)} | ${SlotTimeFormatter(slot.start_time)} | ${slotDateFormatter(slot.start_time)}`,
+        title: `${toCapitalized(slot.cinema)} ${toCapitalized(slot.location)} | ${slotTimeFormatter(slot.start_time)} | ${slotDateFormatter(slot.start_time)}`,
         subtitle1: slot.movie,
         subtitle2: slotTotalPrice,
         subtitle3: seats.join(', '),

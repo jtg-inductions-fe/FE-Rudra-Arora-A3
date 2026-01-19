@@ -1,3 +1,3 @@
 export type AvatarProps = {
-    intials: string;
+    initials: string;
 };

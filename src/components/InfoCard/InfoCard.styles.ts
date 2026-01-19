@@ -1,12 +1,11 @@
 import { Card, styled } from '@mui/material';
 
-export const StyledCard = styled(Card)(({ theme }) => ({
+export const StyledCard = styled(Card)(({ theme: { typography, mixins } }) => ({
     width: '100%',
-    maxWidth: theme.typography.pxToRem(360),
-    borderRadius: theme.spacing(3),
+    maxWidth: typography.pxToRem(360),
     transition: 'all 0.25s ease',
     '&:hover': {
-        transform: 'translateY(-4px)',
-        boxShadow: theme.spacing(6),
+        transform: `translateY(${typography.pxToRem(-4)})`,
     },
+    ...mixins.flex('space-between', 'stretch', '', 'column'),
 }));

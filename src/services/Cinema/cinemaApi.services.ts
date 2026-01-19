@@ -1,6 +1,7 @@
 import { toCapitalized } from 'utils';
 
 import { CardPaginatedDataType, DialogDataType } from '@components';
+import { BACKEND_URL } from '@constants';
 import {
     CinemaDataType,
     CinemaFilterTypes,
@@ -19,7 +20,7 @@ export const cinemaApi = baseApi.injectEndpoints({
             string | null
         >({
             query: ({ pageParam, queryArg }) => ({
-                url: pageParam ? pageParam : 'cinemas/',
+                url: pageParam ? pageParam : BACKEND_URL.CINEMAS,
                 params: queryArg,
             }),
             transformResponse: (response: CinemaResponseType) => ({
@@ -34,14 +35,14 @@ export const cinemaApi = baseApi.injectEndpoints({
         }),
         getLocationFilter: builder.query<DialogDataType[], void>({
             query: () => ({
-                url: 'cinemas/locations/',
+                url: BACKEND_URL.LOCATION,
             }),
             transformResponse: (response: LocationFilterType[]) =>
                 response.map(parseLocationFilter),
         }),
         getCinemaByName: builder.query<CinemaDataType, string>({
             query: (name) => ({
-                url: `cinemas/${name}`,
+                url: BACKEND_URL.GET_SPECIFIC_CINEMA(name),
             }),
             transformResponse: (response: CinemaDataType) => ({
                 ...response,

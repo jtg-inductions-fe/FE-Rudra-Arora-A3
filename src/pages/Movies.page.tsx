@@ -12,7 +12,7 @@ import {
     useTheme,
 } from '@mui/material';
 
-import { Dialog, ErrorBoundary } from '@components';
+import { Dialog, NoData } from '@components';
 import { Filter, MoviesContainer } from '@containers';
 import {
     useGetGenresFiltersQuery,
@@ -62,11 +62,9 @@ const Movies = () => {
     }
     const {
         data: movieData,
-        isLoading,
         hasNextPage,
         fetchNextPage,
         isFetching,
-        error: movieApiError,
     } = useGetMoviesInfiniteQuery({
         language: languageFromUrl,
         genre: genreFromUrl,
@@ -134,9 +132,19 @@ const Movies = () => {
         handleFiltersClose();
     };
 
-    const FilterHeading: FilterKey[] = ['genre', 'language'];
+    const handleClearFilters = () => {
+        setSelectedFilter({
+            genre: new Set(),
+            language: new Set(),
+        });
+        const params: Record<string, string[]> = {};
+        setSearchParams(params);
+        handleFiltersClose();
+    };
 
-    const FilterData = {
+    const filterHeading: FilterKey[] = ['genre', 'language'];
+
+    const filterData = {
         genre: genreData,
         language: languageData,
     };
@@ -145,14 +153,20 @@ const Movies = () => {
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
     return (
-        <Stack flexDirection="row" gap={theme.spacing(3)}>
+        <Stack
+            component="section"
+            aria-label="Movies"
+            flexDirection="row"
+            gap={theme.spacing(3)}
+        >
             {isDesktop && (
                 <Filter
                     handleFiltersSelected={handleFiltersSelected}
                     selectedFilters={selectedFilter}
                     handleApplyFilters={handleApplyFilters}
-                    FilterData={FilterData}
-                    FilterHeading={FilterHeading}
+                    filterData={filterData}
+                    filterHeading={filterHeading}
+                    handleClearFilters={handleClearFilters}
                 />
             )}
             <Stack width={isDesktop ? '70%' : '100%'}>
@@ -174,30 +188,26 @@ const Movies = () => {
                             <Dialog
                                 open={filtersOpen}
                                 handleClose={handleFiltersClose}
-                                ListHeading={FilterHeading}
-                                DialogListData={FilterData}
+                                ListHeading={filterHeading}
+                                DialogListData={filterData}
                                 selectedCheckedBox={selectedFilter}
                                 handleCheckBox={handleFiltersSelected}
                                 handleButtonClick={handleApplyFilters}
-                                buttonText="Apply Filters"
+                                buttonText1="Apply Filters"
+                                buttonText2="Clear Filters"
+                                handleClearButton={handleClearFilters}
                             />
                         </>
                     )}
                 </Stack>
-                <ErrorBoundary error={movieApiError}>
-                    {currentMovieData?.length ? (
-                        <MoviesContainer
-                            data={currentMovieData}
-                            isLoading={isLoading}
-                        />
-                    ) : (
-                        <Stack alignItems="center">
-                            <Typography variant="h2">
-                                No Data Availaible
-                            </Typography>
-                        </Stack>
-                    )}
-                </ErrorBoundary>
+                {currentMovieData?.length || isFetching ? (
+                    <MoviesContainer
+                        data={currentMovieData}
+                        isFetching={isFetching}
+                    />
+                ) : (
+                    <NoData />
+                )}
                 <Box ref={endRef} height={1}></Box>
             </Stack>
         </Stack>

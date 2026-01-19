@@ -1,108 +1,144 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 
-import { Box, Button, Stack, TextField } from '@mui/material';
+import { Button, Paper, Stack, TextField, useTheme } from '@mui/material';
 
 import { useAppDispatch, useAppSelector } from '@app';
 import { Typography } from '@components';
 import { FORM_FIELDS } from '@constants';
-import { setUser } from '@features';
+import { setUser, showSnackbar } from '@features';
 import { useUserUpdateMutation } from '@services';
 import { FormValues } from '@types';
 
-const ProfileConatiner = () => {
+const ProfileContainer = () => {
     const [isEditing, setIsEditing] = useState(false);
     const user = useAppSelector((state) => state.user);
     const [updateUser, { isLoading }] = useUserUpdateMutation();
     const dispatch = useAppDispatch();
+    const theme = useTheme();
 
     const {
         register,
         handleSubmit,
+        reset,
+        setFocus,
         formState: { errors, isDirty },
     } = useForm<FormValues>({
-        values: { name: user.name, phone_number: user.phone_number },
+        values: {
+            name: user.name,
+            phone_number: user.phone_number,
+        },
     });
 
+    useEffect(() => {
+        if (isEditing) {
+            setFocus('name');
+        }
+    }, [isEditing]);
+
     const onSubmit = async (data: FormValues) => {
-        const response = await updateUser(data).unwrap();
-        dispatch(setUser(response));
-        setIsEditing(false);
+        try {
+            const response = await updateUser(data).unwrap();
+            dispatch(setUser(response));
+            setIsEditing(false);
+        } catch (error) {
+            const errorData = (error as { data: Record<string, string[]> })
+                .data;
+            dispatch(
+                showSnackbar({
+                    message: errorData.phone_number,
+                    variant: 'error',
+                }),
+            );
+        }
     };
 
     const handleCancel = () => {
+        reset();
         setIsEditing(false);
     };
 
     return (
-        <Box pb={2}>
-            {isEditing ? (
-                <Stack
-                    component="form"
-                    spacing={2}
-                    onSubmit={(e) => {
-                        void handleSubmit(onSubmit)(e);
-                    }}
-                >
-                    {FORM_FIELDS.map(({ name, label, rules }) => (
-                        <TextField
-                            key={name}
-                            label={label}
-                            error={!!errors[name]}
-                            helperText={errors[name]?.message}
-                            fullWidth
-                            {...register(name, rules)}
-                        />
-                    ))}
-
+        <Paper
+            elevation={1}
+            sx={{
+                padding: theme.spacing(2),
+                borderBottomRightRadius: 0,
+                borderBottomLeftRadius: 0,
+            }}
+        >
+            <Typography marginBottom={3} variant="h4">
+                Profile
+            </Typography>
+            <Stack
+                spacing={3}
+                component="form"
+                onSubmit={(e) => {
+                    void handleSubmit(onSubmit)(e);
+                }}
+                padding={theme.spacing(2)}
+            >
+                {FORM_FIELDS.map(({ name, label, rules }) => (
                     <TextField
-                        label="Email"
-                        value={user.email}
-                        disabled
+                        key={name}
+                        label={label}
                         fullWidth
+                        variant="outlined"
+                        error={!!errors[name]}
+                        helperText={errors[name]?.message}
+                        slotProps={{
+                            input: {
+                                readOnly: !isEditing,
+                            },
+                            inputLabel: {
+                                shrink: true,
+                            },
+                        }}
+                        {...register(name, rules)}
                     />
+                ))}
 
-                    <Stack
-                        direction="row"
-                        spacing={1}
-                        justifyContent="flex-end"
-                    >
-                        <Button
-                            variant="outlined"
-                            onClick={handleCancel}
-                            disabled={isLoading}
-                        >
-                            Cancel
-                        </Button>
-                        {isDirty && (
+                <TextField
+                    label="Email"
+                    value={user.email}
+                    disabled
+                    fullWidth
+                />
+
+                <Stack direction="row" spacing={1} justifyContent="center">
+                    {isEditing ? (
+                        <>
                             <Button
-                                type="submit"
-                                variant="contained"
+                                variant="outlined"
+                                onClick={handleCancel}
                                 disabled={isLoading}
                             >
-                                Save
+                                Cancel
                             </Button>
-                        )}
-                    </Stack>
-                </Stack>
-            ) : (
-                <Stack spacing={1}>
-                    <Typography variant="h3">{user.name}</Typography>
-                    <Typography variant="h3">{user.email}</Typography>
-                    <Typography variant="h3">{user.phone_number}</Typography>
 
-                    <Button
-                        variant="contained"
-                        sx={{ alignSelf: 'center', mt: 1 }}
-                        onClick={() => setIsEditing(true)}
-                    >
-                        Edit
-                    </Button>
+                            {isDirty && (
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    disabled={isLoading}
+                                >
+                                    Save
+                                </Button>
+                            )}
+                        </>
+                    ) : (
+                        <Button
+                            variant="contained"
+                            onClick={() => setIsEditing(true)}
+                        >
+                            Edit
+                        </Button>
+                    )}
                 </Stack>
-            )}
-        </Box>
+            </Stack>
+        </Paper>
     );
 };
 
-export default ProfileConatiner;
+export default ProfileContainer;

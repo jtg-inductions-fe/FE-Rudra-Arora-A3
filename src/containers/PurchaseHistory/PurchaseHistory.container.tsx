@@ -1,4 +1,6 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
 
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -16,24 +18,29 @@ import { PURCHASE_HISTORY_FIELDS, ROUTES } from '@constants';
 
 const PurchaseHistoryContainer = () => {
     const navigate = useNavigate();
-    const [, setSearchParams] = useSearchParams();
+    const [open, setOpen] = useState(true);
 
     const handleClick = (param: 'upcoming' | 'past' | 'cancel') => {
-        void navigate(ROUTES.PURCHASE_HISTORY);
-        setSearchParams(
+        void navigate(
             {
-                purchase: param,
+                pathname: ROUTES.PURCHASE_HISTORY,
+                search: `?purchase=${param}`,
             },
             { replace: true },
         );
     };
+
     return (
-        <Accordion disableGutters>
+        <Accordion
+            disableGutters
+            expanded={open}
+            onChange={() => setOpen((prev) => !prev)}
+        >
             <AccordionSummary expandIcon={<ExpandMoreIcon color="primary" />}>
                 <Typography variant="h3">Purchase History</Typography>
             </AccordionSummary>
 
-            <AccordionDetails sx={{ p: 0 }}>
+            <AccordionDetails sx={{ padding: 0 }}>
                 <List disablePadding>
                     {PURCHASE_HISTORY_FIELDS.map((item) => (
                         <ListItemButton

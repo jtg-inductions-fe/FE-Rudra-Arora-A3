@@ -2,13 +2,14 @@ import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@app';
 import logo from '@assets/images/logo.svg';
-import { AppBar, ErrorBoundary } from '@components';
+import { AppBar } from '@components';
 import { ROUTES } from '@constants';
 import { setUser } from '@features';
 import { useLazyGetUserProfileQuery } from '@services';
 
 const Header = () => {
     const { isLoggedIn } = useAppSelector((state) => state.auth);
+    const user = useAppSelector((state) => state.user.name);
 
     const dispatch = useAppDispatch();
 
@@ -20,7 +21,7 @@ const Header = () => {
             dispatch(setUser(response));
         };
 
-        if (isLoggedIn) {
+        if (isLoggedIn && !user) {
             void fetchUser();
         }
     }, [isLoggedIn, error]);
@@ -30,19 +31,15 @@ const Header = () => {
     const initials: string = userData.name.charAt(0).toUpperCase();
 
     return (
-        <ErrorBoundary error={error}>
-            {
-                <AppBar
-                    buttonUrl={ROUTES.LOGIN}
-                    logoUrl={ROUTES.ROOT}
-                    logo={logo}
-                    buttonLabel="Login"
-                    userInitials={initials}
-                    isLoading={isLoading}
-                    isLoggedIn={isLoggedIn}
-                />
-            }
-        </ErrorBoundary>
+        <AppBar
+            buttonUrl={ROUTES.LOGIN}
+            logoUrl={ROUTES.ROOT}
+            logo={logo}
+            buttonLabel="Login"
+            userInitials={initials}
+            isLoading={isLoading}
+            isLoggedIn={isLoggedIn}
+        />
     );
 };
 

@@ -28,6 +28,9 @@ theme = createTheme(theme, {
     typography: {
         ...typography.typographyStyle(theme),
     },
+    shape: {
+        borderRadius: 10,
+    },
     components: {
         ...theme.components,
         MuiButton: {
@@ -42,12 +45,14 @@ theme = createTheme(theme, {
                         padding: theme.spacing(1, 8),
                         fontSize: theme.typography.pxToRem(20),
                     },
+                    '&.Mui-disabled': {
+                        color: theme.palette.primary.main,
+                    },
                 },
                 outlined: {
                     fontWeight: 'bold',
                     padding: theme.spacing(0.5, 6),
                     borderWidth: theme.typography.pxToRem(2),
-                    borderRadius: theme.typography.pxToRem(0),
                 },
                 text: {
                     color: theme.palette.common.white,

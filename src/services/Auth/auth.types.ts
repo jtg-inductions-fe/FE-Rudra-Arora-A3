@@ -16,8 +16,4 @@ export type SignupRequest = {
     confirm_password: string;
 };
 
-export type SignupResponse = {
-    name: string;
-    email: string;
-    phone_number: string;
-};
+export type SignupResponse = LoginResponse;

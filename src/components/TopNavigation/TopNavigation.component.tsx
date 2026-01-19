@@ -9,6 +9,7 @@ const TopNavigation = ({ NavConfig }: TopNavigationProps) => {
     const navigate = useNavigate();
     const { palette } = useTheme();
     const location = useLocation();
+
     return (
         <StyledAppBar component="nav">
             {NavConfig.map((item) => (
@@ -17,6 +18,7 @@ const TopNavigation = ({ NavConfig }: TopNavigationProps) => {
                     variant="text"
                     onClick={() => void navigate(item.to)}
                     sx={{
+                        padding: 0,
                         '&: hover': {
                             color: palette.common.black,
                         },

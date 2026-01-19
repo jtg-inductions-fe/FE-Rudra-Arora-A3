@@ -8,6 +8,8 @@ import {
     useTheme,
 } from '@mui/material';
 
+import { ROUTES } from '@constants';
+
 import { StyledCard } from './SlotCard.styles';
 import { SlotCardProps } from './SlotCard.types';
 import { Typography } from '../Typography';
@@ -15,15 +17,15 @@ import { Typography } from '../Typography';
 const SlotCard = ({ title, buttonData }: SlotCardProps) => {
     const { typography, breakpoints } = useTheme();
     const isDesktop = useMediaQuery(breakpoints.up('md'));
-    const theme = useTheme();
     const navigate = useNavigate();
+
     return (
         <StyledCard>
             <CardContent
                 sx={{
                     p: 0,
-                    minWidth: theme.typography.pxToRem(300),
-                    maxWidth: theme.typography.pxToRem(350),
+                    minWidth: typography.pxToRem(350),
+                    maxWidth: typography.pxToRem(400),
                 }}
             >
                 <Typography linesToClamp={2} variant="h2">
@@ -46,7 +48,9 @@ const SlotCard = ({ title, buttonData }: SlotCardProps) => {
                         key={item.buttonId}
                         variant="outlined"
                         onClick={() =>
-                            void navigate(`/slots/${item.buttonId}/seats`)
+                            void navigate(
+                                ROUTES.GET_SEAT_AVAILABILITY(item.buttonId),
+                            )
                         }
                     >
                         {item.buttonText}

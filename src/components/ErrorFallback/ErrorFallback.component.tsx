@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 import { Button, Typography } from '@mui/material';
 
 import { StyledBox, StyledImage } from './ErrorFallback.styles';
@@ -22,7 +20,7 @@ const ErrorFallback = ({
         </Typography>
 
         {buttonText && (
-            <Button variant="contained" component={Link} to={to}>
+            <Button variant="contained" component="a" href={to}>
                 {buttonText}
             </Button>
         )}

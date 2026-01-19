@@ -10,13 +10,13 @@ export const StyledAppBar = styled(AppBar)(({ theme }) => ({
     ...theme.mixins.flex('space-between', 'center'),
 
     [theme.breakpoints.up('md')]: {
-        padding: theme.spacing(0, 5),
+        padding: theme.spacing(0, 6),
     },
 }));
 
 export const CustomIconButton = styled(Link)(({ theme }) => ({
-    width: theme.typography.pxToRem(165),
-    height: theme.typography.pxToRem(50),
+    width: theme.typography.pxToRem(170),
+    height: theme.typography.pxToRem(60),
     marginTop: theme.spacing(1),
 
     [theme.breakpoints.up('md')]: {

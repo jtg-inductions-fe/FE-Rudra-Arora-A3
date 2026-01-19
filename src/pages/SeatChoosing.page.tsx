@@ -2,73 +2,23 @@ import { useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { Box } from '@mui/material';
+import { Box, Stack, useTheme } from '@mui/material';
 
 import { useAppDispatch } from '@app';
-import { ErrorBoundary, InfoCardDataType } from '@components';
+import { InfoCardDataType, Loader, Typography } from '@components';
 import { SeatChoosingContainer } from '@containers';
 import { showSnackbar } from '@features';
-import { useSeatBookingMutation } from '@services';
-import { useGetSeatAvailabilityQuery } from '@services';
+import { useGetSeatAvailabilityQuery, useSeatBookingMutation } from '@services';
 
 const SeatChoosing = () => {
     const { id } = useParams();
     const dispatch = useAppDispatch();
+    const { spacing } = useTheme();
 
-    const [selectedSeat, setSelectedSeat] = useState<Set<number>>(new Set());
     const [bookingResponse, setBookingResponse] = useState<InfoCardDataType>();
-    const [labels, setLabels] = useState<string[]>([]);
-    const [seatBooking] = useSeatBookingMutation();
+    const [seatBooking, { isLoading }] = useSeatBookingMutation();
 
-    const [openModal, setOpenModal] = useState(false);
-
-    const handleOpenModal = () => setOpenModal(true);
-    const handleCloseModal = () => setOpenModal(false);
-
-    /**
-     * Function to handle Seat click state
-     * @param seatId
-     * @param label
-     */
-    const handleSeatClick = (seatId: number, label: string) => {
-        if (selectedSeat.has(seatId)) {
-            setSelectedSeat((prev) => {
-                const temp = new Set(prev);
-                temp.delete(seatId);
-                return temp;
-            });
-
-            setLabels((prev) => prev.filter((item) => item === label));
-        } else {
-            setSelectedSeat((prev) => {
-                const temp = new Set(prev);
-                return temp.add(seatId);
-            });
-            setLabels((prev) => [...prev, label]);
-        }
-    };
-
-    /**
-     * Function to handle Book Button that opens a modal to confirm ticket
-     */
-    const handleBookTicket = () => {
-        if (labels.length) {
-            handleOpenModal();
-        } else {
-            dispatch(
-                showSnackbar({
-                    message: ['Please select a seat'],
-                    variant: 'info',
-                }),
-            );
-        }
-    };
-
-    const {
-        data: seatAvailaibilityData,
-        refetch,
-        error,
-    } = useGetSeatAvailabilityQuery(
+    const { data: seatAvailabilityData, refetch } = useGetSeatAvailabilityQuery(
         {
             id: Number(id),
         },
@@ -78,45 +28,64 @@ const SeatChoosing = () => {
     /**
      * Function to handle Conforming of Ticket
      */
-    const handleConfirmTicket = async () => {
+    const handleConfirmTicket = async (selectedSeat: Set<number>) => {
         const response = await seatBooking({
             id: Number(id),
             seat_ids: Array.from(selectedSeat),
         });
         if (response.error) {
+            const errorData = (
+                response.error as { data: Record<string, string[]> }
+            ).data;
             dispatch(
                 showSnackbar({
-                    message: ['Some error have occured'],
+                    message: errorData.non_field_errors,
                     variant: 'error',
                 }),
             );
+        } else {
+            dispatch(
+                showSnackbar({
+                    message: ['Seat Booked Successfully'],
+                    variant: 'success',
+                }),
+            );
+            await refetch();
+            setBookingResponse(response.data);
         }
-        setBookingResponse(response.data);
-        await refetch();
     };
 
-    return (
-        <Box
-            sx={{
-                overflowX: 'auto',
-                height: '100%',
-                scrollbarWidth: 'none',
-            }}
-        >
-            <ErrorBoundary error={error}>
+    return seatAvailabilityData ? (
+        <Stack gap={spacing(5)} component="section" aria-label="Seat Choosing">
+            {!bookingResponse && (
+                <Stack>
+                    <Typography variant="h2">
+                        {seatAvailabilityData?.title}
+                    </Typography>
+                    <Typography color="primary" variant="h3">
+                        {seatAvailabilityData?.subtitle}
+                    </Typography>
+                </Stack>
+            )}
+            <Box
+                component="section"
+                aria-label="Seat Choosing"
+                sx={{
+                    overflowX: 'auto',
+                    height: '100%',
+                    scrollbarWidth: 'none',
+                }}
+            >
                 <SeatChoosingContainer
-                    handleCloseModal={handleCloseModal}
-                    handleSeatClick={handleSeatClick}
-                    labels={labels}
-                    openModal={openModal}
-                    seatAvailaibilityData={seatAvailaibilityData}
-                    selectedSeat={selectedSeat}
-                    handleBookTicket={handleBookTicket}
+                    seatAvailabilityData={seatAvailabilityData}
                     handleConfirmTicket={handleConfirmTicket}
                     bookingResponse={bookingResponse}
+                    isLoadingBookingResponse={isLoading}
                 />
-            </ErrorBoundary>
-        </Box>
+            </Box>
+        </Stack>
+    ) : (
+        <Loader />
     );
 };
 

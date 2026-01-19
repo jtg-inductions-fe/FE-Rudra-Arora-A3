@@ -28,10 +28,12 @@ const AppBar = ({
                 />
             </CustomIconButton>
 
-            {isLoggedIn && isLoading && (
-                <Skeleton variant="circular" width={40} height={40} />
-            )}
-            {isLoggedIn && !isLoading && <Avatar intials={userInitials} />}
+            {isLoggedIn &&
+                (isLoading ? (
+                    <Skeleton variant="circular" width={40} height={40} />
+                ) : (
+                    <Avatar initials={userInitials} />
+                ))}
             {!isLoggedIn && (
                 <Button
                     variant="contained"

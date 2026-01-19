@@ -6,7 +6,12 @@ import { ProtectedRouteProps } from '@types';
 
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     const { isLoggedIn } = useAppSelector((state) => state.auth);
-    return isLoggedIn ? <>{children}</> : <Navigate to={ROUTES.LOGIN} />;
+
+    return isLoggedIn ? (
+        <>{children}</>
+    ) : (
+        <Navigate to={ROUTES.LOGIN} replace />
+    );
 };
 
 export default ProtectedRoute;

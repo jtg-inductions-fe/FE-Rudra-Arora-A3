@@ -1,11 +1,11 @@
-import { ACCESS_COOKIE_EXPIRES_IN_MINUTES } from 'constants/Login.constants';
 import {
     AUTHENTICATED_ENDPOINTS,
     BACKEND_URL,
 } from 'constants/Routes.constant';
 import Cookies from 'js-cookie';
 
-import { clearUser, syncAuthState } from '@features';
+import { RootState } from '@app';
+import { clearUser, setAccessToken, syncAuthState } from '@features';
 import {
     BaseQueryFn,
     createApi,
@@ -21,8 +21,9 @@ import {
 const rawBaseQuery = fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_API_URL,
     credentials: 'include',
-    prepareHeaders: (headers, { endpoint }) => {
-        const token = Cookies.get('access');
+    prepareHeaders: (headers, { endpoint, getState }) => {
+        const state = getState() as RootState;
+        const token = state.auth.accessToken;
         if (token && AUTHENTICATED_ENDPOINTS.includes(endpoint)) {
             headers.set('authorization', `Bearer ${token}`);
         }
@@ -56,17 +57,49 @@ export const baseQueryWithReauth: BaseQueryFn<
     extraOptions,
 ): Promise<{ data: unknown } | { error: FetchBaseQueryError }> => {
     const isProtected = (args as CustomFetchArgs)?.isProtected ?? false;
+    const state = api.getState() as RootState;
 
-    if (isProtected) {
-        const accessToken = Cookies.get('access');
-        const refreshToken = Cookies.get('refresh');
+    if (!isProtected) {
+        return await rawBaseQuery(args, api, extraOptions);
+    }
+
+    const accessToken = state.auth.accessToken;
+    let refreshToken = Cookies.get('refresh');
+
+    if (!accessToken) {
+        const refreshResult = await rawBaseQuery(
+            {
+                url: BACKEND_URL.TOKEN_REFRESH,
+                method: 'POST',
+                body: JSON.stringify({ refresh: refreshToken }),
+                headers: { 'Content-Type': 'application/json' },
+            },
+            api,
+            extraOptions,
+        );
+
+        if (refreshResult.error) {
+            Cookies.remove('refresh');
+            api.dispatch(syncAuthState(!!Cookies.get('refresh')));
+            api.dispatch(clearUser());
+            return { error: { status: 401, data: 'Unauthorized' } };
+        } else {
+            const access = (refreshResult.data as RefreshResponseType).access;
+            api.dispatch(setAccessToken(access));
+        }
+    }
+
+    let result = await rawBaseQuery(args, api, extraOptions);
+
+    if (result.error && result.error.status === 401) {
+        refreshToken = Cookies.get('refresh');
 
         if (!refreshToken) {
             Cookies.remove('refresh');
             api.dispatch(syncAuthState(!!Cookies.get('refresh')));
             api.dispatch(clearUser());
             return { error: { status: 401, data: 'Unauthorized' } };
-        } else if (!accessToken) {
+        } else {
             const refreshResult = await rawBaseQuery(
                 {
                     url: BACKEND_URL.TOKEN_REFRESH,
@@ -86,19 +119,18 @@ export const baseQueryWithReauth: BaseQueryFn<
             } else {
                 const access = (refreshResult.data as RefreshResponseType)
                     .access;
-                Cookies.set('access', access, {
-                    expires: ACCESS_COOKIE_EXPIRES_IN_MINUTES / (24 * 60),
-                    secure: true,
-                    sameSite: 'strict',
-                });
+                api.dispatch(setAccessToken(access));
+                result = await rawBaseQuery(args, api, extraOptions);
             }
         }
     }
-    return await rawBaseQuery(args, api, extraOptions);
+
+    return result;
 };
 
 export const baseApi = createApi({
     reducerPath: 'api',
     baseQuery: baseQueryWithReauth,
     endpoints: () => ({}),
+    refetchOnReconnect: true,
 });

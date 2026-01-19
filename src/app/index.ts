@@ -1,5 +1,13 @@
 import { useAppDispatch, useAppSelector } from './hooks';
+import { selectGlobalApiError } from './selector';
 import type { AppDispatch, RootState } from './store';
 import { store } from './store';
 
-export { useAppDispatch, useAppSelector, store, RootState, AppDispatch };
+export {
+    useAppDispatch,
+    useAppSelector,
+    store,
+    RootState,
+    AppDispatch,
+    selectGlobalApiError,
+};

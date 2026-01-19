@@ -3,8 +3,9 @@ import { Stack, useTheme } from '@mui/material';
 import { InfoRowProps } from './InfoRow.types';
 import { Typography } from '../Typography';
 
-const InfoRow = ({ label, value }: InfoRowProps) => {
+const InfoRow = ({ label, value, linesToClamp }: InfoRowProps) => {
     const { typography } = useTheme();
+
     return (
         <Stack
             flexDirection="row"
@@ -15,7 +16,7 @@ const InfoRow = ({ label, value }: InfoRowProps) => {
                 {label}:
             </Typography>
             <Typography
-                linesToClamp={1}
+                linesToClamp={linesToClamp ?? 1}
                 showTooltip
                 variant="body1"
                 component="span"

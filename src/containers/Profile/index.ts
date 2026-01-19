@@ -1,3 +1,3 @@
-import ProfileConatiner from './Profile.container';
+import ProfileContainer from './Profile.container';
 
-export { ProfileConatiner };
+export { ProfileContainer };

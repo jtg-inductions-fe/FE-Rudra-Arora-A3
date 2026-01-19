@@ -7,7 +7,8 @@ export type DialogProps = {
     DialogListData: Record<string, DialogDataType[] | undefined>;
     ListHeading: string[];
     selectedCheckedBox: Record<string, Set<string> | string>;
-    buttonText: string;
+    buttonText1: string;
+    buttonText2: string;
     /**
      * Funtion to close the Dialog
      */
@@ -29,4 +30,5 @@ export type DialogProps = {
      * Function for handling the button behaviour in the Dialog component
      */
     handleButtonClick: () => void;
+    handleClearButton: () => void;
 };

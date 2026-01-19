@@ -13,7 +13,9 @@
             "@routes": ["routes"],
             "@components": ["components"],
             "@services": ["services"],
-            "@types": ["types"]
+            "@types": ["types"],
+            "@pages/*": ["pages/*"],
+            "@layout/*": ["layout/*"]
         }
     }
 }

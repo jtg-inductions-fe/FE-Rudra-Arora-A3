@@ -1,4 +1,4 @@
-import { Stack, useMediaQuery, useTheme } from '@mui/material';
+import { Container, useMediaQuery, useTheme } from '@mui/material';
 
 import DesktopLayout from './Desktop.layout';
 import MobileLayout from './Mobile.layout';
@@ -9,15 +9,9 @@ const Main = () => {
     const isTablet = useMediaQuery(theme.breakpoints.up('sm'));
 
     return (
-        <Stack
-            sx={{
-                margin: 'auto',
-                maxWidth: theme.typography.pxToRem(1440),
-                scrollBehavior: 'smooth',
-            }}
-        >
+        <Container maxWidth="lg">
             {isTablet ? <DesktopLayout /> : <MobileLayout />}
-        </Stack>
+        </Container>
     );
 };
 

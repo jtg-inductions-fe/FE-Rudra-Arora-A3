@@ -1,11 +1,11 @@
-import { SlotTimeFormatter, toCapitalized } from 'utils';
+import { slotTimeFormatter, toCapitalized } from 'utils';
 
 import { SlotCardButtonDataType, SlotCardDataType } from '@components';
 import { MovieSlotsResponseType, SlotDataType } from '@types';
 
 export const parseSlots = (response: SlotDataType): SlotCardButtonDataType => ({
     buttonId: response.id,
-    buttonText: SlotTimeFormatter(response.start_time),
+    buttonText: slotTimeFormatter(response.start_time),
 });
 
 export const parseMovieSlotApi = (

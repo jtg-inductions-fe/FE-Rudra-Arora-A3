@@ -19,6 +19,8 @@ import type {
     FieldConfig,
     FormValues,
     PurchaseHistoryResponseType,
+    PurchaseType,
+    VALID_PURCHASE_TYPES,
 } from './Profile.types';
 import type {
     GuestRouteProps,
@@ -52,4 +54,6 @@ export {
     FieldConfig,
     FormValues,
     PurchaseHistoryResponseType,
+    VALID_PURCHASE_TYPES,
+    PurchaseType,
 };

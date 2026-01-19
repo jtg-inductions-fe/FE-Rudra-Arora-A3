@@ -1,5 +1,5 @@
 export type ErrorFallbackProps = {
-    image: string;
+    image?: string;
     title: string;
     body: string;
 } & (

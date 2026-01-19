@@ -29,7 +29,7 @@ export const normalizeApiError = (
             title: 'Data Not Found',
             body: 'The requested resource does not exist.',
             buttonText: 'Go Home',
-            to: '/',
+            to: ROUTES.ROOT,
         };
     }
 
@@ -40,7 +40,7 @@ export const normalizeApiError = (
                 title: 'Data Not Found',
                 body: 'The requested resource does not exist.',
                 buttonText: 'Go Home',
-                to: '/',
+                to: ROUTES.ROOT,
             };
 
         case 500:
@@ -54,7 +54,8 @@ export const normalizeApiError = (
                 image: errorBackgroundImage,
                 title: 'Session Expired',
                 body: 'Please login again.',
-                navigationLink: ROUTES.LOGIN,
+                buttonText: 'Login',
+                to: ROUTES.LOGIN,
             };
 
         default:

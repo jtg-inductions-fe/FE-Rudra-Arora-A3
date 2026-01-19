@@ -30,3 +30,7 @@ export type PurchaseHistoryResponseType = {
     slot: PurchasedSlotDataType[];
     seats: PurchasedSeatType[];
 };
+
+export const VALID_PURCHASE_TYPES = ['upcoming', 'cancel', 'past'] as const;
+
+export type PurchaseType = (typeof VALID_PURCHASE_TYPES)[number];

@@ -4,7 +4,7 @@ import { SeatsDataType } from 'types/SeatAvailability.types';
 import {
     numberToAlphabet,
     slotDateFormatter,
-    SlotTimeFormatter,
+    slotTimeFormatter,
     toCapitalized,
 } from 'utils';
 
@@ -16,15 +16,15 @@ export const parseSeatResponse = (
     id: response.id,
     rowNumber: response.row_number,
     seatNumber: response.seat_number,
-    availaible: response.available,
+    available: response.available,
     label: `${numberToAlphabet(Number(response.row_number))}${response.seat_number}`,
 });
 
 export const parseSeatAvailabilityResponse = (
     response: SeatAvailabilityResponseType,
 ): SeatChoosingDataType => ({
-    title: `${toCapitalized(response.cinema)} ${toCapitalized(response.location)} | ${response.slot_price} ₹`,
-    subtitle: `${response.movie} | ${SlotTimeFormatter(response.slot_start_time)} | ${slotDateFormatter(response.slot_start_time)}`,
+    title: `${toCapitalized(response.cinema)} ${toCapitalized(response.location)} | ₹ ${response.slot_price}`,
+    subtitle: `${response.movie} | ${slotTimeFormatter(response.slot_start_time)} | ${slotDateFormatter(response.slot_start_time)}`,
     rows: response.rows,
     slotDate: response.slot_start_time,
     slotTime: response.slot_start_time,

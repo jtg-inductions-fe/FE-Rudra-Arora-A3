@@ -3,6 +3,8 @@ import { RouteHandleType } from 'types';
 
 import { Stack, useTheme } from '@mui/material';
 
+import { selectGlobalApiError, useAppSelector } from '@app';
+import { ErrorBoundary } from '@components';
 import { Header, Navbar } from '@containers';
 
 const DesktopLayout = () => {
@@ -11,22 +13,23 @@ const DesktopLayout = () => {
     const showHeader = matchedRoutes?.handle?.isHeaderRequired ?? true;
     const showNavbar = matchedRoutes?.handle?.isNavbarRequired ?? true;
     const theme = useTheme();
+    const error = useAppSelector(selectGlobalApiError);
 
     return (
-        <Stack
-            sx={{
-                margin: theme.spacing(22, 4, 5, 4),
-                [theme.breakpoints.up('md')]: {
-                    marginTop: showNavbar
-                        ? theme.spacing(25)
-                        : theme.spacing(18),
-                },
-            }}
-        >
+        <>
             {showHeader && <Header />}
             {showNavbar && <Navbar />}
-            <Outlet />
-        </Stack>
+            <Stack
+                component="main"
+                sx={{
+                    margin: theme.spacing(showNavbar ? 30 : 20, 0, 15, 0),
+                }}
+            >
+                <ErrorBoundary error={error}>
+                    <Outlet />
+                </ErrorBoundary>
+            </Stack>
+        </>
     );
 };
 

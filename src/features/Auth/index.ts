@@ -1,1 +1,6 @@
-export { syncAuthState, authReducer } from './authSlice.features';
+export {
+    syncAuthState,
+    authReducer,
+    setAccessToken,
+    removeAccessToken,
+} from './authSlice.features';

@@ -1,7 +1,7 @@
 import { CardComponentProps } from '@components';
 
 export type TicketContainerProps = {
-    subtitle3?: string;
+    subtitle3: string;
     heading: string;
     linkUrl?: string;
 } & Pick<

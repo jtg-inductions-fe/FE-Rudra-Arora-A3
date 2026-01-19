@@ -12,7 +12,7 @@ import {
     useTheme,
 } from '@mui/material';
 
-import { Dialog } from '@components';
+import { Dialog, NoData } from '@components';
 import { CINEMA_HEADING } from '@constants';
 import { CinemasContainer, Filter, FilterKey } from '@containers';
 import {
@@ -47,7 +47,6 @@ const Cinemas = () => {
     }
     const {
         data: cinemaData,
-        isLoading,
         fetchNextPage,
         hasNextPage,
         isFetching,
@@ -101,9 +100,18 @@ const Cinemas = () => {
         handleFiltersClose();
     };
 
-    const FilterHeading: FilterKey[] = ['location'];
+    const handleClearFilters = () => {
+        setSelectedFilter({
+            location: '',
+        });
+        const params: Record<string, string> = {};
+        setSearchParams(params);
+        handleFiltersClose();
+    };
 
-    const FilterData = {
+    const filterHeading: FilterKey[] = ['location'];
+
+    const filterData = {
         location: locationData,
     };
 
@@ -111,14 +119,20 @@ const Cinemas = () => {
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
     return (
-        <Stack flexDirection="row" gap={theme.spacing(3)}>
+        <Stack
+            component="section"
+            aria-label="Cinemas"
+            flexDirection="row"
+            gap={theme.spacing(3)}
+        >
             {isDesktop && (
                 <Filter
                     handleFiltersSelected={handleFiltersSelected}
                     selectedFilters={selectedFilter}
                     handleApplyFilters={handleApplyFilters}
-                    FilterData={FilterData}
-                    FilterHeading={FilterHeading}
+                    filterData={filterData}
+                    filterHeading={filterHeading}
+                    handleClearFilters={handleClearFilters}
                 />
             )}
             <Stack width={isDesktop ? '70%' : '100%'}>
@@ -140,17 +154,26 @@ const Cinemas = () => {
                             <Dialog
                                 open={filtersOpen}
                                 handleClose={handleFiltersClose}
-                                ListHeading={FilterHeading}
-                                DialogListData={FilterData}
+                                ListHeading={filterHeading}
+                                DialogListData={filterData}
                                 selectedCheckedBox={selectedFilter}
                                 handleCheckBox={handleFiltersSelected}
                                 handleButtonClick={handleApplyFilters}
-                                buttonText="Apply Filters"
+                                buttonText1="Apply Filters"
+                                buttonText2="Clear Filters"
+                                handleClearButton={handleClearFilters}
                             />
                         </>
                     )}
                 </Stack>
-                <CinemasContainer data={currentData} isLoading={isLoading} />
+                {currentData?.length || isFetching ? (
+                    <CinemasContainer
+                        data={currentData}
+                        isFetching={isFetching}
+                    />
+                ) : (
+                    <NoData />
+                )}
                 <Box ref={endRef} height={1}></Box>
             </Stack>
         </Stack>

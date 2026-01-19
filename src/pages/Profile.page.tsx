@@ -1,15 +1,15 @@
-import { Divider } from '@mui/material';
+import { Divider, Stack } from '@mui/material';
 
-import { ProfileConatiner, PurchaseHistoryContainer } from '@containers';
+import { ProfileContainer, PurchaseHistoryContainer } from '@containers';
 
 const Profile = () => (
-    <>
-        <ProfileConatiner />
+    <Stack component="section" aria-label="Profile">
+        <ProfileContainer />
 
         <Divider />
 
         <PurchaseHistoryContainer />
-    </>
+    </Stack>
 );
 
 export default Profile;
