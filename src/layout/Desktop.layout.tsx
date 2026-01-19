@@ -7,9 +7,7 @@ import { Header, Navbar } from '@containers';
 
 const DesktopLayout = () => {
     const matches = useMatches() as Array<{ handle?: RouteHandleType }>;
-    const matchedRoutes = matches.find(
-        (m) => m.handle?.isHeaderRequired && m.handle?.isNavbarRequired,
-    );
+    const matchedRoutes = matches.find((m) => m.handle);
     const showHeader = matchedRoutes?.handle?.isHeaderRequired ?? true;
     const showNavbar = matchedRoutes?.handle?.isNavbarRequired ?? true;
     const theme = useTheme();
@@ -19,7 +17,9 @@ const DesktopLayout = () => {
             sx={{
                 margin: theme.spacing(22, 4, 5, 4),
                 [theme.breakpoints.up('md')]: {
-                    marginTop: theme.spacing(25),
+                    marginTop: showNavbar
+                        ? theme.spacing(25)
+                        : theme.spacing(18),
                 },
             }}
         >

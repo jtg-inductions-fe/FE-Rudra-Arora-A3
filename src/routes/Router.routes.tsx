@@ -10,11 +10,11 @@ import {
     Login,
     MovieDetail,
     Movies,
+    MovieSlots,
     NotFound,
     Profile,
     PurchaseHistory,
     Signup,
-    Slots,
 } from '@pages';
 
 import GuestRoute from './GuestRoute';
@@ -73,16 +73,15 @@ export const router = createBrowserRouter([
         ],
     },
     {
-        path: ROUTES.SLOTS,
+        path: ROUTES.MOVIE_SLOTS,
         element: <Main />,
         handle: {
-            isHeaderRequired: false,
             isNavbarRequired: false,
         },
         children: [
             {
                 index: true,
-                element: <Slots />,
+                element: <MovieSlots />,
             },
             {
                 path: ROUTES.BOOKING,

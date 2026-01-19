@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { DurationFormatter, GenreFormatter, LanguageFormatter } from 'utils';
 
 import { Box, Button, Stack, useTheme } from '@mui/material';
@@ -10,6 +11,7 @@ import { MovieDetailContainerProps } from './MovieDetail.types';
 
 const MovieDetailContainer = ({ movieData }: MovieDetailContainerProps) => {
     const { typography, palette } = useTheme();
+    const navigate = useNavigate();
     return (
         <StyledStack>
             <ImageContainer>
@@ -59,7 +61,14 @@ const MovieDetailContainer = ({ movieData }: MovieDetailContainerProps) => {
                     {movieData?.description}
                 </Typography>
 
-                <Button variant="contained">Book Tickes</Button>
+                <Button
+                    onClick={() =>
+                        void navigate(`/movies/${movieData?.slug}/slots`)
+                    }
+                    variant="contained"
+                >
+                    Book Tickes
+                </Button>
             </Stack>
         </StyledStack>
     );

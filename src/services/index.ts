@@ -13,6 +13,7 @@ import {
     useLazyGetGenresFiltersQuery,
     useLazyGetLanguageFiltersQuery,
 } from './Movie';
+import { useLazyGetMovieSlotsQuery } from './MovieSlots';
 import { useLazyGetUserProfileQuery } from './User';
 
 export {
@@ -30,4 +31,5 @@ export {
     useGetCinemasInfiniteQuery,
     useGetLocationFilterQuery,
     useGetMoviesByNameQuery,
+    useLazyGetMovieSlotsQuery,
 };
