@@ -5,9 +5,11 @@ import { AuthLayout, Main } from '@layout';
 import {
     Booking,
     Cinemas,
+    Error,
     LatestMovies,
     Login,
     Movies,
+    NotFound,
     Profile,
     PurchaseHistory,
     Signup,
@@ -18,6 +20,7 @@ export const router = createBrowserRouter([
     {
         path: ROUTES.ROOT,
         element: <Main />,
+        errorElement: <Error />,
         children: [
             {
                 index: true,
@@ -36,6 +39,7 @@ export const router = createBrowserRouter([
     {
         path: ROUTES.LOGIN,
         element: <AuthLayout />,
+        errorElement: <Error />,
         children: [
             {
                 index: true,
@@ -46,6 +50,7 @@ export const router = createBrowserRouter([
     {
         path: ROUTES.SIGNUP,
         element: <AuthLayout />,
+        errorElement: <Error />,
         children: [
             {
                 index: true,
@@ -78,5 +83,9 @@ export const router = createBrowserRouter([
                 element: <Profile />,
             },
         ],
+    },
+    {
+        path: '*',
+        element: <NotFound />,
     },
 ]);
