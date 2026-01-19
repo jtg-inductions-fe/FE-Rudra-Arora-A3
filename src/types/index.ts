@@ -6,6 +6,7 @@ import type {
     SelectedFiltersType,
 } from './Cinema.types';
 import type { FilterKey, PaginatedResponseType } from './Common.types';
+import type { CinemaSlotsResponseType } from './CinemaSlots.types';
 import type {
     GenreFilterType,
     LanguageFilterType,
@@ -33,4 +34,5 @@ export {
     SelectedFiltersType,
     MovieSlotsResponseType,
     SlotDataType,
+    CinemaSlotsResponseType,
 };

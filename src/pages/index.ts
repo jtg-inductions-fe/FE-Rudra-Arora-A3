@@ -1,5 +1,6 @@
 import Booking from './Booking.page';
 import Cinemas from './Cinemas.page';
+import CinemaSlots from './CinemaSlotsPage';
 import Error from './Error.page';
 import LatestMovies from './LatestMovies.page';
 import Login from './Login.page';
@@ -26,4 +27,5 @@ export {
     NotFound,
     MovieDetail,
     MovieSlots,
+    CinemaSlots,
 };

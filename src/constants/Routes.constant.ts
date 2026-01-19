@@ -20,6 +20,7 @@ export const ROUTES = {
     PURCHASE_HISTORY: 'purchase-history',
     SPECIFIC_MOVIE: 'movies/:movie_name',
     MOVIE_SLOTS: '/movies/:slug/slots',
+    CINEMA_SLOTS: '/cinemas/:slug/slots',
 };
 
 export const AUTHENTICATED_ENDPOINTS = ['getUserProfile'];
