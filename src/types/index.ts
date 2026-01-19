@@ -1,4 +1,16 @@
-import type { RouteHandleType } from './Routes.types';
-import type { GuestRouteProps } from './Routes.types';
+import type { PaginatedResponseType } from './Common.types';
+import type {
+    MovieDataType,
+    MovieFilterTypes,
+    MovieResponseType,
+} from './Movies.types';
+import type { GuestRouteProps, RouteHandleType } from './Routes.types';
 
-export { RouteHandleType, GuestRouteProps };
+export {
+    RouteHandleType,
+    GuestRouteProps,
+    MovieFilterTypes,
+    MovieResponseType,
+    MovieDataType,
+    PaginatedResponseType,
+};

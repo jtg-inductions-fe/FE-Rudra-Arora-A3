@@ -48,8 +48,8 @@ const typographyStyle = (theme: Theme): TypographyOptions => ({
         lineHeight: typographyUtil.pxToRem(37),
 
         [theme.breakpoints.up('sm')]: {
-            fontSize: typographyUtil.pxToRem(38),
-            lineHeight: typographyUtil.pxToRem(57),
+            fontSize: typographyUtil.pxToRem(20),
+            lineHeight: typographyUtil.pxToRem(30),
         },
     },
 
