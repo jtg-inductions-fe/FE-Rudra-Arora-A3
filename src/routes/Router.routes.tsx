@@ -8,6 +8,7 @@ import {
     Error,
     LatestMovies,
     Login,
+    MovieDetail,
     Movies,
     NotFound,
     Profile,
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
             {
                 path: ROUTES.MOVIES,
                 element: <Movies />,
+            },
+            {
+                path: ROUTES.SPECIFIC_MOVIE,
+                element: <MovieDetail />,
             },
         ],
     },

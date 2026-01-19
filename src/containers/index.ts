@@ -5,6 +5,7 @@ import type { ConfigType, PayloadType } from './Form';
 import { Form } from './Form';
 import { Header } from './Header';
 import { LatestMoviesContainer } from './LatestMovies';
+import { MovieDetailContainer } from './MovieDetail';
 import { MoviesContainer } from './Movies';
 import { Navbar } from './Navbar';
 
@@ -19,4 +20,5 @@ export {
     MoviesContainer,
     CinemasContainer,
     FilterKey,
+    MovieDetailContainer,
 };
