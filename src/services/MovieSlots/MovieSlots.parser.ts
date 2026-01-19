@@ -1,5 +1,4 @@
-import { toCapitalized } from 'utils';
-import { SlotTimeFormatter } from 'utils/Slot.utils';
+import { SlotTimeFormatter, toCapitalized } from 'utils';
 
 import { SlotCardButtonDataType, SlotCardDataType } from '@components';
 import { MovieSlotsResponseType, SlotDataType } from '@types';
