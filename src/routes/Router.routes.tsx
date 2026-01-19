@@ -16,6 +16,8 @@ import {
     Slots,
 } from '@pages';
 
+import GuestRoute from './GuestRoute';
+
 export const router = createBrowserRouter([
     {
         path: ROUTES.ROOT,
@@ -38,8 +40,11 @@ export const router = createBrowserRouter([
     },
     {
         path: ROUTES.LOGIN,
-        element: <AuthLayout />,
-        errorElement: <Error />,
+        element: (
+            <GuestRoute>
+                <AuthLayout />
+            </GuestRoute>
+        ),
         children: [
             {
                 index: true,
@@ -49,8 +54,12 @@ export const router = createBrowserRouter([
     },
     {
         path: ROUTES.SIGNUP,
-        element: <AuthLayout />,
         errorElement: <Error />,
+        element: (
+            <GuestRoute>
+                <AuthLayout />
+            </GuestRoute>
+        ),
         children: [
             {
                 index: true,

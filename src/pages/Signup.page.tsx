@@ -1,13 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '@app';
+import { ErrorBoundary } from '@components';
 import { ROUTES, SIGNUP_CONFIG, SIGNUP_MESSAGES } from '@constants';
 import { Form } from '@containers';
 import { showSnackbar } from '@features';
 import { SignupRequest, useSignupUserMutation } from '@services';
 
 const Signup = () => {
-    const [signupUser] = useSignupUserMutation();
+    const [signupUser, { error: signupError }] = useSignupUserMutation();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -36,7 +37,11 @@ const Signup = () => {
         }
     };
 
-    return <Form {...SIGNUP_CONFIG} onSubmit={handleSubmit} />;
+    return (
+        <ErrorBoundary error={signupError}>
+            <Form {...SIGNUP_CONFIG} onSubmit={handleSubmit} />
+        </ErrorBoundary>
+    );
 };
 
 export default Signup;
