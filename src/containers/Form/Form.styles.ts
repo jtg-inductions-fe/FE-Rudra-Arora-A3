@@ -1,4 +1,4 @@
-import { Box, Stack, styled, TextField } from '@mui/material';
+import { Box, BoxProps, Stack, styled, TextField } from '@mui/material';
 
 export const FormStack = styled(Stack)(({ theme }) => ({
     ...theme.mixins.flexCenter(),
@@ -24,7 +24,7 @@ export const FormStack = styled(Stack)(({ theme }) => ({
     },
 }));
 
-export const StyledStack = styled(Stack)(({ theme }) => ({
+export const StyledStack = styled(Stack)<BoxProps>(({ theme }) => ({
     flexDirection: 'row',
     ...theme.mixins.flexCenter(),
     gap: theme.spacing(8),
@@ -35,7 +35,7 @@ export const AuthImageBox = styled(Box)(({ theme }) => ({
     overflow: 'hidden',
     flex: 1,
     height: theme.typography.pxToRem(500),
-    width: theme.typography.pxToRem(400),
+    maxWidth: theme.typography.pxToRem(450),
 }));
 
 export const CustomTextField = styled(TextField)(({ theme }) => ({
@@ -57,6 +57,5 @@ export const CustomTextField = styled(TextField)(({ theme }) => ({
     '& .MuiOutlinedInput-root': {
         backgroundColor: theme.palette.grey[500],
         borderRadius: theme.typography.pxToRem(15),
-        paddingRight: theme.typography.pxToRem(8),
     },
 }));

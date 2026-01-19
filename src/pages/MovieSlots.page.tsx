@@ -9,16 +9,19 @@ import { useGetMoviesByNameQuery, useLazyGetMovieSlotsQuery } from '@services';
 
 const MovieSlots = () => {
     const param = useParams();
-    const { data: movieDetail, isFetching: isFetchingMovieDetail } =
-        useGetMoviesByNameQuery(param.slug ?? '', {
-            skip: !param.slug,
-        });
+    const {
+        data: movieDetail,
+        isFetching: isFetchingMovieDetail,
+        isLoading: isLoadingMovieDetail,
+    } = useGetMoviesByNameQuery(param.slug ?? '', {
+        skip: !param.slug,
+    });
     const [trigger, { isFetching }] = useLazyGetMovieSlotsQuery();
     const { typography } = useTheme();
 
     return (
         <>
-            {isFetchingMovieDetail && (
+            {isLoadingMovieDetail && (
                 <>
                     <Skeleton
                         width={typography.pxToRem(300)}
@@ -35,7 +38,7 @@ const MovieSlots = () => {
                     />
                 </>
             )}
-            {!isFetchingMovieDetail && movieDetail && (
+            {movieDetail && (
                 <SlotContainer
                     heading={movieDetail.name}
                     id={movieDetail.id}

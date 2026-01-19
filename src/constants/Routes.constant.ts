@@ -34,7 +34,7 @@ export const ROUTES = {
     SPECIFIC_MOVIE: 'movies/:slug',
     MOVIE_SLOTS: '/movies/:slug/slots',
     CINEMA_SLOTS: '/cinemas/:slug/slots',
-    SEAT_AVAILABILITY: '/slots/:id/seats/',
+    SEAT_AVAILABILITY: '/slots/:id/seats',
     GET_SEAT_AVAILABILITY: (id: number) => `/slots/${id}/seats`,
 };
 

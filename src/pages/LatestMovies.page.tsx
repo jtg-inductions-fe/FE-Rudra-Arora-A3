@@ -20,7 +20,7 @@ const LatestMovies = () => {
     });
 
     return (
-        <Stack>
+        <Stack component="section" aria-label="Latest Movies">
             <Typography variant="h1">{LATEST_MOVIES_HEADING}</Typography>
 
             {currentData?.length || isFetching ? (

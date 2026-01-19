@@ -12,4 +12,5 @@ export type FilterContainerProps = {
         filter: string,
         heading: string,
     ) => void;
+    handleClearFilters: () => void;
 };

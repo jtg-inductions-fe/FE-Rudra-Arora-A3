@@ -132,6 +132,16 @@ const Movies = () => {
         handleFiltersClose();
     };
 
+    const handleClearFilters = () => {
+        setSelectedFilter({
+            genre: new Set(),
+            language: new Set(),
+        });
+        const params: Record<string, string[]> = {};
+        setSearchParams(params);
+        handleFiltersClose();
+    };
+
     const filterHeading: FilterKey[] = ['genre', 'language'];
 
     const filterData = {
@@ -143,7 +153,12 @@ const Movies = () => {
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
     return (
-        <Stack flexDirection="row" gap={theme.spacing(3)}>
+        <Stack
+            component="section"
+            aria-label="Movies"
+            flexDirection="row"
+            gap={theme.spacing(3)}
+        >
             {isDesktop && (
                 <Filter
                     handleFiltersSelected={handleFiltersSelected}
@@ -151,6 +166,7 @@ const Movies = () => {
                     handleApplyFilters={handleApplyFilters}
                     filterData={filterData}
                     filterHeading={filterHeading}
+                    handleClearFilters={handleClearFilters}
                 />
             )}
             <Stack width={isDesktop ? '70%' : '100%'}>
@@ -177,7 +193,9 @@ const Movies = () => {
                                 selectedCheckedBox={selectedFilter}
                                 handleCheckBox={handleFiltersSelected}
                                 handleButtonClick={handleApplyFilters}
-                                buttonText="Apply Filters"
+                                buttonText1="Apply Filters"
+                                buttonText2="Clear Filters"
+                                handleClearButton={handleClearFilters}
                             />
                         </>
                     )}

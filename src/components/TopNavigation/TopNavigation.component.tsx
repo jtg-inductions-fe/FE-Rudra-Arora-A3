@@ -18,6 +18,7 @@ const TopNavigation = ({ NavConfig }: TopNavigationProps) => {
                     variant="text"
                     onClick={() => void navigate(item.to)}
                     sx={{
+                        padding: 0,
                         '&: hover': {
                             color: palette.common.black,
                         },

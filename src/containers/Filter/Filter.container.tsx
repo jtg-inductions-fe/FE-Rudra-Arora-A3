@@ -11,6 +11,7 @@ const Filter = ({
     handleApplyFilters,
     handleFiltersSelected,
     selectedFilters,
+    handleClearFilters,
 }: FilterContainerProps) => {
     const theme = useTheme();
 
@@ -22,13 +23,30 @@ const Filter = ({
                 alignItems="center"
             >
                 <Typography variant="h3">Filters</Typography>
-                <Button
-                    onClick={handleApplyFilters}
-                    variant="text"
-                    sx={{ color: theme.palette.primary.main }}
+                <Stack
+                    justifyContent="space-between"
+                    gap={1}
+                    alignItems="center"
+                    flexDirection="row"
                 >
-                    Apply
-                </Button>
+                    <Button
+                        onClick={handleApplyFilters}
+                        variant="text"
+                        sx={{ color: theme.palette.primary.main }}
+                    >
+                        Apply
+                    </Button>
+                    <Typography color="primary" variant="subtitle1">
+                        |
+                    </Typography>
+                    <Button
+                        onClick={handleClearFilters}
+                        variant="text"
+                        sx={{ color: theme.palette.primary.main }}
+                    >
+                        Clear
+                    </Button>
+                </Stack>
             </Stack>
 
             {filterHeading.map((filter) => (

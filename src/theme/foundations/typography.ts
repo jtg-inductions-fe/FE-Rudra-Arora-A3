@@ -32,13 +32,13 @@ const typographyStyle = (theme: Theme): TypographyOptions => ({
     fontWeightBold: 700,
 
     h1: {
-        fontSize: typographyUtil.pxToRem(30),
+        fontSize: typographyUtil.pxToRem(35),
         fontWeight: 700,
         lineHeight: typographyUtil.pxToRem(45),
 
         [theme.breakpoints.up('sm')]: {
-            fontSize: typographyUtil.pxToRem(45),
-            lineHeight: typographyUtil.pxToRem(67),
+            fontSize: typographyUtil.pxToRem(40),
+            lineHeight: typographyUtil.pxToRem(50),
         },
     },
 
@@ -48,8 +48,8 @@ const typographyStyle = (theme: Theme): TypographyOptions => ({
         lineHeight: typographyUtil.pxToRem(37),
 
         [theme.breakpoints.up('sm')]: {
-            fontSize: typographyUtil.pxToRem(20),
-            lineHeight: typographyUtil.pxToRem(30),
+            fontSize: typographyUtil.pxToRem(25),
+            lineHeight: typographyUtil.pxToRem(37),
         },
     },
 

@@ -24,8 +24,8 @@ const SlotCard = ({ title, buttonData }: SlotCardProps) => {
             <CardContent
                 sx={{
                     p: 0,
-                    minWidth: typography.pxToRem(300),
-                    maxWidth: typography.pxToRem(350),
+                    minWidth: typography.pxToRem(350),
+                    maxWidth: typography.pxToRem(400),
                 }}
             >
                 <Typography linesToClamp={2} variant="h2">

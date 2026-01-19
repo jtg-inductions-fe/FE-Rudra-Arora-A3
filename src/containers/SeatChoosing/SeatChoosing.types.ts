@@ -11,7 +11,7 @@ export type SeatChoosingDataType = {
 };
 
 export type SeatChoosingContainerProps = {
-    seatAvailaibilityData: SeatChoosingDataType;
+    seatAvailabilityData: SeatChoosingDataType;
     bookingResponse?: InfoCardDataType;
     isLoadingBookingResponse: boolean;
     handleConfirmTicket: (selectedSeat: Set<number>) => Promise<void>;

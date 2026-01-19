@@ -58,6 +58,7 @@ const InfoCard = ({
                         value={subtitle2}
                     />
                     <InfoRow
+                        linesToClamp={0}
                         label={INFO_CARD_CONSTANTS.KEY3}
                         value={subtitle3}
                     />

@@ -28,8 +28,8 @@ const SeatLayout = ({
                     variant={selectedSeat.has(item.id) ? 'filled' : 'outlined'}
                     label={item.label}
                     onClick={() => handleSeatClick(item.id, item.label)}
-                    disabled={!item.availaible}
-                    color={item.availaible ? 'primary' : 'warning'}
+                    disabled={!item.available}
+                    color={item.available ? 'primary' : 'warning'}
                 />
             ))}
         </Box>

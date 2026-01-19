@@ -7,6 +7,7 @@ import {
     IconButton,
     List,
     Slide,
+    Stack,
     Toolbar,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
@@ -32,7 +33,9 @@ const Dialog = ({
     handleCheckBox,
     selectedCheckedBox,
     handleButtonClick,
-    buttonText,
+    buttonText1,
+    buttonText2,
+    handleClearButton,
 }: DialogProps) => (
     <React.Fragment>
         <MuiDialog
@@ -55,9 +58,14 @@ const Dialog = ({
                         <CloseIcon color="primary" />
                     </IconButton>
                 </Toolbar>
-                <Button onClick={handleButtonClick} variant="outlined">
-                    {buttonText}
-                </Button>
+                <Stack flexDirection="row" gap={2}>
+                    <Button onClick={handleButtonClick} variant="outlined">
+                        {buttonText1}
+                    </Button>
+                    <Button onClick={handleClearButton} variant="contained">
+                        {buttonText2}
+                    </Button>
+                </Stack>
             </DialogAppBar>
 
             <List sx={{ p: 0 }}>

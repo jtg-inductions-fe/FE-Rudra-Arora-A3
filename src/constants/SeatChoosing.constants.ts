@@ -1,7 +1,7 @@
 export const SEAT_CHOOSING_CONSTANTS = {
     INFO_STACK: [
         {
-            MESSAGE: 'Availaible',
+            MESSAGE: 'Available',
             VARIANT: 'outlined',
             DISABLED: false,
         },

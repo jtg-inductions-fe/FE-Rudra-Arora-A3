@@ -16,17 +16,20 @@ const DesktopLayout = () => {
     const error = useAppSelector(selectGlobalApiError);
 
     return (
-        <Stack
-            sx={{
-                margin: theme.spacing(showNavbar ? 22 : 14, 4, 5, 4),
-            }}
-        >
+        <>
             {showHeader && <Header />}
             {showNavbar && <Navbar />}
-            <ErrorBoundary error={error}>
-                <Outlet />
-            </ErrorBoundary>
-        </Stack>
+            <Stack
+                component="main"
+                sx={{
+                    margin: theme.spacing(showNavbar ? 30 : 20, 0, 15, 0),
+                }}
+            >
+                <ErrorBoundary error={error}>
+                    <Outlet />
+                </ErrorBoundary>
+            </Stack>
+        </>
     );
 };
 

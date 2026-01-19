@@ -16,7 +16,7 @@ export const parseSeatResponse = (
     id: response.id,
     rowNumber: response.row_number,
     seatNumber: response.seat_number,
-    availaible: response.available,
+    available: response.available,
     label: `${numberToAlphabet(Number(response.row_number))}${response.seat_number}`,
 });
 

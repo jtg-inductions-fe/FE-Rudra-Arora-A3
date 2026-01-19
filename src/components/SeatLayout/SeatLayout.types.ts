@@ -2,7 +2,7 @@ export type SeatLayoutDataType = {
     id: number;
     rowNumber: string;
     seatNumber: number;
-    availaible: boolean;
+    available: boolean;
     label: string;
 };
 

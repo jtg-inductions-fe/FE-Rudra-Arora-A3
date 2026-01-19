@@ -16,14 +16,11 @@ const LatestMoviesContainer = ({
     const navigate = useNavigate();
     return (
         <>
-            <Grid container spacing={2}>
+            <Grid container spacing={4}>
                 {data?.map((item) => (
                     <Grid key={item.id}>
                         <Card
-                            title={item.title}
-                            subtitle1={item.subtitle1}
-                            id={item.id}
-                            subtitle2={item.subtitle2}
+                            {...item}
                             buttonText="Show Detail"
                             subtitleHeading={SUBTITLE_HEADING}
                             posterUrl={moviePoster}

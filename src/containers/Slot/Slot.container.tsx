@@ -42,7 +42,11 @@ const SlotContainer = ({
     }, [heading, searchParams]);
 
     return (
-        <Stack gap={spacing(2)}>
+        <Stack
+            component="section"
+            aria-label="Movie-Cinema Slots"
+            gap={spacing(2)}
+        >
             <Typography variant="h1">{heading}</Typography>
 
             <Typography color="primary" variant="body1">
@@ -69,7 +73,7 @@ const SlotContainer = ({
 
                 {!isFetchingSlotData && !slotData?.length && (
                     <Typography textAlign="center" variant="h2">
-                        No Slots Available
+                        No Movie/Slots Available
                     </Typography>
                 )}
             </Stack>

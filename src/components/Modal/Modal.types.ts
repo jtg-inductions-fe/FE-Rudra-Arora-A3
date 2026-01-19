@@ -5,7 +5,7 @@ export type ModalProps = {
     title?: string;
     subtitle1?: string;
     subtitle2?: string;
-    handleButtonClick: () => Promise<void>;
+    handleButtonClick: () => Promise<void> | void;
     buttonText: string;
     keys: Record<string, string>;
     isLoading: boolean;

@@ -10,7 +10,7 @@ import { showSnackbar } from '@features';
 import { SeatLayoutContainerProps } from './SeatLayout.types';
 
 const SeatLayoutContainer = ({
-    seatAvailaibilityData,
+    seatAvailabilityData,
     handleConfirmTicket,
     isLoading,
 }: SeatLayoutContainerProps) => {
@@ -37,7 +37,7 @@ const SeatLayoutContainer = ({
                 return temp;
             });
 
-            setLabels((prev) => prev.filter((item) => item === label));
+            setLabels((prev) => prev.filter((item) => item !== label));
         } else {
             setSelectedSeat((prev) => {
                 const temp = new Set(prev);
@@ -68,9 +68,9 @@ const SeatLayoutContainer = ({
         <Stack gap={10} alignItems="center">
             <SeatLayout
                 handleSeatClick={handleSeatClick}
-                rows={seatAvailaibilityData?.rows}
+                rows={seatAvailabilityData?.rows}
                 selectedSeat={selectedSeat}
-                seatsData={seatAvailaibilityData?.seatsData}
+                seatsData={seatAvailabilityData?.seatsData}
                 size={50}
             />
 
@@ -82,9 +82,9 @@ const SeatLayoutContainer = ({
                 openModal={openModal}
                 handleCloseModal={handleCloseModal}
                 labels={labels}
-                title={seatAvailaibilityData?.title}
-                subtitle1={seatAvailaibilityData?.subtitle}
-                subtitle2={seatAvailaibilityData?.slotPrice}
+                title={seatAvailabilityData?.title}
+                subtitle1={seatAvailabilityData?.subtitle}
+                subtitle2={seatAvailabilityData?.slotPrice}
                 handleButtonClick={handleSeatConfirmation}
                 buttonText="Confirm Ticket"
                 keys={SEAT_CHOOSING_CONSTANTS.KEYS}

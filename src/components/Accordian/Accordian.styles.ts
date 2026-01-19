@@ -12,6 +12,5 @@ export const StyledAccordianDetails = styled(AccordionDetails)(({ theme }) => ({
     },
     '&::-webkit-scrollbar-thumb': {
         backgroundColor: theme.palette.grey[400],
-        borderRadius: theme.spacing(3),
     },
 }));

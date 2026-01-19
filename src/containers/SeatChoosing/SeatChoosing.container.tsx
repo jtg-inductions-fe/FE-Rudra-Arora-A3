@@ -12,22 +12,13 @@ import { SeatLayoutContainer } from '../SeatLayout';
 import { TicketContainer } from '../Ticket';
 
 const SeatChoosingContainer = ({
-    seatAvailaibilityData,
+    seatAvailabilityData,
     handleConfirmTicket,
     bookingResponse,
     isLoadingBookingResponse,
 }: SeatChoosingContainerProps) =>
     !bookingResponse ? (
         <Container>
-            <Stack>
-                <Typography variant="h2">
-                    {seatAvailaibilityData?.title}
-                </Typography>
-                <Typography color="primary" variant="h3">
-                    {seatAvailaibilityData?.subtitle}
-                </Typography>
-            </Stack>
-
             <InfoStack>
                 {SEAT_CHOOSING_CONSTANTS.INFO_STACK.map((info) => (
                     <Stack
@@ -48,16 +39,21 @@ const SeatChoosingContainer = ({
             </InfoStack>
 
             <Stack alignItems="center">
-                <Box width="50%" component="img" src={screen} />
+                <Box
+                    width="50%"
+                    component="img"
+                    src={screen}
+                    alt="Theater screen"
+                />
                 <Typography color="textSecondary" variant="subtitle2">
                     Screen This Way
                 </Typography>
             </Stack>
 
-            {seatAvailaibilityData && (
+            {seatAvailabilityData && (
                 <SeatLayoutContainer
                     handleConfirmTicket={handleConfirmTicket}
-                    seatAvailaibilityData={seatAvailaibilityData}
+                    seatAvailabilityData={seatAvailabilityData}
                     isLoading={isLoadingBookingResponse}
                 />
             )}

@@ -132,5 +132,5 @@ export const baseApi = createApi({
     reducerPath: 'api',
     baseQuery: baseQueryWithReauth,
     endpoints: () => ({}),
-    keepUnusedDataFor: 3600,
+    refetchOnReconnect: true,
 });

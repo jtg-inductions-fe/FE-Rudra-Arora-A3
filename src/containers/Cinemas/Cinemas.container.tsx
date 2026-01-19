@@ -8,7 +8,7 @@ import { CinemasContainerProps } from './Cinemas.types';
 const CinemasContainer = ({ data, isFetching }: CinemasContainerProps) => {
     const navigate = useNavigate();
     return (
-        <Grid container spacing={2}>
+        <Grid container spacing={4}>
             {data?.map((item) => (
                 <Grid key={item.id}>
                     <Card

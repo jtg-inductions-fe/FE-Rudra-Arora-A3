@@ -19,9 +19,11 @@ const Card = ({
     subtitleHeading,
     posterUrl,
     handleButtonClick,
+    subtitle3,
 }: CardComponentProps) => {
-    const { breakpoints, typography } = useTheme();
+    const { breakpoints, typography, spacing } = useTheme();
     const isTablet = useMediaQuery(breakpoints.up('sm'));
+
     return (
         <StyledCard>
             {posterUrl && (
@@ -29,61 +31,79 @@ const Card = ({
                     sx={{ height: typography.pxToRem(100) }}
                     component="img"
                     image={posterUrl}
+                    alt="Poster"
                 />
             )}
-            <StyledCardContent>
-                <Typography
-                    gutterBottom={isTablet}
-                    variant="h2"
-                    linesToClamp={1}
-                    showTooltip
-                >
-                    {title}
-                </Typography>
-                <Stack flexDirection="row" gap={1}>
+            <Stack gap={spacing(4)} padding={spacing(3, 4)}>
+                <StyledCardContent>
                     <Typography
-                        variant="body1"
-                        component="span"
-                        color="textSecondary"
-                    >
-                        {subtitleHeading.subtitle1}
-                    </Typography>
-                    <Typography
-                        variant="body1"
-                        component="span"
-                        color="textSecondary"
+                        gutterBottom={isTablet}
+                        variant="h2"
                         linesToClamp={1}
                         showTooltip
                     >
-                        {subtitle1}
+                        {title}
                     </Typography>
-                </Stack>
-                <Stack flexDirection="row" gap={1}>
-                    <Typography
-                        variant="body1"
-                        component="span"
-                        color="textSecondary"
+                    <Stack gap={spacing(2)}>
+                        <Typography
+                            variant="body1"
+                            component="span"
+                            color="textSecondary"
+                            linesToClamp={3}
+                            showTooltip
+                        >
+                            {subtitle3}
+                        </Typography>
+
+                        <Stack flexDirection="row" gap={1}>
+                            <Typography
+                                variant="body1"
+                                component="span"
+                                color="textSecondary"
+                            >
+                                {subtitleHeading.subtitle1}
+                            </Typography>
+                            <Typography
+                                variant="body1"
+                                component="span"
+                                color="textSecondary"
+                                linesToClamp={1}
+                                showTooltip
+                            >
+                                {subtitle1}
+                            </Typography>
+                        </Stack>
+
+                        <Stack flexDirection="row" gap={1}>
+                            <Typography
+                                variant="body1"
+                                component="span"
+                                color="textSecondary"
+                            >
+                                {subtitleHeading.subtitle2}
+                            </Typography>
+                            <Typography
+                                variant="body1"
+                                component="span"
+                                color="textSecondary"
+                                linesToClamp={1}
+                                showTooltip
+                            >
+                                {subtitle2}
+                            </Typography>
+                        </Stack>
+                    </Stack>
+                </StyledCardContent>
+                <CardActions sx={{ padding: 0 }}>
+                    <Button
+                        fullWidth
+                        onClick={handleButtonClick}
+                        variant="contained"
                     >
-                        {subtitleHeading.subtitle2}
-                    </Typography>
-                    <Typography
-                        variant="body1"
-                        component="span"
-                        color="textSecondary"
-                        linesToClamp={1}
-                        showTooltip
-                    >
-                        {subtitle2}
-                    </Typography>
-                </Stack>
-            </StyledCardContent>
-            <CardActions sx={{ width: '100%' }}>
-                <Stack alignItems="center" width="100%">
-                    <Button onClick={handleButtonClick} variant="contained">
                         {buttonText}
                     </Button>
-                </Stack>
-            </CardActions>
+                </CardActions>
+            </Stack>
         </StyledCard>
     );
 };

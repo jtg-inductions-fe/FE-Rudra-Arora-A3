@@ -1,10 +1,15 @@
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { Grid2, Stack } from '@mui/material';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIosNew';
+import { Grid2, IconButton, Stack, useTheme } from '@mui/material';
 
 import { useAppDispatch } from '@app';
 import { CardSkeleton, Grid, InfoCard, NoData, Typography } from '@components';
-import { GET_PURCHASE_PAGE_HEADING, SEAT_BOOKING_CONSTANTS } from '@constants';
+import {
+    GET_PURCHASE_PAGE_HEADING,
+    ROUTES,
+    SEAT_BOOKING_CONSTANTS,
+} from '@constants';
 import { showSnackbar } from '@features';
 import {
     useGetPurchaseHistoryInfiniteQuery,
@@ -16,6 +21,10 @@ const PurchaseHistory = () => {
     const [searchParam] = useSearchParams();
 
     const purchase = searchParam.get('purchase') as PurchaseType;
+
+    const navigate = useNavigate();
+
+    const { typography } = useTheme();
 
     const {
         data: purchaseData,
@@ -53,10 +62,27 @@ const PurchaseHistory = () => {
     };
 
     return (
-        <Stack gap={3}>
-            <Typography variant="h1">
-                {GET_PURCHASE_PAGE_HEADING(purchase)}
-            </Typography>
+        <Stack component="section" aria-label="Purchase History" gap={3}>
+            <Stack
+                flexDirection="row"
+                justifyContent="flex-start"
+                alignItems="center"
+            >
+                <IconButton
+                    onClick={() =>
+                        void navigate(ROUTES.PROFILE, { replace: true })
+                    }
+                    sx={{ padding: 0 }}
+                >
+                    <ArrowBackIosIcon
+                        sx={{ fontSize: typography.pxToRem(50) }}
+                        color="primary"
+                    />
+                </IconButton>
+                <Typography variant="h1">
+                    {GET_PURCHASE_PAGE_HEADING(purchase)}
+                </Typography>
+            </Stack>
 
             {isFetching && (
                 <Grid2 container spacing={{ xs: 2, sm: 3 }}>

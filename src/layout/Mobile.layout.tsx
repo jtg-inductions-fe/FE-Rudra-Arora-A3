@@ -16,13 +16,20 @@ const MobileLayout = () => {
     const error = useAppSelector(selectGlobalApiError);
 
     return (
-        <Stack sx={{ margin: theme.spacing(15, 4, 15, 4) }}>
+        <>
             {showHeader && <Header />}
-            <ErrorBoundary error={error}>
-                <Outlet />
-            </ErrorBoundary>
+            <Stack
+                component="main"
+                sx={{
+                    margin: theme.spacing(18, 0),
+                }}
+            >
+                <ErrorBoundary error={error}>
+                    <Outlet />
+                </ErrorBoundary>
+            </Stack>
             {showNavbar && <Navbar />}
-        </Stack>
+        </>
     );
 };
 

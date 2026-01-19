@@ -47,7 +47,7 @@ const Form = ({ title, fields, link, onSubmit }: FormProps) => {
     const isTablet = useMediaQuery(theme.breakpoints.up('sm'));
 
     return (
-        <StyledStack>
+        <StyledStack component="section" aria-label="Form">
             {isTablet && (
                 <AuthImageBox>
                     <Box
@@ -56,6 +56,7 @@ const Form = ({ title, fields, link, onSubmit }: FormProps) => {
                         width="100%"
                         height="100%"
                         alt="Authentication illustration"
+                        sx={{ objectFit: 'cover' }}
                     />
                 </AuthImageBox>
             )}
@@ -73,9 +74,11 @@ const Form = ({ title, fields, link, onSubmit }: FormProps) => {
                         alignItems: 'center',
                         gap: theme.spacing(5),
                     }}
+                    autoComplete="off"
                 >
                     {fields.map((field) => (
                         <CustomTextField
+                            autoComplete="off"
                             key={field.name}
                             type={
                                 field.type === 'password'
